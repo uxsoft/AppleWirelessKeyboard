@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="AppleWirelessKeyboard.Glyphs.VolumeOn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" ClipToBounds="True" Margin="-20,-110,0,0"
+             d:DesignHeight="192" d:DesignWidth="192">
+    <Canvas Width="164" Height="158" Margin="-36,-70">
+        <Path StrokeThickness="7.0" Stroke="White" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 102.064,75.000 C 102.064,75.000 151.212,111.996 102.064,152.802"/>
+        <Path StrokeThickness="7.0" Stroke="White" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 95.138,86.970 C 95.138,86.970 126.301,111.806 95.138,139.200"/>
+        <Path StrokeThickness="7.0" Stroke="White" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 86.588,100.934 C 86.588,100.934 101.953,113.180 86.588,126.688"/>
+        <Path StrokeThickness="2.0" Stroke="White" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Fill="White" Data="F1 M 58.447,124.421 L 74.134,140.107 L 74.134,85.882 L 59.081,100.934 L 37.500,100.934 L 37.500,124.421 L 58.447,124.421 Z"/>
+        <Canvas.RenderTransform>
+            <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+        </Canvas.RenderTransform>
+    </Canvas>
+</UserControl>

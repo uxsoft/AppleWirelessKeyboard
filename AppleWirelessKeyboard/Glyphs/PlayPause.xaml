@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="AppleWirelessKeyboard.Glyphs.PlayPause"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Canvas Width="120" Height="80">
+        <Path Fill="White" Data="F1 M 0,0 L 60,40 L 0,80 L 0,0 Z"/>
+        <Path Fill="White" Data="F1 M 120,80 L 100,80 L 100,0 L 120,0 L 120,80 Z"/>
+        <Path Fill="White" Data="F1 M 80,80 L 60,80 L 60,0 L 80,0 L 80,80 Z"/>
+    </Canvas>
+</UserControl>

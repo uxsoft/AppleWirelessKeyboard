@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="cs" original="APPLEWIRELESSKEYBOARD/PROPERTIES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1451.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="APPLEWIRELESSKEYBOARD/PROPERTIES/RESOURCES.RESX" datatype="resx">
+        <trans-unit id="Action" translate="yes" xml:space="preserve">
+          <source>Action</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Akce</target>
+        </trans-unit>
+        <trans-unit id="Bindings" translate="yes" xml:space="preserve">
+          <source>Bindings</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Vazby</target>
+        </trans-unit>
+        <trans-unit id="By" translate="yes" xml:space="preserve">
+          <source>by</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Autor:</target>
+        </trans-unit>
+        <trans-unit id="CapsLock" translate="yes" xml:space="preserve">
+          <source>Caps Lock</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Caps Lock</target>
+        </trans-unit>
+        <trans-unit id="Configuration" translate="yes" xml:space="preserve">
+          <source>Configuration</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Konfigurace</target>
+        </trans-unit>
+        <trans-unit id="Configure" translate="yes" xml:space="preserve">
+          <source>Configure</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Konfigurace</target>
+        </trans-unit>
+        <trans-unit id="DecreaseBrightness" translate="yes" xml:space="preserve">
+          <source>Decrease Brightness</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Snížit jas</target>
+        </trans-unit>
+        <trans-unit id="Delete" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Odstranit</target>
+        </trans-unit>
+        <trans-unit id="DisplayOverlay" translate="yes" xml:space="preserve">
+          <source>Display Overlay</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zobrazit překrytí</target>
+        </trans-unit>
+        <trans-unit id="Eject" translate="yes" xml:space="preserve">
+          <source>Eject</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Vysunout</target>
+        </trans-unit>
+        <trans-unit id="Exit" translate="yes" xml:space="preserve">
+          <source>Exit</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Konec</target>
+        </trans-unit>
+        <trans-unit id="Hibernate" translate="yes" xml:space="preserve">
+          <source>Hibernate</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Hibernace</target>
+        </trans-unit>
+        <trans-unit id="IncreaseBrightness" translate="yes" xml:space="preserve">
+          <source>Increase Brightness</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zvýšit jas</target>
+        </trans-unit>
+        <trans-unit id="Key" translate="yes" xml:space="preserve">
+          <source>Key</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Tónina</target>
+        </trans-unit>
+        <trans-unit id="NextTrack" translate="yes" xml:space="preserve">
+          <source>Next Track</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Další stopa</target>
+        </trans-unit>
+        <trans-unit id="PauseTrack" translate="yes" xml:space="preserve">
+          <source>Pause/Resume</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pozastavit nebo pokračovat</target>
+        </trans-unit>
+        <trans-unit id="PreviousTrack" translate="yes" xml:space="preserve">
+          <source>Previous Track</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Předchozí stopa</target>
+        </trans-unit>
+        <trans-unit id="RefreshConnection" translate="yes" xml:space="preserve">
+          <source>Refresh Connection</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aktualizovat připojení</target>
+        </trans-unit>
+        <trans-unit id="Restart" translate="yes" xml:space="preserve">
+          <source>Restart</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Restartovat</target>
+        </trans-unit>
+        <trans-unit id="Shutdown" translate="yes" xml:space="preserve">
+          <source>Shutdown</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Vypnuto</target>
+        </trans-unit>
+        <trans-unit id="StartupShortcut" translate="yes" xml:space="preserve">
+          <source>Start program at system start</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Spustit program při spuštění systému</target>
+        </trans-unit>
+        <trans-unit id="TaskManager" translate="yes" xml:space="preserve">
+          <source>Launch Task Manager</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Spuštění programu Správce úloh</target>
+        </trans-unit>
+        <trans-unit id="ToggleFMode" translate="yes" xml:space="preserve">
+          <source>Toggle FMode</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Přepnout FMode</target>
+        </trans-unit>
+        <trans-unit id="VolumeDecrease" translate="yes" xml:space="preserve">
+          <source>Decrease Volume</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zeslabení hlasitosti</target>
+        </trans-unit>
+        <trans-unit id="VolumeIncrease" translate="yes" xml:space="preserve">
+          <source>Increase Volume</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zesílení hlasitosti</target>
+        </trans-unit>
+        <trans-unit id="VolumeMute" translate="yes" xml:space="preserve">
+          <source>Mute</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ztlumit</target>
+        </trans-unit>
+        <trans-unit id="VolumeSwitchDevice" translate="yes" xml:space="preserve">
+          <source>Switch Audio Output</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Přepněte Audio výstup</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

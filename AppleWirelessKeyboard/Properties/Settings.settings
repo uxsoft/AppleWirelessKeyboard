@@ -1,0 +1,125 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AppleWirelessKeyboard.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FnEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SwapCtrlFn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Hash" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="EnableOverlay" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CheckForUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="StartupShortcut" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Profile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfKeyBinding xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F10&lt;/Key&gt;
+    &lt;Module&gt;VolumeMute&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;Back&lt;/Key&gt;
+    &lt;Module&gt;Delete&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;true&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F1&lt;/Key&gt;
+    &lt;Module&gt;IncreaseBrightness&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F2&lt;/Key&gt;
+    &lt;Module&gt;DecreaseBrightness&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F7&lt;/Key&gt;
+    &lt;Module&gt;PreviousTrack&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F8&lt;/Key&gt;
+    &lt;Module&gt;PauseTrack&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F9&lt;/Key&gt;
+    &lt;Module&gt;NextTrack&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F11&lt;/Key&gt;
+    &lt;Module&gt;VolumeDecrease&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+  &lt;KeyBinding&gt;
+    &lt;Key&gt;F12&lt;/Key&gt;
+    &lt;Module&gt;VolumeIncrease&lt;/Module&gt;
+    &lt;Ctrl&gt;false&lt;/Ctrl&gt;
+    &lt;Alt&gt;false&lt;/Alt&gt;
+    &lt;Fn&gt;false&lt;/Fn&gt;
+    &lt;Win&gt;false&lt;/Win&gt;
+    &lt;Shift&gt;false&lt;/Shift&gt;
+    &lt;FMode&gt;false&lt;/FMode&gt;
+  &lt;/KeyBinding&gt;
+&lt;/ArrayOfKeyBinding&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

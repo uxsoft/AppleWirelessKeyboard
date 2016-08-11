@@ -1,0 +1,7 @@
+﻿<UserControl x:Class="AppleWirelessKeyboard.Glyphs.On"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Canvas Width="6.000" Height="89.573">
+        <Path Fill="White" Data=" M 6.000,3.361 C 6.000,32.215 6.000,55.804 6.000,86.500 C 6.000,90.500 0.000,90.596 0.000,86.786 C 0.000,61.799 0.000,35.591 0.000,3.465 C 0.000,-1.284 6.000,-0.990 6.000,3.361 Z"/>
+    </Canvas>
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<Window x:Class="AppleWirelessKeyboard.PowerStatusBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="Transparent" WindowStartupLocation="CenterScreen"
+        Height="200" Width="320" WindowStyle="None" Closing="Window_Closing" Topmost="True" AllowsTransparency="True" ShowInTaskbar="False" Loaded="Window_Loaded">
+    <Border CornerRadius="10" Background="#99000000">
+        <Grid>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Name="txtStatus" Foreground="White" Text="The system is about to shut down in 10 seconds.">
+                <TextBlock.BitmapEffect>
+                    <DropShadowBitmapEffect ShadowDepth="2" Opacity="0.9"/>
+                </TextBlock.BitmapEffect>
+            </TextBlock>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Name="btnCancel" Content="Cancel" Width="64" Margin="20" Click="btnCancel_Click"/>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="btnOK" Content="OK" Width="64" Margin="20" Click="btnOK_Click"/>
+        </Grid>
+    </Border>
+</Window>

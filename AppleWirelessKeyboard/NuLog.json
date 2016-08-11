@@ -1,0 +1,21 @@
+﻿{
+  "targets": [
+    {
+      "name": "file",
+      "type": "NuLog.Targets.TextFileTarget",
+      "layout": "${DateTime}: ${Message} ${Exception}\r\n",
+      "synchronous": false,
+
+      "fileName": "AppleWirelessKeyboard.log",
+
+      "rolloverPolicy": "Size",
+      "rolloverTrigger": "10KB"
+    }
+  ],
+  "rules": [
+    {
+      "include": [ "*" ],
+      "writeTo": [ "file" ]
+    }
+  ]
+}

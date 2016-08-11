@@ -1,0 +1,15 @@
+﻿<Window x:Class="AppleWirelessKeyboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ShowInTaskbar="False" Background="Transparent" Topmost="True"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" Height="192" Width="192" AllowsTransparency="True">
+    <Border Background="#66000000" CornerRadius="12">
+        <Grid>
+            <ContentControl Content="{Binding Glyph}"/>
+            <StackPanel Height="6" Width="141" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12" Orientation="Horizontal" Name="ValueBar"/>
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="2" Opacity="0.9"/>
+            </Grid.Effect>
+        </Grid>
+    </Border>
+</Window>

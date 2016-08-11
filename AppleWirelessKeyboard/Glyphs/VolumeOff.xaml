@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="AppleWirelessKeyboard.Glyphs.VolumeOff"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="192" d:DesignWidth="192">
+    <Canvas Width="49.5" Height="84">
+        <Path Fill="White" Data=" M 27.000,76.000 C 27.000,76.000 9.000,76.000 0.000,76.000 C 0.000,63.333 0.000,38.000 0.000,38.000 L 26.000,38.000 L 65.000,0.000 L 66.000,112.000"/>
+        <Canvas.RenderTransform>
+            <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+        </Canvas.RenderTransform>
+    </Canvas>
+</UserControl>
