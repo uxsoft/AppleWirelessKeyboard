@@ -33,19 +33,26 @@ namespace AppleWirelessKeyboard.Keyboard
 
         internal static ManagementObject WmiGetObject(string query)
         {
-            try
+            if (CanAdjustBrightness)
             {
-                System.Management.ManagementScope scope = new System.Management.ManagementScope("root\\WMI");
-
-                using (System.Management.ManagementObjectSearcher mos = new System.Management.ManagementObjectSearcher(scope, new SelectQuery(query)))
+                try
                 {
-                    using (ManagementObjectCollection collection = mos.Get())
+                    System.Management.ManagementScope scope = new System.Management.ManagementScope("root\\WMI");
+
+                    using (System.Management.ManagementObjectSearcher mos = new System.Management.ManagementObjectSearcher(scope, new SelectQuery(query)))
                     {
-                        return collection.OfType<ManagementObject>().FirstOrDefault();
+                        using (ManagementObjectCollection collection = mos.Get())
+                        {
+                            return collection.OfType<ManagementObject>().FirstOrDefault();
+                        }
                     }
                 }
+                catch
+                {
+                    return null;
+                } 
             }
-            catch
+            else
             {
                 return null;
             }
@@ -64,7 +71,7 @@ namespace AppleWirelessKeyboard.Keyboard
             get{
                 return direction =>
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down))
+                    if (direction.HasFlag(KeyboardEvent.Down) && CanAdjustBrightness)
                     {
                         WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
 
@@ -88,7 +95,7 @@ namespace AppleWirelessKeyboard.Keyboard
             {
                 return direction =>
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down))
+                    if (direction.HasFlag(KeyboardEvent.Down) && CanAdjustBrightness)
                     {
                         WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
 
@@ -106,7 +113,14 @@ namespace AppleWirelessKeyboard.Keyboard
 
         private static int GetBrightness()
         {
-            return (int)(byte)WmiMonitorBrightness.GetPropertyValue("CurrentBrightness");
+            if (CanAdjustBrightness)
+            {
+                return 100;
+            }
+            else
+            {
+                return (int)(byte)WmiMonitorBrightness.GetPropertyValue("CurrentBrightness");
+            }
         }
 
         private static byte[] GetBrightnessLevels()
