@@ -30,8 +30,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/AppleWirelessKeyboard/bin/Release'
-    Contents: '*.exe
-      *.dll'
+    Contents: | 
+      **\*.exe
+      **\*.dll
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
 
