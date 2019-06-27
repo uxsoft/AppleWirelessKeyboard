@@ -31,8 +31,8 @@ namespace AppleWirelessKeyboard
                 {
                     this.DataContext = new { Glyph = Activator.CreateInstance<TGlyph>() };
 
-                    if (valueBar) ValueBar.Visibility = System.Windows.Visibility.Visible;
-                    else ValueBar.Visibility = System.Windows.Visibility.Collapsed;
+                    if (valueBar) ValueBar.Visibility = Visibility.Visible;
+                    else ValueBar.Visibility = Visibility.Collapsed;
 
                     MakeValue(value);
 

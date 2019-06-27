@@ -20,6 +20,13 @@ namespace AppleWirelessKeyboard
 			CreateIcon();
 		}
 
+        public static void Close()
+        {
+            _Icon.Visible = false;
+            _Icon.Dispose();
+            _Icon = null;
+        }
+
 		private static NotifyIcon _Icon = new NotifyIcon();
 
 		private static void CreateIcon()
@@ -55,7 +62,7 @@ namespace AppleWirelessKeyboard
 
 		public static void TriggerRefresh(object sender, EventArgs e)
 		{
-
+            
 		}
 	}
 }
