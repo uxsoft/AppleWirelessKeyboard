@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Management;
-using System.Text;
 
-namespace AppleWirelessKeyboardCore
+namespace AppleWirelessKeyboardCore.Services
 {
-    public static class Blacklist
+    public static class ProcessMonitoringService
     {
-        public static bool IsAllowed { get; private set; }
+        public static bool IsAllowed { get; private set; } = true;
         public static List<string> Programs { get; set; }
 
         static void Tick()
@@ -21,18 +18,17 @@ namespace AppleWirelessKeyboardCore
 
         private static ManagementEventWatcher WatchForProcessStart(string processName)
         {
-            string queryString =
-                "SELECT TargetInstance" +
-                "  FROM __InstanceCreationEvent " +
-                "WITHIN  10 " +
-                " WHERE TargetInstance ISA 'Win32_Process' " +
-                "   AND TargetInstance.Name = '" + processName + "'";
+            string query = $@"SELECT TargetInstance
+                  FROM __InstanceCreationEvent 
+                  WITHIN  10
+                  WHERE TargetInstance ISA 'Win32_Process'
+                    AND TargetInstance.Name = '{processName}'";
 
             // The dot in the scope means use the current machine
             string scope = @"\\.\root\CIMV2";
 
             // Create a watcher and listen for events
-            ManagementEventWatcher watcher = new ManagementEventWatcher(scope, queryString);
+            ManagementEventWatcher watcher = new ManagementEventWatcher(scope, query);
             watcher.EventArrived += ProcessStarted;
             watcher.Start();
             return watcher;
@@ -40,18 +36,17 @@ namespace AppleWirelessKeyboardCore
 
         private static ManagementEventWatcher WatchForProcessEnd(string processName)
         {
-            string queryString =
-                "SELECT TargetInstance" +
-                "  FROM __InstanceDeletionEvent " +
-                "WITHIN  10 " +
-                " WHERE TargetInstance ISA 'Win32_Process' " +
-                "   AND TargetInstance.Name = '" + processName + "'";
+            string query = $@"SELECT TargetInstance
+                  FROM __InstanceDeletionEvent
+                  WITHIN  10
+                  WHERE TargetInstance ISA 'Win32_Process'
+                    AND TargetInstance.Name = '{processName}'";
 
             // The dot in the scope means use the current machine
             string scope = @"\\.\root\CIMV2";
 
             // Create a watcher and listen for events
-            ManagementEventWatcher watcher = new ManagementEventWatcher(scope, queryString);
+            ManagementEventWatcher watcher = new ManagementEventWatcher(scope, query);
             watcher.EventArrived += ProcessEnded;
             watcher.Start();
             return watcher;
@@ -59,16 +54,16 @@ namespace AppleWirelessKeyboardCore
 
         private static void ProcessEnded(object sender, EventArrivedEventArgs e)
         {
-            ManagementBaseObject targetInstance = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
+            ManagementBaseObject targetInstance = (ManagementBaseObject) e.NewEvent.Properties["TargetInstance"].Value;
             string processName = targetInstance.Properties["Name"].Value.ToString();
-            Console.WriteLine(String.Format("{0} process ended", processName));
+            Trace.WriteLine($"{processName} process ended");
         }
 
         private static void ProcessStarted(object sender, EventArrivedEventArgs e)
         {
-            ManagementBaseObject targetInstance = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
+            ManagementBaseObject targetInstance = (ManagementBaseObject) e.NewEvent.Properties["TargetInstance"].Value;
             string processName = targetInstance.Properties["Name"].Value.ToString();
-            Console.WriteLine(String.Format("{0} process started", processName));
+            Trace.WriteLine($"{processName} process started");
         }
     }
 }

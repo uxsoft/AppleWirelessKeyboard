@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
-using System.Diagnostics;
-using System.Timers;
-using System.Threading;
+﻿using System.Windows;
 using AppleWirelessKeyboardCore.Keyboard;
-using System.ComponentModel.Composition;
+using AppleWirelessKeyboardCore.Services;
+using AppleWirelessKeyboardCore.Views;
+
 namespace AppleWirelessKeyboardCore
 {
     /// <summary>
@@ -21,27 +15,27 @@ namespace AppleWirelessKeyboardCore
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            StartupShortcut.Check();
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AppleWirelessKeyboard.Properties.Settings.Default.Language);
-            TrayIcon.Show();
-            Keyboard = new KeyboardHandler(new Profile(AppleWirelessKeyboard.Properties.Settings.Default.Profile));
+            StartupShortcutService.Check();
+            TrayIconService.Show();
+            
+            Keyboard = new KeyboardHandler();
             Keyboard.Start();
 
-            Microsoft.Win32.SystemEvents.PowerModeChanged += new Microsoft.Win32.PowerModeChangedEventHandler(SystemEvents_PowerModeChanged);
+            Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
         }
 
         void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
         {
             if (e.Mode == Microsoft.Win32.PowerModes.Resume)
             {
-                Thread.Sleep(20000);
+                // TODO refresh connection
             }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            AppleWirelessKeyboard.Properties.Settings.Default.Profile = Keyboard.Profile.ToString();
-            AppleWirelessKeyboard.Properties.Settings.Default.Save();
+            TrayIconService.Close();
+            SettingsService.Default.Save();
         }
     }
 }

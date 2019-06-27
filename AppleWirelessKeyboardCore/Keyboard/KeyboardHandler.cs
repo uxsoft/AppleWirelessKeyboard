@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using AppleWirelessKeyboardCore.Keyboard;
 using System.Windows.Input;
-using System.Diagnostics;
+using AppleWirelessKeyboardCore.Services;
 
 namespace AppleWirelessKeyboardCore.Keyboard
 {
@@ -17,17 +15,8 @@ namespace AppleWirelessKeyboardCore.Keyboard
             this.Inject();
         }
 
-        public KeyboardHandler(Profile profile)
-            : this()
-        {
-            Profile = profile;
-        }
-
         [ImportMany]
         public IEnumerable<IInputAdapter> Adapters { get; set; }
-
-        [Import]
-        public Profile Profile { get; set; }
 
         [ImportMany]
         public IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; }
@@ -74,7 +63,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 return false;
 
             bool handled = false;
-            foreach (KeyBinding binding in Profile
+            foreach (KeyBinding binding in SettingsService.Default.KeyBindings
                 .Where(b => b.Key == key 
                     && (!b.Alt || Alt) 
                     && (!b.Ctrl || Ctrl) 
@@ -83,10 +72,10 @@ namespace AppleWirelessKeyboardCore.Keyboard
                     && (!b.Shift || Shift) 
                     && (!b.FMode || FMode)))
             {
-                Action<KeyboardEvent> module = Modules.SingleOrDefault(l => l.Metadata.Name == binding.Module).Value;
+                Action<KeyboardEvent>? module = Modules.SingleOrDefault(l => l.Metadata.Name == binding.Module)?.Value;
                 if (module != null)
-                {
-                    Task freezing = Task.Factory.StartNew(() => module(pressed ? KeyboardEvent.Down : KeyboardEvent.Up));
+                { 
+                    Task.Factory.StartNew(() => module(pressed ? KeyboardEvent.Down : KeyboardEvent.Up));
                     handled = true;
                 }
             }

@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Windows.Shapes;
+using AppleWirelessKeyboardCore.Services;
 
-namespace AppleWirelessKeyboardCore
+namespace AppleWirelessKeyboardCore.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,24 +19,23 @@ namespace AppleWirelessKeyboardCore
         }
         public void ShowOff<TGlyph>(bool valueBar = false, int value = 0) where TGlyph : UserControl
         {
-            if (Properties.Settings.Default.EnableOverlay)
+            if (SettingsService.Default.EnableOverlay)
                 App.Window.Dispatcher.Invoke(() =>
                 {
-                    this.DataContext = new { Glyph = Activator.CreateInstance<TGlyph>() };
+                    DataContext = new { Glyph = Activator.CreateInstance<TGlyph>() };
 
-                    if (valueBar) ValueBar.Visibility = Visibility.Visible;
-                    else ValueBar.Visibility = Visibility.Collapsed;
+                    ValueBar.Visibility = valueBar ? Visibility.Visible : Visibility.Collapsed;
 
                     MakeValue(value);
 
-                    this.Show();
+                    Show();
 
-                    DoubleAnimationUsingKeyFrames Fade = new DoubleAnimationUsingKeyFrames();
-                    Fade.Duration = new Duration(TimeSpan.FromSeconds(1));
-                    Fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0)));
-                    Fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0.5)));
-                    Fade.KeyFrames.Add(new LinearDoubleKeyFrame(0, KeyTime.FromPercent(1)));
-                    BeginAnimation(OpacityProperty, Fade);
+                    DoubleAnimationUsingKeyFrames fade = new DoubleAnimationUsingKeyFrames();
+                    fade.Duration = new Duration(TimeSpan.FromSeconds(1));
+                    fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0)));
+                    fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0.5)));
+                    fade.KeyFrames.Add(new LinearDoubleKeyFrame(0, KeyTime.FromPercent(1)));
+                    BeginAnimation(OpacityProperty, fade);
                 });
         }
         public void MakeValue(int value)

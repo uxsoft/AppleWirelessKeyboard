@@ -1,106 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
-using AudioSwitch.CoreAudioApi;
-using AudioSwitch.Classes;
-using System.Threading.Tasks;
 using System.ComponentModel.Composition;
 using AppleWirelessKeyboardCore.Keyboard;
+using AudioSwitch.Classes;
+using AudioSwitch.CoreAudioApi;
 
-namespace AppleWirelessKeyboardCore
+namespace AppleWirelessKeyboardCore.ControlInterfaces
 {
     public static class VolumeControl
     {
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "VolumeIncrease")]
         [Export]
-        public static Action<KeyboardEvent> VolumeUp
-        {
-            get
+        public static Action<KeyboardEvent> VolumeUp => direction =>
             {
-                return direction =>
+                if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down))
-                    {
-                        AudioEndpointVolume Controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    AudioEndpointVolume controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
 
-                        if (Controller.MasterVolumeLevelScalar > 0.9375f)
-                            Controller.MasterVolumeLevelScalar = 1.0f;
-                        else Controller.MasterVolumeLevelScalar += 0.0625f;
-                        NotificationCenter.NotifyVolumeLevel((int)(Controller.MasterVolumeLevelScalar / 0.0625));
-                    }
-                };
-            }
-        }
+                    if (controller.MasterVolumeLevelScalar > 0.9375f)
+                        controller.MasterVolumeLevelScalar = 1.0f;
+                    else controller.MasterVolumeLevelScalar += 0.0625f;
+                    NotificationCenter.NotifyVolumeLevel((int)(controller.MasterVolumeLevelScalar / 0.0625));
+                }
+            };
 
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "VolumeDecrease")]
         [Export]
-        public static Action<KeyboardEvent> VolumeDown
-        {
-            get
+        public static Action<KeyboardEvent> VolumeDown => direction =>
             {
-                return direction =>
+                if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down))
+                    AudioEndpointVolume controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    if (controller.MasterVolumeLevelScalar < 0.0625)
                     {
-                        AudioEndpointVolume Controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
-                        if (Controller.MasterVolumeLevelScalar < 0.0625)
-                        {
-                            Controller.MasterVolumeLevelScalar = 0;
-                            NotificationCenter.NotifyNoVolume();
-                        }
-                        else
-                        {
-                            Controller.MasterVolumeLevelScalar -= 0.0625f;
-                            NotificationCenter.NotifyVolumeLevel((int)(Controller.MasterVolumeLevelScalar / 0.0625));
-                        }
+                        controller.MasterVolumeLevelScalar = 0;
+                        NotificationCenter.NotifyNoVolume();
                     }
-                };
-            }
-        }
+                    else
+                    {
+                        controller.MasterVolumeLevelScalar -= 0.0625f;
+                        NotificationCenter.NotifyVolumeLevel((int)(controller.MasterVolumeLevelScalar / 0.0625));
+                    }
+                }
+            };
 
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "VolumeMute")]
         [Export]
-        public static Action<KeyboardEvent> Mute
-        {
-            get
+        public static Action<KeyboardEvent> Mute => direction =>
             {
-                return direction =>
+                if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down))
-                    {
-                        AudioEndpointVolume Controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    AudioEndpointVolume controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
 
-                        Controller.Mute = !Controller.Mute;
-                        if (Controller.Mute)
-                            NotificationCenter.NotifyMuteOff();
-                        else
-                            NotificationCenter.NotifyMuteOn();
-                    }
-                };
-            }        
-        }
+                    controller.Mute = !controller.Mute;
+                    if (controller.Mute)
+                        NotificationCenter.NotifyMuteOff();
+                    else
+                        NotificationCenter.NotifyMuteOn();
+                }
+            };
 
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "VolumeSwitchDevice")]
         [Export]
-        public static Action<KeyboardEvent> NextAudioDeviceExport
-        {
-            get
+        public static Action<KeyboardEvent> NextAudioDeviceExport => direction =>
             {
-                return direction =>
+                if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down))
-                    {
-                        EndPoints.SetNextDefault(EDataFlow.eRender);
-                        NotificationCenter.NotifyMediaDeviceChanged();
-                    }
-                };
-            }
-        }
+                    EndPoints.SetNextDefault(EDataFlow.eRender);
+                    NotificationCenter.NotifyMediaDeviceChanged();
+                }
+            };
     }
 }
