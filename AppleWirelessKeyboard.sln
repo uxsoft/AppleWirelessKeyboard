@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleWirelessKeyboard", "AppleWirelessKeyboard\AppleWirelessKeyboard.csproj", "{9654B149-302A-4392-8F91-4202FA6E0AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleWirelessKeyboardCore", "AppleWirelessKeyboardCore\AppleWirelessKeyboardCore.csproj", "{9857F3D5-6D63-4530-B7E1-8F42A14C685E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +27,23 @@ Global
 		{9654B149-302A-4392-8F91-4202FA6E0AE4}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9654B149-302A-4392-8F91-4202FA6E0AE4}.Release|x86.ActiveCfg = Release|x86
 		{9654B149-302A-4392-8F91-4202FA6E0AE4}.Release|x86.Build.0 = Release|x86
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Debug|x86.Build.0 = Debug|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Release|x86.ActiveCfg = Release|Any CPU
+		{9857F3D5-6D63-4530-B7E1-8F42A14C685E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {323B22A3-0935-4D9E-AC3A-28B610E0D93A}
 	EndGlobalSection
 EndGlobal

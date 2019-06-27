@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="AppleWirelessKeyboardCore.Glyphs.Brightness"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Width="100" Height="100">
+        <Canvas Name="g3029">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3031" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M49.895 39.914c5.5 0 9.978 4.472 9.978 9.978c0 5.495-4.478 9.978-9.978 9.978   c-5.501 0-9.979-4.482-9.979-9.978C39.916 44.386 44.394 39.914 49.895 39.914 M49.895 29.936   c-11.023 0-19.956 8.935-19.956 19.956c0 11.016 8.933 19.956 19.956 19.956c11.02 0 19.955-8.94 19.955-19.956   C69.85 38.871 60.914 29.936 49.895 29.936L49.895 29.936z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3033">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3035" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M49.895 19.958c-2.756 0-4.992-2.233-4.992-4.991V4.989c0-2.76 2.236-4.989 4.992-4.989   c2.755 0 4.986 2.229 4.986 4.989v9.978C54.881 17.725 52.649 19.958 49.895 19.958L49.895 19.958z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3037">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3039" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M74.592 30.183c-1.276 0-2.554-0.483-3.528-1.456c-1.949-1.954-1.949-5.112 0-7.062l7.057-7.054   c1.944-1.949 5.103-1.949 7.052 0c1.949 1.952 1.949 5.11 0 7.054l-7.052 7.062C77.146 29.699 75.869 30.183 74.592 30.183   L74.592 30.183z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3041">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3043" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M94.797 54.883h-9.978c-2.756 0-4.992-2.231-4.992-4.986s2.236-4.989 4.992-4.989h9.978   c2.75 0 4.986 2.234 4.986 4.989S97.547 54.883 94.797 54.883L94.797 54.883z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3045">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3047" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M81.636 86.64c-1.279 0-2.554-0.488-3.525-1.466l-7.057-7.054c-1.949-1.949-1.949-5.107 0-7.049   c1.949-1.949 5.107-1.949 7.057 0l7.051 7.049c1.949 1.952 1.949 5.109 0 7.054C84.189 86.151 82.915 86.64 81.636 86.64   L81.636 86.64z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3049">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3051" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M49.879 99.786c-2.758 0-4.991-2.231-4.991-4.986v-9.979c0-2.755 2.233-4.991 4.991-4.991   s4.991 2.236 4.991 4.991V94.8C54.87 97.555 52.637 99.786 49.879 99.786L49.879 99.786z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3053">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3055" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M18.127 86.625c-1.279 0-2.554-0.483-3.526-1.461c-1.949-1.952-1.949-5.109 0-7.059l7.051-7.055   c1.949-1.949 5.107-1.949 7.057 0c1.949 1.954 1.949 5.112 0 7.055l-7.057 7.059C20.681 86.142 19.407 86.625 18.127 86.625   L18.127 86.625z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3057">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3059" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M14.967 54.868h-9.98C2.229 54.868 0 52.632 0 49.881c0-2.76 2.229-4.989 4.986-4.989h9.98   c2.752 0 4.989 2.229 4.989 4.989C19.956 52.632 17.719 54.868 14.967 54.868L14.967 54.868z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="g3061">
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3063" Fill="White">
+                <Path.Data>
+                    <PathGeometry Figures="M25.204 30.178c-1.277 0-2.554-0.494-3.528-1.466l-7.057-7.051c-1.949-1.955-1.949-5.107 0-7.057   c1.949-1.944 5.107-1.944 7.057 0l7.054 7.057c1.949 1.949 1.949 5.107 0 7.051C27.752 29.684 26.478 30.178 25.204 30.178   L25.204 30.178z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Grid>
+</UserControl>

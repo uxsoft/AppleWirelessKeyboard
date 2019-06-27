@@ -1,3 +1,5 @@
 packages/
 .vs/
 .idea/
+bin/
+obj/
