@@ -160,6 +160,15 @@ namespace AppleWirelessKeyboard.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FnMode on at start.
+        /// </summary>
+        public static string FnOnAtStart {
+            get {
+                return ResourceManager.GetString("FnOnAtStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hibernate.
         /// </summary>
         public static string Hibernate {

@@ -144,6 +144,9 @@
   <data name="DisplayOverlay" xml:space="preserve">
     <value>Display Overlay</value>
   </data>
+  <data name="FnOnAtStart" xml:space="preserve">
+    <value>FnMode on at start</value>
+  </data>
   <data name="Eject" xml:space="preserve">
     <value>Eject</value>
   </data>

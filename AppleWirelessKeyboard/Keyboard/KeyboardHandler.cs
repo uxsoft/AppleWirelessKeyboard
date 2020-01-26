@@ -46,6 +46,11 @@ namespace AppleWirelessKeyboard.Keyboard
 
         public void Start()
         {
+            if (Properties.Settings.Default.FnOnAtStart)
+            {
+                App.Keyboard.FMode = true;
+            }
+
             foreach (IInputAdapter adapter in Adapters)
             {
                 adapter.Start();

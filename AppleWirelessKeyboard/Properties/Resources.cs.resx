@@ -39,6 +39,9 @@
   <data name="DisplayOverlay" xml:space="preserve">
     <value>Zobrazit překrytí</value>
   </data>
+  <data name="FnOnAtStart" xml:space="preserve">
+    <value>Function mode on at start</value>
+  </data>
   <data name="Eject" xml:space="preserve">
     <value>Vysunout</value>
   </data>

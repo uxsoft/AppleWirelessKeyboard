@@ -28,6 +28,7 @@
                         </ComboBox>
                         <CheckBox Name="displayChrome" Margin="6,12,0,0" Content="{x:Static properties:Resources.DisplayOverlay}" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.EnableOverlay}"/>
                         <CheckBox Name="chcStartupShortcut" Margin="6,12,0,0" Content="{x:Static properties:Resources.StartupShortcut}" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.StartupShortcut}"/>
+                        <CheckBox Name="chcFnOnAtStart" Margin="6,12,0,0" Content="{x:Static properties:Resources.FnOnAtStart}" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.FnOnAtStart}"/>
                     </StackPanel>
 
                     <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="3">
