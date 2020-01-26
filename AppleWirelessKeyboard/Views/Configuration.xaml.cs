@@ -76,6 +76,9 @@ namespace AppleWirelessKeyboard.Views
             grdBindings.CancelEdit();
             Properties.Settings.Default.Save();
             StartupShortcut.Check();
+
+            e.Cancel = true;
+            Hide();
         }
 
         private void mnuDelete_Click(object sender, RoutedEventArgs e)
