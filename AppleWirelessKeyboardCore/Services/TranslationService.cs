@@ -15,13 +15,13 @@ namespace AppleWirelessKeyboardCore.Services
             };
         }
         
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public static TranslationService Default { get; set; } = new TranslationService();
 
         public string? Get(string translation)
         {
-            return typeof(TranslationService).GetProperty(translation).GetValue(Default)?.ToString();
+            return typeof(TranslationService).GetProperty(translation)?.GetValue(Default)?.ToString();
         }
         
         #region Translated Items

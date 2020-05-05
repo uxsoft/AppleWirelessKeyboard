@@ -11,7 +11,7 @@ namespace AppleWirelessKeyboardCore.Services
     {
         public static SettingsService Default { get; set; } = Load();
 
-        public event EventHandler LanguageChanged;
+        public event EventHandler? LanguageChanged;
 
         #region Settings
         private Language _language = Language.English;
@@ -41,6 +41,7 @@ namespace AppleWirelessKeyboardCore.Services
         {
             var path = GetStorageFileLocation();
             var serializer = new XmlSerializer(typeof(SettingsService));
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
             var stream = File.OpenWrite(path);
             serializer.Serialize(stream, this);
         }

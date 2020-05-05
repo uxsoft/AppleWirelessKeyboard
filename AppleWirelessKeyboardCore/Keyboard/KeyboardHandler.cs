@@ -16,13 +16,13 @@ namespace AppleWirelessKeyboardCore.Keyboard
         }
 
         [ImportMany]
-        public IEnumerable<IInputAdapter> Adapters { get; set; }
+        public IEnumerable<IInputAdapter> Adapters { get; set; } = null!;
 
         [ImportMany]
-        public IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; }
+        public IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; } = null!;
 
         [ImportMany]
-        public IEnumerable<IInputFilter> Filters { get; set; }
+        public IEnumerable<IInputFilter> Filters { get; set; } = null!;
 
         public bool Fn { get; set; }
         public bool Alt { get; set; }

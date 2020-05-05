@@ -100,7 +100,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
         [DllImport(@"setupapi.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SetupDiGetClassDevs(
             ref Guid ClassGuid,
-            [MarshalAs(UnmanagedType.LPTStr)] string Enumerator,
+            [MarshalAs(UnmanagedType.LPTStr)] string? Enumerator,
             IntPtr hwndParent,
             UInt32 Flags
             );

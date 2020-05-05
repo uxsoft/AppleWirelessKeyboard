@@ -30,7 +30,7 @@
                     </StackPanel>
 
                     <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="3">
-                        <Run Text="{Binding Path=By, Source={x:Static srv:TranslationService.Default}}" />
+                        <Run Text="{Binding Mode=OneTime, Path=By, Source={x:Static srv:TranslationService.Default}}" />
                         <Hyperlink NavigateUri="http://uxsoft.cz">uxsoft.cz</Hyperlink>
                     </TextBlock>
                 </Grid>

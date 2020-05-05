@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace AudioSwitch.Classes
 {
@@ -10,35 +10,15 @@ namespace AudioSwitch.Classes
         [DllImport("shell32.dll")]
         private static extern int ExtractIconEx(string libName, int iconIndex, IntPtr[] largeIcon, IntPtr[] smallIcon, int nIcons);
 
-        internal static ImageList ActiveIcons;
-        internal static ImageList NormalIcons;
-        internal static ImageList DefaultIcons;
-        
-        internal static void InitImageLists(float dpifactor)
-        {
-            var size = new Size((int)(32 * dpifactor), (int)(32 * dpifactor));
-            ActiveIcons = new ImageList
-            {
-                ImageSize = size,
-                ColorDepth = ColorDepth.Depth32Bit
-            };
-            NormalIcons = new ImageList
-            {
-                ImageSize = size,
-                ColorDepth = ColorDepth.Depth32Bit
-            };
-            DefaultIcons = new ImageList
-            {
-                ImageSize = size,
-                ColorDepth = ColorDepth.Depth32Bit
-            };
-        }
+        private static List<Icon> ActiveIcons = new List<Icon>();
+        private static List<Icon> NormalIcons = new List<Icon>();
+        private static List<Icon> DefaultIcons = new List<Icon>();
 
         internal static void Add(string iconPath)
         {
             var icon = GetIcon(iconPath);
-            NormalIcons.Images.Add(icon);
-            ActiveIcons.Images.Add(icon);
+            NormalIcons.Add(icon);
+            ActiveIcons.Add(icon);
         }
 
         internal static Icon GetIcon(string iconPath)
@@ -54,15 +34,15 @@ namespace AudioSwitch.Classes
                 icon = Icon.FromHandle(hIconEx[0]);
             }
             else
-                icon = new Icon(iconAdr[0], NormalIcons.ImageSize.Width, NormalIcons.ImageSize.Height);
+                icon = new Icon(iconAdr[0], 32, 32);
             return icon;
         }
 
         internal static void Clear()
         {
-            ActiveIcons.Images.Clear();
-            NormalIcons.Images.Clear();
-            DefaultIcons.Images.Clear();
+            ActiveIcons.Clear();
+            NormalIcons.Clear();
+            DefaultIcons.Clear();
         }
 
         private static Image AddOverlay(Icon originalIcon, Image overlay)

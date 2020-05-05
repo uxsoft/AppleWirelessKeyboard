@@ -34,11 +34,12 @@ namespace AppleWirelessKeyboardCore.Views
         }
 
         [ImportMany]
-        private IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; }
+        private IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; } = null!;
 
         private void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SettingsService.Default.ActiveLanguage = Enum.Parse<Language>(cmbLanguage.SelectedValue?.ToString());
+            if (cmbLanguage.SelectedValue is string value)
+                SettingsService.Default.ActiveLanguage = Enum.Parse<Language>(value);
         }
 
         private void cmbLanguage_Loaded(object sender, RoutedEventArgs e)
@@ -56,9 +57,9 @@ namespace AppleWirelessKeyboardCore.Views
 
         private void mnuDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (grdBindings.SelectedItem != null)
+            if (grdBindings.SelectedItem is Keyboard.KeyBinding binding)
             {
-                SettingsService.Default.KeyBindings.Remove(grdBindings.SelectedItem as Keyboard.KeyBinding);
+                SettingsService.Default.KeyBindings.Remove(binding);
                 CollectionViewSource.GetDefaultView(grdBindings.ItemsSource).Refresh();
             }
         }

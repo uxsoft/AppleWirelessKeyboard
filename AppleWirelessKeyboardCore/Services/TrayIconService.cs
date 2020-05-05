@@ -3,40 +3,56 @@ using System.Drawing;
 using System.Windows.Forms;
 using AppleWirelessKeyboardCore.Views;
 using Application = System.Windows.Application;
+using Hardcodet.Wpf.TaskbarNotification;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace AppleWirelessKeyboardCore.Services
 {
     public static class TrayIconService
     {
+        private static TaskbarIcon Icon { get; set; } = CreateIcon();
+
         public static void Show()
         {
-            Icon = CreateIcon();
+            Icon.Visibility = Visibility.Visible;
         }
 
         public static void Close()
         {
-            Icon.Visible = false;
-            Icon.Dispose();
-            Icon = null;
+            Icon.Visibility = Visibility.Collapsed;
         }
 
-        private static NotifyIcon? Icon { get; set; } = null;
-
-        private static NotifyIcon CreateIcon() => new NotifyIcon
+        private static TaskbarIcon CreateIcon()
         {
-            Text = "AppleWirelessKeyboard",
-            Icon = new Icon(Application
+            var contextMenu = new ContextMenu();
+
+            var mnuConfigure = new MenuItem() { Header = TranslationService.Default.Configure };
+            mnuConfigure.Click += TriggerConfigure;
+            contextMenu.Items.Add(mnuConfigure);
+
+            var mnuRestart = new MenuItem() { Header = TranslationService.Default.Restart };
+            mnuRestart.Click += TriggerRestart;
+            contextMenu.Items.Add(mnuRestart);
+
+            var mnuRefresh = new MenuItem() { Header = TranslationService.Default.RefreshConnection };
+            mnuRefresh.Click += TriggerRefresh;
+            contextMenu.Items.Add(mnuRefresh);
+
+            var mnuExit = new MenuItem() { Header = TranslationService.Default.Exit };
+            mnuExit.Click += TriggerExit;
+            contextMenu.Items.Add(mnuExit);
+
+            return new TaskbarIcon
+            {
+                ToolTipText = "AppleWirelessKeyboard",
+                Icon = new Icon(Application
                 .GetResourceStream(
                     new Uri("pack://application:,,,/Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico"))?.Stream),
-            Visible = true,
-            ContextMenu = new ContextMenu(new[]
-            {
-                new MenuItem(TranslationService.Default.Configure, TriggerConfigure),
-                new MenuItem(TranslationService.Default.Restart, TriggerRestart),
-                new MenuItem(TranslationService.Default.RefreshConnection, TriggerRefresh),
-                new MenuItem(TranslationService.Default.Exit, TriggerExit)
-            })
-        };
+                Visibility = Visibility.Collapsed,
+                ContextMenu = contextMenu
+            };
+        }
 
         private static void TriggerRestart(object sender, EventArgs e)
         {
@@ -46,7 +62,7 @@ namespace AppleWirelessKeyboardCore.Services
 
         private static void TriggerConfigure(object sender, EventArgs e)
         {
-            (new Configuration()).Show();
+            new Configuration().Show();
         }
 
         private static void TriggerExit(object sender, EventArgs e)

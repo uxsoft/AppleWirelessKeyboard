@@ -10,11 +10,11 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
     public class AppleKeyboardHID2 : IInputAdapter
     {
         // Fields
-        private Stream stream;
+        private Stream? stream;
         private const int VIDApple = 0x5ac;
 
         // Events
-        public event EventHandler Disconnected;
+        public event EventHandler? Disconnected;
 
         //Properties
         public bool FnDown { get; set; }
@@ -43,18 +43,15 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 Eject?.Invoke(false);
                 EjectDown = false;
             }
-
         }
 
         private void SpecialKeyStateChanged(IAsyncResult ar)
         {
             // Check Stream
             if (stream == null || !ar.IsCompleted) return;
-         
-            // Process Event
-            var asyncState = ar.AsyncState as byte[];
 
-            if (asyncState == null) return;
+            // Process Event
+            if (!(ar.AsyncState is byte[] asyncState)) return;
 
             if (asyncState[0] == 0x11 || asyncState[0] == 0x00)
             {
@@ -65,7 +62,6 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 {
                     FnDown = fnDown;
                     Fn?.Invoke(FnDown);
-
                     FMode?.Invoke(FnDown);
                 }
 
@@ -73,7 +69,6 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 {
                     EjectDown = ejectDown;
                     Eject?.Invoke(EjectDown);
-
                     Key?.Invoke(System.Windows.Input.Key.F13, EjectDown);
                 }
             }
@@ -82,7 +77,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 PowerButtonDown = asyncState[1] == 1;
                 Power?.Invoke(PowerButtonDown);
             }
-            
+
             // End this read
             try
             {
@@ -103,8 +98,8 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 // ignored
             }
 
-            //TODO Convert to Observable<byte[0x16]>            
-            
+            //TODO Convert to Observable<byte[0x16]>
+
             // Next read next
             stream.BeginRead(asyncState, 0, asyncState.Length, SpecialKeyStateChanged, asyncState);
         }
@@ -181,9 +176,8 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
 
                     if (HIDImports.SetupDiGetDeviceRegistryProperty(deviceInfoListPointer, ref DID, (uint)HIDImports.SPDRP.SPDRP_CLASS, out _, buffer, 512, out _))
                     {
-                        string CLASS = Marshal.PtrToStringAuto(buffer);
-                        if (CLASS.Equals("Keyboard", StringComparison.InvariantCultureIgnoreCase))
-
+                        string? CLASS = Marshal.PtrToStringAuto(buffer);
+                        if ("Keyboard".Equals(CLASS, StringComparison.InvariantCultureIgnoreCase))
                             return true;
                     }
                 }
@@ -194,22 +188,14 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
             return false;
         }
 
-        public event KeyEventHandler Key;
-
-        public event PressedEventHandler Fn;
-
-        public event PressedEventHandler Alt;
-
-        public event PressedEventHandler Win;
-
-        public event PressedEventHandler Ctrl;
-
-        public event PressedEventHandler Shift;
-
-        public event PressedEventHandler Eject;
-
-        public event PressedEventHandler Power;
-
-        public event PressedEventHandler FMode;
+        public event KeyEventHandler? Key;
+        public event PressedEventHandler? Fn;
+        public event PressedEventHandler? Alt;
+        public event PressedEventHandler? Win;
+        public event PressedEventHandler? Ctrl;
+        public event PressedEventHandler? Shift;
+        public event PressedEventHandler? Eject;
+        public event PressedEventHandler? Power;
+        public event PressedEventHandler? FMode;
     }
 }

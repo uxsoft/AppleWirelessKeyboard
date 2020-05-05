@@ -20,12 +20,17 @@ namespace AppleWirelessKeyboardCore
     /// </summary>
     public partial class PowerStatusBox : Window
     {
-        public PowerStatusBox()
+        public PowerStatusBox(string action, int seconds)
         {
             InitializeComponent();
-            T = new Timer(1000);
+            Action = action;
+            Seconds = seconds;
             T.Elapsed += new ElapsedEventHandler(T_Elapsed);
         }
+
+        public string Action { get; set; } 
+        public int Seconds { get; set; }
+        public Timer T { get; set; } = new Timer(1000);
 
         void T_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -37,7 +42,7 @@ namespace AppleWirelessKeyboardCore
             else
             {
                 T.Stop();
-                Dispatcher.Invoke((Action)delegate
+                Dispatcher.Invoke(delegate
                 {
                     DialogResult = true;
                     Close();
@@ -59,28 +64,21 @@ namespace AppleWirelessKeyboardCore
 
         public void Status()
         {
-            Dispatcher.Invoke((Action)delegate
+            Dispatcher.Invoke(delegate
             {
                 txtStatus.Text = string.Format("The system is about to {0} in {1} seconds.", Action, Seconds);
             });
         }
 
-        public string Action { get; set; }
-        public int Seconds { get; set; }
-        public Timer T { get; set; }
-
         public static bool PowerAction(string action, int seconds)
         {
             bool ret = false;
 
-            App.Current.Dispatcher.Invoke((Action)delegate
+            Application.Current.Dispatcher.Invoke(delegate
             {
-                PowerStatusBox frm = new PowerStatusBox();
-
-                frm.Action = action;
-                frm.Seconds = seconds;
+                PowerStatusBox frm = new PowerStatusBox(action, seconds);
                 frm.Status();
-                ret = (bool)frm.ShowDialog();
+                ret = frm.ShowDialog() ?? false;
             });
 
             return ret;

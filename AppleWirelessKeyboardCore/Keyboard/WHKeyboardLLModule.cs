@@ -20,6 +20,8 @@ namespace AppleWirelessKeyboardCore.Keyboard
             Hook = IntPtr.Zero;
         }
 
+        public keyboardHookProc? HookProcessor { get; set; }
+
         #region PInvoke Structures
         public delegate int keyboardHookProc(int code, int wParam, ref keyboardHookStruct lParam);
 
@@ -54,7 +56,6 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
         #endregion
 
-        public keyboardHookProc HookProcessor { get; set; }
 
         public void Start()
         {
@@ -103,24 +104,14 @@ namespace AppleWirelessKeyboardCore.Keyboard
             return CallNextHookEx(Hook, code, wParam, ref lParam);
         }
 
-        public event KeyEventHandler Key;
-
-        public event PressedEventHandler Fn;
-
-        public event PressedEventHandler Alt;
-
-        public event PressedEventHandler Win;
-
-        public event PressedEventHandler Ctrl;
-
-        public event PressedEventHandler Shift;
-
-
-        public event PressedEventHandler Eject;
-
-        public event PressedEventHandler Power;
-
-
-        public event PressedEventHandler FMode;
+        public event KeyEventHandler? Key;
+        public event PressedEventHandler? Fn;
+        public event PressedEventHandler? Alt;
+        public event PressedEventHandler? Win;
+        public event PressedEventHandler? Ctrl;
+        public event PressedEventHandler? Shift;
+        public event PressedEventHandler? Eject;
+        public event PressedEventHandler? Power;
+        public event PressedEventHandler? FMode;
     }
 }

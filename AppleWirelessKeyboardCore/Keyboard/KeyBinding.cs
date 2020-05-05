@@ -10,7 +10,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
     public class KeyBinding
     {
         public Key Key { get; set; }
-        public string Module { get; set; }
+        public string Module { get; set; } = "";
         public bool Ctrl { get; set; }
         public bool Alt { get; set; }
         public bool Fn { get; set; }
