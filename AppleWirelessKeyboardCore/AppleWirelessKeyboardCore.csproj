@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>SigningCertificate.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

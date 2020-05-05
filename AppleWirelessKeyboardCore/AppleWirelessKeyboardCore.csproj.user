@@ -49,9 +49,6 @@
     <Page Update="Glyphs\VolumeOn.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Configuration.xaml">
       <SubType>Designer</SubType>
     </Page>
