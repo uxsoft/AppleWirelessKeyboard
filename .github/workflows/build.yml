@@ -24,7 +24,9 @@ jobs:
     - name: SonarQube Start
       run: |
         dotnet tool install --global dotnet-sonarscanner
-        dotnet sonarscanner begin /k:"uxsoft_AppleWirelessKeyboard" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"uxsoft" /d:sonar.host.url="https://sonarcloud.io"
+        dotnet sonarscanner begin /k:"uxsoft_AppleWirelessKeyboard" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"uxsoft" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths='"**/coverage.xml"'
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install dependencies
       run: dotnet restore
@@ -33,7 +35,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal --collect "Code Coverage"
     
     - name: SonarQube End
       run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
