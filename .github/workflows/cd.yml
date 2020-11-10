@@ -24,7 +24,7 @@ jobs:
 
     # Archive the package
     - name: Create archive
-      run: Compress-Archive -Path AppleWirelessKeyboardCore\bin\Release\net5.0-windows -DestinationPath .Binaries.zip
+      run: Compress-Archive -Path AppleWirelessKeyboardCore\bin\Release\net5.0-windows -DestinationPath Binaries.zip
 
     # Create the release:  https://github.com/actions/create-release
     - name: Create release
