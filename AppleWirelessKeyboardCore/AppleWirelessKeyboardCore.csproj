@@ -4,10 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>SigningCertificate.pfx</AssemblyOriginatorKeyFile>
+    <ApplicationIcon>Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,122 +20,4 @@
   <ItemGroup>
     <Resource Include="Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ApplicationDefinition Update="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </ApplicationDefinition>
-  </ItemGroup>
-
-  <!--<ItemGroup>
-    <Compile Update="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\Brightness.xaml.cs">
-      <DependentUpon>Brightness.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\Eject.xaml.cs">
-      <DependentUpon>Eject.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\MediaDeviceSwitch.xaml.cs">
-      <DependentUpon>MediaDeviceSwitch.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\MuteOff.xaml.cs">
-      <DependentUpon>MuteOff.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\MuteOn.xaml.cs">
-      <DependentUpon>MuteOn.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\Next.xaml.cs">
-      <DependentUpon>Next.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\Off.xaml.cs">
-      <DependentUpon>Off.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\On.xaml.cs">
-      <DependentUpon>On.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\PlayPause.xaml.cs">
-      <DependentUpon>PlayPause.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\Previous.xaml.cs">
-      <DependentUpon>Previous.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\PrintScreen.xaml.cs">
-      <DependentUpon>PrintScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\TaskManager.xaml.cs">
-      <DependentUpon>TaskManager.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\VolumeOff.xaml.cs">
-      <DependentUpon>VolumeOff.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Glyphs\VolumeOn.xaml.cs">
-      <DependentUpon>VolumeOn.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Configuration.xaml.cs">
-      <DependentUpon>Configuration.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\PowerStatusBox.xaml.cs">
-      <DependentUpon>PowerStatusBox.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Glyphs\Brightness.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\Eject.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\MediaDeviceSwitch.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\MuteOff.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\MuteOn.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\Next.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\Off.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\On.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\PlayPause.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\Previous.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\PrintScreen.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\TaskManager.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\VolumeOff.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Glyphs\VolumeOn.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Configuration.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\PowerStatusBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>-->
 </Project>

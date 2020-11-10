@@ -43,7 +43,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
 
         public bool Key(Key key, bool pressed)
         {
-            KeyEventEntry entry = Expected.FirstOrDefault(e => e.Key == key && e.Pressed == pressed);
+            var entry = Expected.FirstOrDefault(e => e.Key == key && e.Pressed == pressed);
             if (entry != null)
             {
                 Expected.Remove(entry);
