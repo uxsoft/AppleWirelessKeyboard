@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using AppleWirelessKeyboardCore.Keyboard;
 
@@ -9,7 +12,7 @@ namespace AppleWirelessKeyboardCore.Services
 {
     public class SettingsService
     {
-        public static SettingsService Default { get; set; } = Load();
+        public static SettingsService Default { get; set; } = Load().Result;
 
         public event EventHandler? LanguageChanged;
 
@@ -28,32 +31,34 @@ namespace AppleWirelessKeyboardCore.Services
 
         public bool EnableOverlay { get; set; } = true;
         public bool StartupShortcut { get; set; } = false;
-        public List<KeyBinding> KeyBindings { get; set; } = new List<KeyBinding>();
+        public ObservableCollection<KeyBinding> KeyBindings { get; set; } = new();
         #endregion
 
         #region Persistence
 
-        private static string GetStorageFileLocation() => Path.Combine(Environment.GetFolderPath(
-            Environment.SpecialFolder.ApplicationData,
-            Environment.SpecialFolderOption.Create), "AppleWirelessKeyboard", "settings.xml");
 
-        public void Save()
+        private static string GetStorageFolderLocation() =>
+            Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData,
+                Environment.SpecialFolderOption.Create), "AppleWirelessKeyboard");
+
+        private static string GetStorageFileLocation() =>
+            Path.Combine(GetStorageFolderLocation(), "settings.xml");
+
+        public async Task SaveAsync()
         {
-            var path = GetStorageFileLocation();
-            var serializer = new XmlSerializer(typeof(SettingsService));
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            var stream = File.OpenWrite(path);
-            serializer.Serialize(stream, this);
+            Directory.CreateDirectory(GetStorageFolderLocation());
+            var stream = File.OpenWrite(GetStorageFileLocation());
+            await JsonSerializer.SerializeAsync(stream, this);
         }
 
-        public static SettingsService Load()
+        public static async Task<SettingsService> Load()
         {
             try
             {
                 var path = GetStorageFileLocation();
-                var serializer = new XmlSerializer(typeof(SettingsService));
-                var stream = File.OpenRead(path);
-                return (SettingsService) serializer.Deserialize(stream);
+                var text = await File.ReadAllTextAsync(path);
+                return JsonSerializer.Deserialize<SettingsService>(text) ?? new SettingsService();
             }
             catch (Exception ex)
             {

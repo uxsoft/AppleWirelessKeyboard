@@ -27,6 +27,15 @@
                         <CheckBox Name="chcStartupShortcut" Margin="6,12,0,0"
                                   Content="{Binding Path=StartupShortcut, Source={x:Static srv:TranslationService.Default}}"
                                   IsChecked="{Binding Path=StartupShortcut, Source={x:Static srv:SettingsService.Default}}" />
+
+                        <Grid Margin="6,12,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label>Default bindings</Label>
+                            <Button Grid.Column="1" Width="64" Name="btnFactoryReset" Click="btnFactoryReset_Click">Restore</Button>
+                        </Grid>
                     </StackPanel>
 
                     <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="3">

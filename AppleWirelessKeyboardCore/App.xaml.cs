@@ -35,7 +35,7 @@ namespace AppleWirelessKeyboardCore
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             TrayIconService.Close();
-            SettingsService.Default.Save();
+            SettingsService.Default.SaveAsync();
         }
     }
 }

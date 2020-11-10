@@ -43,8 +43,8 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 adapter.Ctrl += (pressed) => { if (Filters.All(f => f.Ctrl(pressed))) Ctrl = pressed; };
                 adapter.Win += (pressed) => { if (Filters.All(f => f.Win(pressed))) Win = pressed; };
                 adapter.Shift += (pressed) => { if (Filters.All(f => f.Shift(pressed))) Shift = pressed; };
-                adapter.Eject += (pressed) => { if (Filters.All(f => f.Eject(pressed))) Eject = pressed; };
                 adapter.Power += (pressed) => { if (Filters.All(f => f.Power(pressed))) Power = pressed; };
+                adapter.Eject += (pressed) => ProcessKey(Key.F13, pressed);
                 adapter.Key += ProcessKey;
             }
         }
@@ -52,9 +52,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
         public void Stop()
         {
             foreach (IInputAdapter adapter in Adapters)
-            {
                 adapter.Stop();
-            }
         }
 
         bool ProcessKey(Key key, bool pressed)
@@ -62,24 +60,25 @@ namespace AppleWirelessKeyboardCore.Keyboard
             if (!Filters.All(f => f.Key(key, pressed)))
                 return false;
 
-            bool handled = false;
-            foreach (KeyBinding binding in SettingsService.Default.KeyBindings
-                .Where(b => b.Key == key 
-                    && (!b.Alt || Alt) 
-                    && (!b.Ctrl || Ctrl) 
-                    && (!b.Win || Win) 
-                    && (!b.Fn || Fn) 
-                    && (!b.Shift || Shift) 
-                    && (!b.FMode || FMode)))
+            var handlers = SettingsService.Default.KeyBindings
+                .Where(b => b.Key == key
+                    && (!b.Alt || Alt)
+                    && (!b.Ctrl || Ctrl)
+                    && (!b.Win || Win)
+                    && (!b.Fn || Fn)
+                    && (!b.Shift || Shift)
+                    && (!b.FMode || FMode))
+                .Count(binding =>
             {
-                Action<KeyboardEvent>? module = Modules.SingleOrDefault(l => l.Metadata.Name == binding.Module)?.Value;
+                var module = Modules.SingleOrDefault(l => l.Metadata.Name == binding.Module)?.Value;
                 if (module != null)
-                { 
+                {
                     Task.Factory.StartNew(() => module(pressed ? KeyboardEvent.Down : KeyboardEvent.Up));
-                    handled = true;
+                    return true;
                 }
-            }
-            return handled;
+                else return false;
+            });
+            return handlers > 0;
         }
     }
 }

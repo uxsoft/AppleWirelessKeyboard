@@ -185,7 +185,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 HIDImports.SetupDiDestroyDeviceInfoList(deviceInfoListPointer);
 
             }
-            return false;
+            return true;
         }
 
         public event KeyEventHandler? Key;

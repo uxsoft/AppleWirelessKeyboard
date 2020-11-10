@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using AppleWirelessKeyboardCore.ControlInterfaces;
 using AppleWirelessKeyboardCore.Keyboard;
 using AppleWirelessKeyboardCore.Services;
 
@@ -48,10 +49,10 @@ namespace AppleWirelessKeyboardCore.Views
             cmbLanguage.SelectedItem = SettingsService.Default.ActiveLanguage;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             grdBindings.CancelEdit();
-            SettingsService.Default.Save();
+            await SettingsService.Default.SaveAsync();
             StartupShortcutService.Check();
         }
 
@@ -61,6 +62,36 @@ namespace AppleWirelessKeyboardCore.Views
             {
                 SettingsService.Default.KeyBindings.Remove(binding);
                 CollectionViewSource.GetDefaultView(grdBindings.ItemsSource).Refresh();
+            }
+        }
+
+        private async void btnFactoryReset_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you want to replace your key bindings to the defaults?", "Reset Bindings", MessageBoxButton.YesNo))
+            {
+                SettingsService.Default.KeyBindings.Clear();
+                SettingsService.Default.KeyBindings.Add(new()
+                {
+                    Key = Key.F13,
+                    Module = nameof(PowerControl.ToggleFMode)
+                });
+                SettingsService.Default.KeyBindings.Add(new()
+                {
+                    Key = Key.F12,
+                    Module = nameof(VolumeControl.VolumeUp)
+                });
+                SettingsService.Default.KeyBindings.Add(new()
+                {
+                    Key = Key.F11,
+                    Module = nameof(VolumeControl.VolumeDown)
+                });
+                SettingsService.Default.KeyBindings.Add(new()
+                {
+                    Key = Key.F10,
+                    Module = nameof(VolumeControl.VolumeMute)
+                });
+               
+                await SettingsService.Default.SaveAsync();
             }
         }
     }

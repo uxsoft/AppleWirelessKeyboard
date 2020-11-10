@@ -9,7 +9,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
     public static class VolumeControl
     {
         [ExportMetadata("Category", "Media")]
-        [ExportMetadata("Name", "VolumeIncrease")]
+        [ExportMetadata("Name", "VolumeUp")]
         [Export]
         public static Action<KeyboardEvent> VolumeUp => direction =>
             {
@@ -25,7 +25,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             };
 
         [ExportMetadata("Category", "Media")]
-        [ExportMetadata("Name", "VolumeDecrease")]
+        [ExportMetadata("Name", "VolumeDown")]
         [Export]
         public static Action<KeyboardEvent> VolumeDown => direction =>
             {
@@ -48,7 +48,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "VolumeMute")]
         [Export]
-        public static Action<KeyboardEvent> Mute => direction =>
+        public static Action<KeyboardEvent> VolumeMute => direction =>
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
@@ -65,7 +65,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "VolumeSwitchDevice")]
         [Export]
-        public static Action<KeyboardEvent> NextAudioDeviceExport => direction =>
+        public static Action<KeyboardEvent> VolumeSwitchDevice => direction =>
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
