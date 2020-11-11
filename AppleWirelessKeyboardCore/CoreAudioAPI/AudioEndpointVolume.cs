@@ -37,8 +37,7 @@ namespace AudioSwitch.CoreAudioApi
         {
             get
             {
-                float result;
-                Marshal.ThrowExceptionForHR(_AudioEndPointVolume.GetMasterVolumeLevelScalar(out result));
+                Marshal.ThrowExceptionForHR(_AudioEndPointVolume.GetMasterVolumeLevelScalar(out float result));
                 return result;
             }
             set { Marshal.ThrowExceptionForHR(_AudioEndPointVolume.SetMasterVolumeLevelScalar(value, Guid.Empty)); }
@@ -62,8 +61,7 @@ namespace AudioSwitch.CoreAudioApi
         }
         internal void FireNotification(AudioVolumeNotificationData NotificationData)
         {
-            if (OnVolumeNotification != null)
-                OnVolumeNotification(NotificationData);
+            OnVolumeNotification?.Invoke(NotificationData);
         }
 
         public void Dispose()
