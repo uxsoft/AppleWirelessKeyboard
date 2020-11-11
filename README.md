@@ -1,7 +1,7 @@
 # AppleWirelessKeyboard
 Windows companion application for the Apple Wireless Keyboard which makes Fn and Eject keys work
 
-![screenshot](screen4-full.jpg")
+![screenshot](./screen4-full.jpg?raw=true)
 
 [Project Page](http://uxsoft.cz/Projects/AppleWirelessKeyboard)
 
