@@ -31,10 +31,11 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_RUN_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
       with:
-        tag_name: 2.0.${{ env.GITHUB_RUN_NUMBER }}
-        release_name: 2.0.${{ env.GITHUB_RUN_NUMBER }}
+        tag_name: v2.0.${{ env.GITHUB_RUN_NUMBER }}
+        release_name: v2.0.${{ env.GITHUB_RUN_NUMBER }}
         draft: false
         prerelease: false
 
