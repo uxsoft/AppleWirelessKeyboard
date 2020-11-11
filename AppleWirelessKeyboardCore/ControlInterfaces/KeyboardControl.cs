@@ -20,6 +20,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         }
 
         #region PInvoke
+
         const int VK_SNAPSHOT = 44;
         const int VK_DELETE = 46;
         const int VK_MEDIA_NEXT_TRACK = 176;
@@ -47,19 +48,21 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
 
         #endregion
-        public static void Send(int VKey, KeyboardEvent e = KeyboardEvent.Both)
+
+        public static void Send(int vKey, KeyboardEvent e = KeyboardEvent.Both)
         {
-            uint extended_flag = (VKey >= 16 && VKey <= 18) || (VKey >= 160 && VKey <= 165) ? 0 : KEYEVENTF_EXTENDEDKEY;
-            Key key = (Key)System.Windows.Input.KeyInterop.KeyFromVirtualKey(VKey);
+            var extendedFlag = (vKey >= 16 && vKey <= 18) || (vKey >= 160 && vKey <= 165) ? 0 : KEYEVENTF_EXTENDEDKEY;
+            var key = KeyInterop.KeyFromVirtualKey(vKey);
 
             if (e.HasFlag(KeyboardEvent.Down))
             {
-                keybd_event((byte)VKey, 0, extended_flag, 0);
+                keybd_event((byte) vKey, 0, extendedFlag, 0);
                 KeyboardFilter.Expect(key, true);
             }
+
             if (e.HasFlag(KeyboardEvent.Up))
             {
-                keybd_event((byte)VKey, 0, extended_flag | KEYEVENTF_KEYUP, 0);
+                keybd_event((byte) vKey, 0, extendedFlag | KEYEVENTF_KEYUP, 0);
                 KeyboardFilter.Expect(key, false);
             }
         }
@@ -68,206 +71,128 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         public static KeyboardControlFilter KeyboardFilter { get; set; }
 
         public static void SendLetter(char letter, KeyboardEvent direction = KeyboardEvent.Both)
-        { //a=65
+        {
+            //a=65
             if (char.IsLetter(letter) && char.IsLower(letter))
-                Send((int)letter - 32, direction);
+                Send((int) letter - 32, direction);
             else if (char.IsLetter(letter) && char.IsUpper(letter))
-                Send((int)letter, direction);
+                Send((int) letter, direction);
         }
 
         public static void SendDigit(byte digit, KeyboardEvent direction = KeyboardEvent.Both)
         {
-            if (digit >= 0 && digit <= 9)
+            if (digit <= 9)
                 Send(96 + digit, direction);
         }
 
 
         [Export]
         [ExportMetadata("Name", "Insert")]
-        public static Action<KeyboardEvent> SendInsert
-        {
-            get
-            {
-                return direction => Send(VK_INSERT, direction);
-            }
-        }
-
+        public static Action<KeyboardEvent> SendInsert => 
+            direction => Send(VK_INSERT, direction);
 
         [Export]
         [ExportMetadata("Name", "Delete")]
-        public static Action<KeyboardEvent> SendDelete
-        {
-            get
-            {
-                return direction => Send(VK_DELETE, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendDelete => 
+            direction => Send(VK_DELETE, direction);
 
         [Export]
         [ExportMetadata("Name", "PrintScreen")]
-        public static Action<KeyboardEvent> SendPrintScreen
-        {
-            get
+        public static Action<KeyboardEvent> SendPrintScreen =>
+            direction =>
             {
-                return direction =>
-                {
-                    Send(VK_SNAPSHOT, direction);
-                    Thread.Sleep(250);
-                    NotificationCenter.NotifyPrintScreen();
-                };
-            }
-        }
+                Send(VK_SNAPSHOT, direction);
+                Thread.Sleep(250);
+                NotificationCenter.NotifyPrintScreen();
+            };
 
         [Export]
         [ExportMetadata("Name", "PauseTrack")]
-        public static Action<KeyboardEvent> SendPlayPause
-        {
-            get
+        public static Action<KeyboardEvent> SendPlayPause =>
+            direction =>
             {
-                return direction =>
-                {
-                    Send(VK_MEDIA_PLAY_PAUSE, direction);
-                    NotificationCenter.NotifyPlayPause();
-                };
-            }
-        }
+                Send(VK_MEDIA_PLAY_PAUSE, direction);
+                NotificationCenter.NotifyPlayPause();
+            };
 
         [Export]
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "NextTrack")]
-        public static Action<KeyboardEvent> SendNextTrack
-        {
-            get
+        public static Action<KeyboardEvent> SendNextTrack =>
+            direction =>
             {
-                return direction =>
-                {
-                    Send(VK_MEDIA_NEXT_TRACK, direction);
-                    NotificationCenter.NotifyNext();
-                };
-            }
-        }
+                Send(VK_MEDIA_NEXT_TRACK, direction);
+                NotificationCenter.NotifyNext();
+            };
 
         [Export]
         [ExportMetadata("Category", "Media")]
         [ExportMetadata("Name", "PreviousTrack")]
-        public static Action<KeyboardEvent> SendPreviousTrack
-        {
-            get
+        public static Action<KeyboardEvent> SendPreviousTrack =>
+            direction =>
             {
-                return direction =>
-                {
-                    Send(VK_MEDIA_PREV_TRACK, direction);
-                    NotificationCenter.NotifyPrevious();
-                };
-            }
-        }
+                Send(VK_MEDIA_PREV_TRACK, direction);
+                NotificationCenter.NotifyPrevious();
+            };
 
         [Export]
         [ExportMetadata("Name", "TaskManager")]
-        public static Action<KeyboardEvent> OpenTaskManager
-        {
-            get
+        public static Action<KeyboardEvent> OpenTaskManager =>
+            direction =>
             {
-                return direction =>
-                {
-                    Process taskmgr = Process.GetProcessesByName("taskmgr.exe").FirstOrDefault();
-                    if (taskmgr != null)
-                        SetForegroundWindow(taskmgr.MainWindowHandle);
-                    else
-                        Process.Start("taskmgr.exe");
-                    NotificationCenter.NotifyTaskManager();
-                };
-            }
-        }
+                if (direction == KeyboardEvent.Down) return;
+                
+                var taskMgr = Process.GetProcessesByName("taskmgr.exe").FirstOrDefault();
+                if (taskMgr != null)
+                    SetForegroundWindow(taskMgr.MainWindowHandle);
+                else
+                    Process.Start("taskmgr.exe");
+                NotificationCenter.NotifyTaskManager();
+            };
 
-        [Export]
+                [Export]
         [ExportMetadata("Name", "CapsLock")]
-        public static Action<KeyboardEvent> SendCapsLock
-        {
-            get
-            {
-                return direction => Send(VK_CAPITAL, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendCapsLock => 
+            direction => Send(VK_CAPITAL, direction);
 
         [Export]
         [ExportMetadata("Name", "PageUp")]
-        public static Action<KeyboardEvent> SendPageUp
-        {
-            get
-            {
-                return direction => Send(VK_PAGEUP, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendPageUp => 
+            direction => Send(VK_PAGEUP, direction);
 
         [Export]
         [ExportMetadata("Name", "PageDown")]
-        public static Action<KeyboardEvent> SendPageDown
-        {
-            get
-            {
-                return direction => Send(VK_PAGEDOWN, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendPageDown => 
+            direction => Send(VK_PAGEDOWN, direction);
 
         [Export]
         [ExportMetadata("Name", "Home")]
-        public static Action<KeyboardEvent> SendHome
-        {
-            get
-            {
-                return direction => Send(VK_HOME, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendHome => 
+            direction => Send(VK_HOME, direction);
 
         [Export]
         [ExportMetadata("Name", "End")]
-        public static Action<KeyboardEvent> SendEnd
-        {
-            get
-            {
-                return direction => Send(VK_END, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendEnd => 
+            direction => Send(VK_END, direction);
 
         [Export]
         [ExportMetadata("Name", "F3")]
-        public static Action<KeyboardEvent> SendF3
-        {
-            get
-            {
-                return direction => Send(VK_F3, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendF3 => 
+            direction => Send(VK_F3, direction);
 
         [Export]
         [ExportMetadata("Name", "Ctrl")]
-        public static Action<KeyboardEvent> SendCtrl
-        {
-            get
-            {
-                return direction => Send(VK_CONTROL, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendCtrl => 
+            direction => Send(VK_CONTROL, direction);
 
         [Export]
         [ExportMetadata("Name", "Alt")]
-        public static Action<KeyboardEvent> SendAlt
-        {
-            get
-            {
-                return direction => Send(VK_ALT, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendAlt => 
+            direction => Send(VK_ALT, direction);
 
         [Export]
         [ExportMetadata("Name", "Win")]
-        public static Action<KeyboardEvent> SendWin
-        {
-            get
-            {
-                return direction => Send(VK_WIN, direction);
-            }
-        }
+        public static Action<KeyboardEvent> SendWin => 
+            direction => Send(VK_WIN, direction);
     }
 }

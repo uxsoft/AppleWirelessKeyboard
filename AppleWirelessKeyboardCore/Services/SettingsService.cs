@@ -31,12 +31,12 @@ namespace AppleWirelessKeyboardCore.Services
 
         public bool EnableOverlay { get; set; } = true;
         public bool StartupShortcut { get; set; } = false;
+        public bool StartupFMode { get; set; } = true;
+
         public ObservableCollection<KeyBinding> KeyBindings { get; set; } = new();
         #endregion
 
         #region Persistence
-
-
         private static string GetStorageFolderLocation() =>
             Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData,

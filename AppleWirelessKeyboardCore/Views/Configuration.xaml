@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:srv="clr-namespace:AppleWirelessKeyboardCore.Services"
+        xmlns:kb="clr-namespace:AppleWirelessKeyboardCore"
         Icon="pack://application:,,,/Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico"
         Title="Configuration" Height="500" Width="400" Closing="Window_Closing">
     <Window.Resources>
@@ -28,16 +29,96 @@
                                   Content="{Binding Path=StartupShortcut, Source={x:Static srv:TranslationService.Default}}"
                                   IsChecked="{Binding Path=StartupShortcut, Source={x:Static srv:SettingsService.Default}}" />
 
+                        <CheckBox Name="chcStartupFMode" Margin="6,12,0,0"
+                                  Content="{Binding Path=StartupFMode, Source={x:Static srv:TranslationService.Default}}"
+                                  IsChecked="{Binding Path=StartupFMode, Source={x:Static srv:SettingsService.Default}}" />
+
+
                         <Grid Margin="6,12,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="4*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label>Default bindings</Label>
+                            <TextBlock Text="Default bindings"/>
                             <Button Grid.Column="1" Width="64" Name="btnFactoryReset" Click="btnFactoryReset_Click">Restore</Button>
                         </Grid>
-                    </StackPanel>
+                        <Grid Margin="6,12,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
+                            <TextBlock Text="Current Modifiers:"/>
+
+                            <TextBlock Text="Fn" Grid.Row="1"/>
+                            <TextBlock Text="{Binding Path=Fn.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="1"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Ctrl" Grid.Row="2"/>
+                            <TextBlock Text="{Binding Path=Ctrl.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="2"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Alt" Grid.Row="3"/>
+                            <TextBlock Text="{Binding Path=Alt.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="3"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+                            
+                            <TextBlock Text="Win" Grid.Row="4"/>
+                            <TextBlock Text="{Binding Path=Win.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="4"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Shift" Grid.Row="5"/>
+                            <TextBlock Text="{Binding Path=Shift.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="5"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Eject" Grid.Row="6"/>
+                            <TextBlock Text="{Binding Path=Eject.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="6"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Power" Grid.Row="7"/>
+                            <TextBlock Text="{Binding Path=Power.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="7"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="F Mode" Grid.Row="8"/>
+                            <TextBlock Text="{Binding Path=FMode.Value, Source={x:Static kb:App.Keyboard}}" 
+                                       Grid.Column="1"
+                                       Grid.Row="8"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+                        </Grid>
+                    </StackPanel>
                     <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="3">
                         <Run Text="{Binding Mode=OneTime, Path=By, Source={x:Static srv:TranslationService.Default}}" />
                         <Hyperlink NavigateUri="http://uxsoft.cz">uxsoft.cz</Hyperlink>

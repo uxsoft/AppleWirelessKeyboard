@@ -1,75 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Windows;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using AppleWirelessKeyboardCore.Keyboard;
 
-namespace AppleWirelessKeyboardCore
+namespace AppleWirelessKeyboardCore.ControlInterfaces
 {
     public class PowerControl
     {
-
         [DllImport("powrprof.dll", SetLastError = true)]
         static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
 
         [ExportMetadata("Name", "Hibernate")]
         [Export]
-        public static Action<KeyboardEvent> Hibernate
-        {
-            get
+        public static Action<KeyboardEvent> Hibernate =>
+            direction =>
             {
-                return direction =>
-                {
-                    if (direction.HasFlag(KeyboardEvent.Down))
-                        if (PowerStatusBox.PowerAction("Hibernate", 10))
-                            SetSuspendState(true, true, true);
-                };
-            }
-        }
+                if (direction.HasFlag(KeyboardEvent.Down))
+                    if (PowerStatusBox.PowerAction("Hibernate", 10))
+                        SetSuspendState(true, true, true);
+            };
 
         [ExportMetadata("Name", "Shutdown")]
         [Export]
-        public static Action<KeyboardEvent> Shutdown
-        {
-            get
+        public static Action<KeyboardEvent> Shutdown =>
+            direction =>
             {
-                return direction =>
-                {
-                    if (direction.HasFlag(KeyboardEvent.Down))
-                        if (PowerStatusBox.PowerAction("Shut Down", 10))
+                if (direction.HasFlag(KeyboardEvent.Down))
+                    if (PowerStatusBox.PowerAction("Shut Down", 10))
+                    {
+                        ProcessStartInfo si = new ProcessStartInfo("shutdown", "/s /t 0")
                         {
-                            ProcessStartInfo si = new ProcessStartInfo("shutdown", "/s /t 0");
-                            si.CreateNoWindow = true;
-                            si.WindowStyle = ProcessWindowStyle.Hidden;
-                            Process.Start(si);
-                        }
-                };
-            }
-        }
+                            CreateNoWindow = true, 
+                            WindowStyle = ProcessWindowStyle.Hidden
+                        };
+                        Process.Start(si);
+                    }
+            };
 
         [ExportMetadata("Name", "ToggleFMode")]
         [Export]
-        public static Action<KeyboardEvent> ToggleFMode
-        {
-            get
+        public static Action<KeyboardEvent> ToggleFMode =>
+            direction =>
             {
-                return direction =>
-                {
-                    if (direction.HasFlag(KeyboardEvent.Down))
-                    {
-                        App.Keyboard.FMode = !App.Keyboard.FMode;
-                        if (App.Keyboard.FMode)
-                            NotificationCenter.NotifyOn();
-                        else NotificationCenter.NotifyOff();
-                    }
-                };
-            }
-        }
+                if (!direction.HasFlag(KeyboardEvent.Down)) return;
+                    
+                App.Keyboard.FMode.Value = !App.Keyboard.FMode.Value;
+                if (App.Keyboard.FMode.Value)
+                    NotificationCenter.NotifyOn();
+                else NotificationCenter.NotifyOff();
+            };
     }
 }

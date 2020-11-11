@@ -11,14 +11,13 @@ namespace AppleWirelessKeyboardCore
     public partial class App : Application
     {
         public static MainWindow Window { get; set; } = new MainWindow();
-        public static KeyboardHandler Keyboard { get; set; }
+        public static KeyboardHandler Keyboard { get; set; } = new KeyboardHandler();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             StartupShortcutService.Check();
             TrayIconService.Show();
             
-            Keyboard = new KeyboardHandler();
             Keyboard.Start();
 
             Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
@@ -32,10 +31,10 @@ namespace AppleWirelessKeyboardCore
             }
         }
 
-        private void Application_Exit(object sender, ExitEventArgs e)
+        private async void Application_Exit(object sender, ExitEventArgs e)
         {
             TrayIconService.Close();
-            SettingsService.Default.SaveAsync();
+            await SettingsService.Default.SaveAsync();
         }
     }
 }

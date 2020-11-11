@@ -168,8 +168,15 @@ namespace AppleWirelessKeyboardCore.Services
         public string StartupShortcut => SettingsService.Default.ActiveLanguage switch
         {
             Language.Czech => "Spustit program při spuštění systému",
-            Language.German => "",
+            Language.German => "Start program at system start",
             _ => "Start program at system start"
+        };
+        
+        public string StartupFMode => SettingsService.Default.ActiveLanguage switch
+        {
+            Language.Czech => "Zapnout FMode při spuštění programu",
+            Language.German => "FMode is enabled when the program starts",
+            _ => "FMode is enabled when the program starts"
         };
 
         public string TaskManager => SettingsService.Default.ActiveLanguage switch

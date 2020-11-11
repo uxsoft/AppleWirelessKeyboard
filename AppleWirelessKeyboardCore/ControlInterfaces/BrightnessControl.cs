@@ -22,40 +22,37 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 CanAdjustBrightness = true;
             }
             else
+            {
+                BrightnessLevels = Array.Empty<byte>();
                 CanAdjustBrightness = false;
+            }
         }
 
         private static byte[] BrightnessLevels { get; set; }
         public static bool CanAdjustBrightness { get; set; }
 
-        private static ManagementObject WmiMonitorBrightness;
-        private static ManagementObject WmiMonitorBrightnessMethods;
+        private static ManagementObject? WmiMonitorBrightness;
+        private static ManagementObject? WmiMonitorBrightnessMethods;
 
-        internal static ManagementObject WmiGetObject(string query)
+        internal static ManagementObject? WmiGetObject(string query)
         {
             if (CanAdjustBrightness)
             {
                 try
                 {
-                    System.Management.ManagementScope scope = new System.Management.ManagementScope("root\\WMI");
+                    var scope = new ManagementScope("root\\WMI");
 
-                    using (System.Management.ManagementObjectSearcher mos = new System.Management.ManagementObjectSearcher(scope, new SelectQuery(query)))
-                    {
-                        using (ManagementObjectCollection collection = mos.Get())
-                        {
-                            return collection.OfType<ManagementObject>().FirstOrDefault();
-                        }
-                    }
+                    using var mos = new ManagementObjectSearcher(scope, new SelectQuery(query));
+                    using var collection = mos.Get();
+                    return collection.OfType<ManagementObject>().FirstOrDefault();
                 }
                 catch
                 {
                     return null;
-                } 
+                }
             }
             else
-            {
                 return null;
-            }
         }
 
         private static int LevelToCubes(int level)
@@ -66,71 +63,59 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
         [Export]
         [ExportMetadata("Name", "IncreaseBrightness")]
-        public static Action<KeyboardEvent> IncreaseBrightness
-        {
-            get{
-                return direction =>
+        public static Action<KeyboardEvent> IncreaseBrightness => 
+            direction =>
+            {
+                if (direction.HasFlag(KeyboardEvent.Down) && CanAdjustBrightness)
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down) && CanAdjustBrightness)
-                    {
-                        WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
+                    WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
 
-                        int brightness = GetBrightness();
-                        int level = Array.IndexOf(BrightnessLevels, (byte)brightness);
-                        if (level + 1 < BrightnessLevels.Length)
-                        {
-                            SetBrightness(BrightnessLevels[level + 1]);
-                            NotificationCenter.NotifyBrightnessLevel(LevelToCubes(level + 1));
-                        }
+                    int brightness = GetBrightness();
+                    int level = Array.IndexOf(BrightnessLevels, (byte)brightness);
+                    if (level + 1 < BrightnessLevels.Length)
+                    {
+                        SetBrightness(BrightnessLevels[level + 1]);
+                        NotificationCenter.NotifyBrightnessLevel(LevelToCubes(level + 1));
                     }
-                };
-            }
-        }
+                }
+            };
 
         [Export]
         [ExportMetadata("Name", "DecreaseBrightness")]
-        public static Action<KeyboardEvent> DecreaseBrightness
-        {
-            get
+        public static Action<KeyboardEvent> DecreaseBrightness =>
+            direction =>
             {
-                return direction =>
+                if (direction.HasFlag(KeyboardEvent.Down) && CanAdjustBrightness)
                 {
-                    if (direction.HasFlag(KeyboardEvent.Down) && CanAdjustBrightness)
+                    WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
+            
+                    int brightness = GetBrightness();
+                    int level = Array.IndexOf(BrightnessLevels, (byte)brightness);
+                    if (level >= 1)
                     {
-                        WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
-
-                        int brightness = GetBrightness();
-                        int level = Array.IndexOf(BrightnessLevels, (byte)brightness);
-                        if (level >= 1)
-                        {
-                            SetBrightness(BrightnessLevels[level - 1]);
-                            NotificationCenter.NotifyBrightnessLevel(LevelToCubes(level - 1));
-                        }
+                        SetBrightness(BrightnessLevels[level - 1]);
+                        NotificationCenter.NotifyBrightnessLevel(LevelToCubes(level - 1));
                     }
-                };
-            }
-        }
+                }
+            };
 
         private static int GetBrightness()
         {
             if (CanAdjustBrightness)
-            {
                 return 100;
-            }
             else
-            {
-                return (int)(byte)WmiMonitorBrightness.GetPropertyValue("CurrentBrightness");
-            }
+                return (byte)(WmiMonitorBrightness?.GetPropertyValue("CurrentBrightness") ?? 0);
         }
 
         private static byte[] GetBrightnessLevels()
         {
-            return (byte[])WmiMonitorBrightness.GetPropertyValue("Level");
+            return (byte[])(WmiMonitorBrightness?.GetPropertyValue("Level") ?? Array.Empty<byte>());
         }
 
         private static void SetBrightness(int targetBrightness)
         {
-            WmiMonitorBrightnessMethods.InvokeMethod("WmiSetBrightness", new Object[] { UInt32.MaxValue, (byte)targetBrightness }); //note the reversed order - won't work otherwise!
+            WmiMonitorBrightnessMethods?.InvokeMethod("WmiSetBrightness", new object[] { uint.MaxValue, (byte)targetBrightness });
+            //note the reversed order - won't work otherwise!
         }
     }
 }

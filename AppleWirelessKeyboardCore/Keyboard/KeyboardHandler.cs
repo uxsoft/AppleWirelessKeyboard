@@ -16,34 +16,53 @@ namespace AppleWirelessKeyboardCore.Keyboard
         }
 
         [ImportMany]
-        public IEnumerable<IInputAdapter> Adapters { get; set; } = null!;
+        public IEnumerable<IInputAdapter> Adapters { get; set; } = default!;
 
         [ImportMany]
-        public IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; } = null!;
+        public IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; } =
+            default!;
 
         [ImportMany]
-        public IEnumerable<IInputFilter> Filters { get; set; } = null!;
+        public IEnumerable<IInputFilter> Filters { get; set; } = default!;
 
-        public bool Fn { get; set; }
-        public bool Alt { get; set; }
-        public bool Ctrl { get; set; }
-        public bool Win { get; set; }
-        public bool Shift { get; set; }
-        public bool Eject { get; set; }
-        public bool FMode { get; set; }
-        public bool Power { get; set; }
+        public State<bool> Fn { get; set; } = new State<bool>(false);
+        public State<bool> Alt { get; set; } = new State<bool>(false);
+        public State<bool> Ctrl { get; set; } = new State<bool>(false);
+        public State<bool> Win { get; set; } = new State<bool>(false);
+        public State<bool> Shift { get; set; } = new State<bool>(false);
+        public State<bool> Eject { get; set; } = new State<bool>(false);
+        public State<bool> FMode { get; set; } = new State<bool>(SettingsService.Default.StartupFMode);
+        public State<bool> Power { get; set; } = new State<bool>(false);
 
         public void Start()
         {
             foreach (IInputAdapter adapter in Adapters)
             {
                 adapter.Start();
-                adapter.Fn += (pressed) => { if (Filters.All(f => f.Fn(pressed))) Fn = pressed; };
-                adapter.Alt += (pressed) => { if (Filters.All(f => f.Alt(pressed))) Alt = pressed; };
-                adapter.Ctrl += (pressed) => { if (Filters.All(f => f.Ctrl(pressed))) Ctrl = pressed; };
-                adapter.Win += (pressed) => { if (Filters.All(f => f.Win(pressed))) Win = pressed; };
-                adapter.Shift += (pressed) => { if (Filters.All(f => f.Shift(pressed))) Shift = pressed; };
-                adapter.Power += (pressed) => { if (Filters.All(f => f.Power(pressed))) Power = pressed; };
+                adapter.Fn += (pressed) =>
+                {
+                    if (Filters.All(f => f.Fn(pressed))) Fn.Value = pressed;
+                };
+                adapter.Alt += (pressed) =>
+                {
+                    if (Filters.All(f => f.Alt(pressed))) Alt.Value = pressed;
+                };
+                adapter.Ctrl += (pressed) =>
+                {
+                    if (Filters.All(f => f.Ctrl(pressed))) Ctrl.Value = pressed;
+                };
+                adapter.Win += (pressed) =>
+                {
+                    if (Filters.All(f => f.Win(pressed))) Win.Value = pressed;
+                };
+                adapter.Shift += (pressed) =>
+                {
+                    if (Filters.All(f => f.Shift(pressed))) Shift.Value = pressed;
+                };
+                adapter.Power += (pressed) =>
+                {
+                    if (Filters.All(f => f.Power(pressed))) Power.Value = pressed;
+                };
                 adapter.Eject += (pressed) => ProcessKey(Key.F13, pressed);
                 adapter.Key += ProcessKey;
             }
@@ -62,22 +81,20 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
             var handlers = SettingsService.Default.KeyBindings
                 .Where(b => b.Key == key
-                    && (!b.Alt || Alt)
-                    && (!b.Ctrl || Ctrl)
-                    && (!b.Win || Win)
-                    && (!b.Fn || Fn)
-                    && (!b.Shift || Shift)
-                    && (!b.FMode || FMode))
+                            && (!b.Alt || Alt.Value)
+                            && (!b.Ctrl || Ctrl.Value)
+                            && (!b.Win || Win.Value)
+                            && (!b.Fn || Fn.Value)
+                            && (!b.Shift || Shift.Value)
+                            && (!b.FMode || FMode.Value))
                 .Count(binding =>
-            {
-                var module = Modules.SingleOrDefault(l => l.Metadata.Name == binding.Module)?.Value;
-                if (module != null)
                 {
+                    var module = Modules.SingleOrDefault(l => l.Metadata.Name == binding.Module)?.Value;
+                    if (module == null) return false;
+                    
                     Task.Factory.StartNew(() => module(pressed ? KeyboardEvent.Down : KeyboardEvent.Up));
                     return true;
-                }
-                else return false;
-            });
+                });
             return handlers > 0;
         }
     }

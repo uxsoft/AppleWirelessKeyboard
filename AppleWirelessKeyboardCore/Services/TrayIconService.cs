@@ -43,12 +43,11 @@ namespace AppleWirelessKeyboardCore.Services
             mnuExit.Click += TriggerExit;
             contextMenu.Items.Add(mnuExit);
 
+            var icon = Application.GetResourceStream(new Uri("pack://application:,,,/Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico"))?.Stream;
             return new TaskbarIcon
             {
                 ToolTipText = "AppleWirelessKeyboard",
-                Icon = new Icon(Application
-                .GetResourceStream(
-                    new Uri("pack://application:,,,/Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico"))?.Stream),
+                Icon = icon != null ? new Icon(icon) : null,
                 Visibility = Visibility.Collapsed,
                 ContextMenu = contextMenu
             };

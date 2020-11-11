@@ -7,7 +7,7 @@ namespace AppleWirelessKeyboardCore.Services
     public static class ProcessMonitoringService
     {
         public static bool IsAllowed { get; private set; } = true;
-        public static List<string> Programs { get; set; }
+        public static List<string> Programs { get; set; } = new ();
 
         static void Tick()
         {
@@ -55,14 +55,14 @@ namespace AppleWirelessKeyboardCore.Services
         private static void ProcessEnded(object sender, EventArrivedEventArgs e)
         {
             ManagementBaseObject targetInstance = (ManagementBaseObject) e.NewEvent.Properties["TargetInstance"].Value;
-            string processName = targetInstance.Properties["Name"].Value.ToString();
+            string processName = targetInstance.Properties["Name"].Value.ToString() ?? "";
             Trace.WriteLine($"{processName} process ended");
         }
 
         private static void ProcessStarted(object sender, EventArrivedEventArgs e)
         {
             ManagementBaseObject targetInstance = (ManagementBaseObject) e.NewEvent.Properties["TargetInstance"].Value;
-            string processName = targetInstance.Properties["Name"].Value.ToString();
+            string processName = targetInstance.Properties["Name"].Value.ToString() ?? "";
             Trace.WriteLine($"{processName} process started");
         }
     }

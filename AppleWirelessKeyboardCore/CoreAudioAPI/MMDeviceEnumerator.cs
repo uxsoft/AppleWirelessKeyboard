@@ -34,7 +34,7 @@ namespace AudioSwitch.CoreAudioApi
     //Small wrapper class
     internal class MMDeviceEnumerator
     {
-        private IMMDeviceEnumerator _realEnumerator = new _MMDeviceEnumerator() as IMMDeviceEnumerator;
+        private IMMDeviceEnumerator _realEnumerator = (IMMDeviceEnumerator)new _MMDeviceEnumerator();
 
         public MMDeviceCollection EnumerateAudioEndPoints(EDataFlow dataFlow, EDeviceState dwStateMask)
         {

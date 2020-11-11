@@ -8,7 +8,7 @@ namespace AudioSwitch.Classes
     internal static class DeviceIcons
     {
         [DllImport("shell32.dll")]
-        private static extern int ExtractIconEx(string libName, int iconIndex, IntPtr[] largeIcon, IntPtr[] smallIcon, int nIcons);
+        private static extern int ExtractIconEx(string libName, int iconIndex, IntPtr[] largeIcon, IntPtr[]? smallIcon, int nIcons);
 
         private static List<Icon> ActiveIcons = new List<Icon>();
         private static List<Icon> NormalIcons = new List<Icon>();
