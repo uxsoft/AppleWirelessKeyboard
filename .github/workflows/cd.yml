@@ -32,10 +32,9 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_RUN_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
       with:
-        tag_name: v2.0.${{ env.GITHUB_RUN_NUMBER }}
-        release_name: v2.0.${{ env.GITHUB_RUN_NUMBER }}
+        tag_name: v2.0.${{ github.run_number }}
+        release_name: v2.0.${{ github.run_number }}
         draft: false
         prerelease: false
 
