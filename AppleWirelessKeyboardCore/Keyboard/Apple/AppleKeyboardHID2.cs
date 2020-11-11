@@ -51,7 +51,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
             if (stream == null || !ar.IsCompleted) return;
 
             // Process Event
-            if (!(ar.AsyncState is byte[] asyncState)) return;
+            if (ar.AsyncState is not byte[] asyncState) return;
 
             if (asyncState[0] == 0x11 || asyncState[0] == 0x00)
             {
@@ -185,7 +185,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 HIDImports.SetupDiDestroyDeviceInfoList(deviceInfoListPointer);
 
             }
-            return true;
+            return false;
         }
 
         public event KeyEventHandler? Key;

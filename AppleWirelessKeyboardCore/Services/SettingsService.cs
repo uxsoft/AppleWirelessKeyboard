@@ -43,13 +43,20 @@ namespace AppleWirelessKeyboardCore.Services
                 Environment.SpecialFolderOption.Create), "AppleWirelessKeyboard");
 
         private static string GetStorageFileLocation() =>
-            Path.Combine(GetStorageFolderLocation(), "settings.xml");
+            Path.Combine(GetStorageFolderLocation(), "settings.json");
 
         public async Task SaveAsync()
         {
-            Directory.CreateDirectory(GetStorageFolderLocation());
-            var stream = File.OpenWrite(GetStorageFileLocation());
-            await JsonSerializer.SerializeAsync(stream, this);
+            try
+            {
+                Directory.CreateDirectory(GetStorageFolderLocation());
+                using var stream = File.OpenWrite(GetStorageFileLocation());
+                await JsonSerializer.SerializeAsync(stream, this);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to save settings ({ex})");
+            }
         }
 
         public static async Task<SettingsService> Load()
@@ -62,7 +69,7 @@ namespace AppleWirelessKeyboardCore.Services
             }
             catch (Exception ex)
             {
-                Trace.WriteLine($"Failed to load settings ({ex})");
+                Debug.WriteLine($"Failed to load settings ({ex})");
                 return new SettingsService();
             }
         }
