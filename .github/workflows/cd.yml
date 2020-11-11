@@ -33,9 +33,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ github.ref}}.${{matrix.ChannelName}}.${{ matrix.targetplatform }}
-        release_name:  ${{ github.ref }}.${{ matrix.ChannelName }}.${{ matrix.targetplatform }}
-        draft: true
+        tag_name: 2.0.${{ env.GITHUB_RUN_NUMBER }}
+        release_name: 2.0.${{ env.GITHUB_RUN_NUMBER }}
+        draft: false
         prerelease: false
 
     # Upload release asset:   https://github.com/actions/upload-release-asset
