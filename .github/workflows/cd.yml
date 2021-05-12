@@ -41,7 +41,7 @@ jobs:
     # Upload release asset:   https://github.com/actions/upload-release-asset
     - name: Attach Binaries to release
       id: upload-release-asset-binaries
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -52,7 +52,7 @@ jobs:
         
     - name: Attach Driver to release
       id: upload-release-asset-driver
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
