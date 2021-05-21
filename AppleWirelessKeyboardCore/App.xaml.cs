@@ -31,10 +31,10 @@ namespace AppleWirelessKeyboardCore
             }
         }
 
-        private async void Application_Exit(object sender, ExitEventArgs e)
+        private void Application_Exit(object sender, ExitEventArgs e)
         {
             TrayIconService.Close();
-            await SettingsService.Default.SaveAsync();
+            SettingsService.Default.Save();
         }
     }
 }

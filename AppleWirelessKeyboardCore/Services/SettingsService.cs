@@ -45,13 +45,16 @@ namespace AppleWirelessKeyboardCore.Services
         private static string GetStorageFileLocation() =>
             Path.Combine(GetStorageFolderLocation(), "settings.json");
 
-        public async Task SaveAsync()
+        public void Save()
         {
+            var text = "";
             try
             {
                 Directory.CreateDirectory(GetStorageFolderLocation());
-                using var stream = File.OpenWrite(GetStorageFileLocation());
-                await JsonSerializer.SerializeAsync(stream, this);
+                var opts = new JsonSerializerOptions();
+                opts.WriteIndented = true;
+                text = JsonSerializer.Serialize<SettingsService>(this, opts);
+                File.WriteAllText(GetStorageFileLocation(), text);
             }
             catch (Exception ex)
             {
@@ -61,11 +64,12 @@ namespace AppleWirelessKeyboardCore.Services
 
         public static SettingsService Load()
         {
+            var text = "";
             try
             {
-                var path = GetStorageFileLocation();
-                var text = File.ReadAllText(path);
-                return JsonSerializer.Deserialize<SettingsService>(text) ?? new SettingsService();
+                text = File.ReadAllText(GetStorageFileLocation());
+                var settings = JsonSerializer.Deserialize<SettingsService>(text);
+                return settings ?? new SettingsService();
             }
             catch (Exception ex)
             {

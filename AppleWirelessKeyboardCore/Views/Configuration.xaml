@@ -128,7 +128,7 @@
             <TabItem Header="{Binding Path=Bindings, Source={x:Static srv:TranslationService.Default}}">
                 <DataGrid Name="grdBindings" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True"
                           CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False"
-                          CanUserSortColumns="True" RowStyle="{StaticResource DefaultRowStyle}">
+                          CanUserSortColumns="True" RowStyle="{StaticResource DefaultRowStyle}" Unloaded="grdBindings_Unloaded">
                     <DataGrid.Columns>
                         <DataGridComboBoxColumn x:Name="clmnKey" Header="{Binding Path=Key, Source={x:Static srv:TranslationService.Default}}"
                                                 SelectedItemBinding="{Binding Key}" />
