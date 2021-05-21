@@ -53,7 +53,7 @@ namespace AudioSwitch.CoreAudioApi
             return false;
         }
 
-        public PropertyStoreProperty this[PropertyKey queryKey]
+        public PropertyStoreProperty? this[PropertyKey queryKey]
         {
             get
             {

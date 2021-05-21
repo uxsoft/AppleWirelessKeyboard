@@ -190,10 +190,10 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
 
         public event KeyEventHandler? Key;
         public event PressedEventHandler? Fn;
-        public event PressedEventHandler? Alt;
-        public event PressedEventHandler? Win;
-        public event PressedEventHandler? Ctrl;
-        public event PressedEventHandler? Shift;
+        public event PressedEventHandler? Alt { add { } remove { } }
+        public event PressedEventHandler? Win { add { } remove { } }
+        public event PressedEventHandler? Ctrl { add { } remove { } }
+        public event PressedEventHandler? Shift { add { } remove { } }
         public event PressedEventHandler? Eject;
         public event PressedEventHandler? Power;
         public event PressedEventHandler? FMode;

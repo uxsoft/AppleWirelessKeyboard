@@ -30,8 +30,8 @@ namespace AudioSwitch.CoreAudioApi
     public class AudioEndpointVolume : IDisposable
     {
         private readonly IAudioEndpointVolume _AudioEndPointVolume;
-        private AudioEndpointVolumeCallback _CallBack;
-        public  event AudioEndpointVolumeNotificationDelegate OnVolumeNotification;
+        private AudioEndpointVolumeCallback? _CallBack;
+        public event AudioEndpointVolumeNotificationDelegate? OnVolumeNotification;
 
         public float MasterVolumeLevelScalar
         {
