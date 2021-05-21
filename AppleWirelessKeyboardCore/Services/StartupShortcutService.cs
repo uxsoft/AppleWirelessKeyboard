@@ -15,8 +15,9 @@ namespace AppleWirelessKeyboardCore.Views
         public static void Register()
         {
             var rk = Registry.CurrentUser.OpenSubKey(REGISTRY_RUN_KEY, true);
-            rk?.SetValue(REGISTRY_RUN_VALUENAME,
-                Assembly.GetExecutingAssembly().Location.Remove(0, 8).Replace("/", "\\"));
+            var shortcut = GetShortcutPath();
+            if(shortcut != null)
+                rk?.SetValue(REGISTRY_RUN_VALUENAME, shortcut);
         }
 
         public static void UnRegister()
@@ -25,10 +26,9 @@ namespace AppleWirelessKeyboardCore.Views
             rk?.DeleteValue(REGISTRY_RUN_VALUENAME);
         }
 
-        private static string GetShortcutPath()
+        private static string? GetShortcutPath()
         {
-            string folder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-            return Path.Combine(folder, Assembly.GetEntryAssembly()?.GetName()?.Name ?? "");
+            return System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
         }
 
         public static bool IsRegistered
