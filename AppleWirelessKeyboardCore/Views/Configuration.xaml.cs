@@ -49,10 +49,10 @@ namespace AppleWirelessKeyboardCore.Views
             cmbLanguage.SelectedItem = SettingsService.Default.ActiveLanguage;
         }
 
-        private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            grdBindings.CancelEdit();
-            await SettingsService.Default.SaveAsync();
+            grdBindings.CommitEdit(DataGridEditingUnit.Row, true);
+            SettingsService.Default.Save();
             StartupShortcutService.Check();
         }
 
@@ -65,7 +65,7 @@ namespace AppleWirelessKeyboardCore.Views
             }
         }
 
-        private async void btnFactoryReset_Click(object sender, RoutedEventArgs e)
+        private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you want to replace your key bindings to the defaults?", "Reset Bindings", MessageBoxButton.YesNo))
             {
@@ -91,8 +91,14 @@ namespace AppleWirelessKeyboardCore.Views
                     Module = nameof(VolumeControl.VolumeMute)
                 });
                
-                await SettingsService.Default.SaveAsync();
+                SettingsService.Default.Save();
             }
+        }
+
+        private void grdBindings_Unloaded(object sender, RoutedEventArgs e)
+        {
+            var grid = (DataGrid)sender;
+            grid.CommitEdit(DataGridEditingUnit.Row, true);
         }
     }
 }
