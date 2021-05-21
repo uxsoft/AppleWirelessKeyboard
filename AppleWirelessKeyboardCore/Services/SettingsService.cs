@@ -12,7 +12,7 @@ namespace AppleWirelessKeyboardCore.Services
 {
     public class SettingsService
     {
-        public static SettingsService Default { get; set; } = Load().Result;
+        public static SettingsService Default { get; set; } = Load();
 
         public event EventHandler? LanguageChanged;
 
@@ -59,12 +59,12 @@ namespace AppleWirelessKeyboardCore.Services
             }
         }
 
-        public static async Task<SettingsService> Load()
+        public static SettingsService Load()
         {
             try
             {
                 var path = GetStorageFileLocation();
-                var text = await File.ReadAllTextAsync(path);
+                var text = File.ReadAllText(path);
                 return JsonSerializer.Deserialize<SettingsService>(text) ?? new SettingsService();
             }
             catch (Exception ex)
