@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using AppleWirelessKeyboardCore.Views;
 using Application = System.Windows.Application;
 using Hardcodet.Wpf.TaskbarNotification;
@@ -55,8 +54,12 @@ namespace AppleWirelessKeyboardCore.Services
 
         private static void TriggerRestart(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
+            var executable = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+            if(executable != null)
+            {
+                System.Diagnostics.Process.Start(executable);
+                Application.Current.Shutdown();
+            }
         }
 
         private static void TriggerConfigure(object sender, EventArgs e)
