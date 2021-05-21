@@ -5,3 +5,4 @@ packages/
 packages/
 bin/
 obj/
+*.user
