@@ -59,7 +59,7 @@ namespace AudioSwitch.CoreAudioApi
             return Result;
         }
 
-        public object GetValue()
+        public object? GetValue()
         {
             var ve = (VarEnum)vt;
             switch (ve)

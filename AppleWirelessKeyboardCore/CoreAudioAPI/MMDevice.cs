@@ -29,10 +29,10 @@ namespace AudioSwitch.CoreAudioApi
     internal class MMDevice
     {
         private readonly IMMDevice _RealDevice;
-        private PropertyStore _PropertyStore;
-        private AudioMeterInformation _AudioMeterInformation;
-        private AudioEndpointVolume _AudioEndpointVolume;
-        private AudioSessionManager _AudioSessionManager;
+        private PropertyStore? _PropertyStore;
+        private AudioMeterInformation? _AudioMeterInformation;
+        private AudioEndpointVolume? _AudioEndpointVolume;
+        private AudioSessionManager? _AudioSessionManager;
 
         private static Guid IID_IAudioMeterInformation = typeof(IAudioMeterInformation).GUID;
         private static Guid IID_IAudioEndpointVolume = typeof(IAudioEndpointVolume).GUID;
@@ -45,25 +45,25 @@ namespace AudioSwitch.CoreAudioApi
             return new PropertyStore(propstore);
         }
 
-        private void GetAudioSessionManager()
+        private AudioSessionManager GetAudioSessionManager()
         {
             object result;
             Marshal.ThrowExceptionForHR(_RealDevice.Activate(ref IID_IAudioSessionManager, CLSCTX.ALL, IntPtr.Zero, out result));
-            _AudioSessionManager = new AudioSessionManager(result as IAudioSessionManager2);
+            return new AudioSessionManager((IAudioSessionManager2)result);
         }
 
-        private void GetAudioMeterInformation()
+        private AudioMeterInformation GetAudioMeterInformation()
         {
             object result;
             Marshal.ThrowExceptionForHR(_RealDevice.Activate(ref IID_IAudioMeterInformation, CLSCTX.ALL, IntPtr.Zero, out result));
-            _AudioMeterInformation = new AudioMeterInformation(result as IAudioMeterInformation);
+            return new AudioMeterInformation((IAudioMeterInformation)result);
         }
 
-        private void GetAudioEndpointVolume()
+        private AudioEndpointVolume GetAudioEndpointVolume()
         {
             object result;
             Marshal.ThrowExceptionForHR(_RealDevice.Activate(ref IID_IAudioEndpointVolume, CLSCTX.ALL, IntPtr.Zero, out result));
-            _AudioEndpointVolume = new AudioEndpointVolume(result as IAudioEndpointVolume);
+            return new AudioEndpointVolume((IAudioEndpointVolume)result);
         }
 
         public AudioSessionManager AudioSessionManager
@@ -71,7 +71,7 @@ namespace AudioSwitch.CoreAudioApi
             get
             {
                 if (_AudioSessionManager == null)
-                    GetAudioSessionManager();
+                    _AudioSessionManager = GetAudioSessionManager();
 
                 return _AudioSessionManager;
             }
@@ -82,7 +82,7 @@ namespace AudioSwitch.CoreAudioApi
             get
             {
                 if (_AudioMeterInformation == null)
-                    GetAudioMeterInformation();
+                    _AudioMeterInformation = GetAudioMeterInformation();
 
                 return _AudioMeterInformation;
             }
@@ -93,9 +93,20 @@ namespace AudioSwitch.CoreAudioApi
             get
             {
                 if (_AudioEndpointVolume == null)
-                    GetAudioEndpointVolume();
+                    _AudioEndpointVolume = GetAudioEndpointVolume();
 
                 return _AudioEndpointVolume;
+            }
+        }
+
+        private PropertyStore PropertyInformation
+        {
+            get
+            {
+                if (_PropertyStore == null)
+                    _PropertyStore = GetPropertyInformation();
+                
+                return _PropertyStore;
             }
         }
 
@@ -103,11 +114,7 @@ namespace AudioSwitch.CoreAudioApi
         {
             get
             {
-                if (_PropertyStore == null)
-                    _PropertyStore = GetPropertyInformation();
-                if (_PropertyStore.Contains(PKEY.PKEY_DeviceInterface_FriendlyName))
-                    return (string)_PropertyStore[PKEY.PKEY_DeviceInterface_FriendlyName].PropVariant.GetValue();
-                return "Unknown";
+                return (string?)PropertyInformation[PKEY.PKEY_DeviceInterface_FriendlyName]?.PropVariant.GetValue() ?? "Unknown";
             }
         }
 
@@ -115,11 +122,7 @@ namespace AudioSwitch.CoreAudioApi
         {
             get
             {
-                if (_PropertyStore == null)
-                    _PropertyStore = GetPropertyInformation();
-                if (_PropertyStore.Contains(PKEY.PKEY_DeviceClass_IconPath))
-                    return (string)_PropertyStore[PKEY.PKEY_DeviceClass_IconPath].PropVariant.GetValue();
-                return "Unknown";
+                return (string?)PropertyInformation[PKEY.PKEY_DeviceClass_IconPath]?.PropVariant.GetValue() ?? "Unknown";
             }
         }
 

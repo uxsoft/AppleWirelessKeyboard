@@ -52,7 +52,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
         static extern int CallNextHookEx(IntPtr idHook, int nCode, int wParam, ref keyboardHookStruct lParam);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr GetModuleHandle(string lpModuleName);
+        public static extern IntPtr GetModuleHandle(string? lpModuleName);
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
         public void Start()
         {
             HookProcessor = Hook_Callback;
-            IntPtr hInstance = GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName);
+            IntPtr hInstance = GetModuleHandle(null);
             Hook = SetWindowsHookEx(WH_KEYBOARD_LL, HookProcessor, hInstance, 0);
         }
 
@@ -105,13 +105,13 @@ namespace AppleWirelessKeyboardCore.Keyboard
         }
 
         public event KeyEventHandler? Key;
-        public event PressedEventHandler? Fn;
+        public event PressedEventHandler? Fn { add { } remove { } }
         public event PressedEventHandler? Alt;
         public event PressedEventHandler? Win;
         public event PressedEventHandler? Ctrl;
         public event PressedEventHandler? Shift;
-        public event PressedEventHandler? Eject;
-        public event PressedEventHandler? Power;
-        public event PressedEventHandler? FMode;
+        public event PressedEventHandler? Eject { add { } remove { } }
+        public event PressedEventHandler? Power { add { } remove { } }
+        public event PressedEventHandler? FMode { add { } remove { } }
     }
 }
