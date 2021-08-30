@@ -25,12 +25,25 @@ jobs:
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      
+      # Archive the package
+    - name: Create archive
+      run: Compress-Archive -Path AppleWirelessKeyboardCore\bin\Release\net5.0-windows\win-x86\ -DestinationPath Binaries.zip
+      
+    - uses: actions/upload-artifact@v2
+      with:
+        name: binaries
+        path: Binaries.zip
 
   app_center:
     name: App Center
     runs-on: ubuntu-latest
     needs: [ build ]
     steps:
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: binaries
 
     - name: Publish to App Center
       uses: wzieba/AppCenter-Github-Action@v1
@@ -49,9 +62,9 @@ jobs:
     needs: [ build, app_center ]
     steps:
     
-      # Archive the package
-    - name: Create archive
-      run: Compress-Archive -Path AppleWirelessKeyboardCore\bin\Release\net5.0-windows\win-x86\ -DestinationPath Binaries.zip
+    - uses: actions/download-artifact@v2
+      with:
+        name: binaries
 
       # Create the release:  https://github.com/actions/create-release
     - name: Create release
@@ -75,15 +88,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}  # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
         asset_path: Binaries.zip
         asset_name: Binaries.zip
-        asset_content_type: application/zip
-        
-    - name: Attach Driver to release
-      id: upload-release-asset-driver
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}  # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-        asset_path: DriverKeyboard.zip
-        asset_name: DriverKeyboard.zip
         asset_content_type: application/zip
