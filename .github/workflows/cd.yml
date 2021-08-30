@@ -60,3 +60,13 @@ jobs:
         asset_path: DriverKeyboard.zip
         asset_name: DriverKeyboard.zip
         asset_content_type: application/zip
+        
+    - name: Publish to App Center
+      uses: wzieba/AppCenter-Github-Action@v1
+      with:
+        appName: uxsoft/AppleWirelessKeyboard
+        token: ${{ secrets.APP_CENTER_TOKEN }}
+        group: Public
+        file: Binaries.zip
+        notifyTesters: true
+        debug: false
