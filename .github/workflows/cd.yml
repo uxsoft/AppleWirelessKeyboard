@@ -6,27 +6,51 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    name: Build
+    runs-on: windows-latest
     steps:
+    
     - uses: actions/checkout@v2
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.x
+        
     - name: Install dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --configuration Release --no-restore
+      
     - name: Test
       run: dotnet test --no-restore --verbosity normal
 
-    # Archive the package
+  app_center:
+    name: App Center
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Publish to App Center
+      uses: wzieba/AppCenter-Github-Action@v1
+      with:
+        appName: uxsoft/AppleWirelessKeyboard
+        token: ${{ secrets.APP_CENTER_TOKEN }}
+        group: Public
+        file: Binaries.zip
+        notifyTesters: true
+        debug: false
+        
+  github_release:
+    name: GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+    
+      # Archive the package
     - name: Create archive
       run: Compress-Archive -Path AppleWirelessKeyboardCore\bin\Release\net5.0-windows\win-x86\ -DestinationPath Binaries.zip
 
-    # Create the release:  https://github.com/actions/create-release
+      # Create the release:  https://github.com/actions/create-release
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
@@ -38,7 +62,7 @@ jobs:
         draft: false
         prerelease: false
 
-    # Upload release asset:   https://github.com/actions/upload-release-asset
+      # Upload release asset:   https://github.com/actions/upload-release-asset
     - name: Attach Binaries to release
       id: upload-release-asset-binaries
       uses: actions/upload-release-asset@v1
@@ -60,13 +84,3 @@ jobs:
         asset_path: DriverKeyboard.zip
         asset_name: DriverKeyboard.zip
         asset_content_type: application/zip
-        
-    - name: Publish to App Center
-      uses: wzieba/AppCenter-Github-Action@v1
-      with:
-        appName: uxsoft/AppleWirelessKeyboard
-        token: ${{ secrets.APP_CENTER_TOKEN }}
-        group: Public
-        file: Binaries.zip
-        notifyTesters: true
-        debug: false
