@@ -1,0 +1,2 @@
+MainPackage=C:\Users\uxsoft\source\repos\AppleWirelessKeyboard\AppleWirelessKeyboard.Packaging\bin\x86\Release\AppleWirelessKeyboard.Packaging_1.0.0.0_x86.msix
+SymbolPackage=C:\Users\uxsoft\source\repos\AppleWirelessKeyboard\AppleWirelessKeyboard.Packaging\obj\x86\Release\Symbols\AppleWirelessKeyboard.Packaging_1.0.0.0_x86.appxsym

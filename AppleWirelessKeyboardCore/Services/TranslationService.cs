@@ -88,11 +88,25 @@ namespace AppleWirelessKeyboardCore.Services
             _ => "Delete"
         };
 
-        public string DisplayOverlay => SettingsService.Default.ActiveLanguage switch
+        public string EnableOverlay => SettingsService.Default.ActiveLanguage switch
         {
             Language.Czech => "Zobrazit overlay",
             Language.German => "Overlay anzeigen",
             _ => "Display Overlay"
+        };
+
+        public string EnableAnalytics => SettingsService.Default.ActiveLanguage switch
+        {
+            Language.Czech => "Chcete posílat anonymní údaje o používání a pádech, abyste pomohli vývojářům aplikaci vylepšit?",
+            Language.German => "Möchten Sie anonyme Daten über Nutzung und Abstürze senden, um den Entwicklern zu helfen, die App zu verbessern?",
+            _ => "Would you like to send anonymous data about usage and crashes to help the developers improve the app?"
+        };
+
+        public string EnableAnalyticsCaption => SettingsService.Default.ActiveLanguage switch
+        {
+            Language.Czech => "Anonymní sdílení údajů",
+            Language.German => "Anonymer Datenaustausch",
+            _ => "Anonymous Data Sharing"
         };
 
         public string Eject => SettingsService.Default.ActiveLanguage switch

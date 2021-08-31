@@ -11,8 +11,8 @@ namespace AppleWirelessKeyboardCore.Keyboard
         {
             _value = initialValue;
         }
-        
-        private T _value;
+
+        T _value;
         public T Value
         {
             get => _value;

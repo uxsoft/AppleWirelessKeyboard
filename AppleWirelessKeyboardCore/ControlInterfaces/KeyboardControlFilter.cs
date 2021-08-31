@@ -10,7 +10,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
 {
     public class KeyboardControlFilter : IInputFilter
     {
-        private class KeyEventEntry
+        class KeyEventEntry
         {
             public KeyEventEntry()
             { }
@@ -25,7 +25,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             public bool Pressed { get; set; }
         }
 
-        private List<KeyEventEntry> Expected = new List<KeyEventEntry>();
+        List<KeyEventEntry> Expected = new List<KeyEventEntry>();
 
         public void Expect(Key key, bool pressed)
         {

@@ -16,7 +16,7 @@ namespace AppleWirelessKeyboardCore.Services
                     IsAllowed = false;
         }
 
-        private static ManagementEventWatcher WatchForProcessStart(string processName)
+        static ManagementEventWatcher WatchForProcessStart(string processName)
         {
             string query = $@"SELECT TargetInstance
                   FROM __InstanceCreationEvent 
@@ -34,7 +34,7 @@ namespace AppleWirelessKeyboardCore.Services
             return watcher;
         }
 
-        private static ManagementEventWatcher WatchForProcessEnd(string processName)
+        static ManagementEventWatcher WatchForProcessEnd(string processName)
         {
             string query = $@"SELECT TargetInstance
                   FROM __InstanceDeletionEvent
@@ -52,14 +52,14 @@ namespace AppleWirelessKeyboardCore.Services
             return watcher;
         }
 
-        private static void ProcessEnded(object sender, EventArrivedEventArgs e)
+        static void ProcessEnded(object sender, EventArrivedEventArgs e)
         {
             ManagementBaseObject targetInstance = (ManagementBaseObject) e.NewEvent.Properties["TargetInstance"].Value;
             string processName = targetInstance.Properties["Name"].Value.ToString() ?? "";
             Trace.WriteLine($"{processName} process ended");
         }
 
-        private static void ProcessStarted(object sender, EventArrivedEventArgs e)
+        static void ProcessStarted(object sender, EventArrivedEventArgs e)
         {
             ManagementBaseObject targetInstance = (ManagementBaseObject) e.NewEvent.Properties["TargetInstance"].Value;
             string processName = targetInstance.Properties["Name"].Value.ToString() ?? "";

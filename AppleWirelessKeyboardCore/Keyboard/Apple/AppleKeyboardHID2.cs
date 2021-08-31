@@ -10,8 +10,8 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
     public class AppleKeyboardHID2 : IInputAdapter
     {
         // Fields
-        private Stream? stream;
-        private const int VIDApple = 0x5ac;
+        Stream? stream;
+        const int VIDApple = 0x5ac;
 
         // Events
         public event EventHandler? Disconnected;
@@ -45,7 +45,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
             }
         }
 
-        private void SpecialKeyStateChanged(IAsyncResult ar)
+        void SpecialKeyStateChanged(IAsyncResult ar)
         {
             // Check Stream
             if (stream == null || !ar.IsCompleted) return;
@@ -156,7 +156,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
             }
         }
 
-        private static bool IsAppleWirelessKeyboard(int vid, int pid)
+        static bool IsAppleWirelessKeyboard(int vid, int pid)
         {
             if (vid == VIDApple)
             {

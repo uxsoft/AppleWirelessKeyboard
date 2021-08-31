@@ -7,49 +7,35 @@ using System.IO;
 using System.Threading.Tasks;
 using System.ComponentModel.Composition;
 using AppleWirelessKeyboardCore.Keyboard;
+using static PInvoke.Kernel32;
 
 namespace AppleWirelessKeyboardCore
 {
     public static class IoControl
     {
-        #region DeviceIoControl
-        const int OPEN_EXISTING = 3;
-        const uint GENERIC_READ = 0x80000000;
-        const uint GENERIC_WRITE = 0x40000000;
-        const uint FILE_SHARE_WRITE = 0x00000002;
         const uint IOCTL_STORAGE_EJECT_MEDIA = 2967560;
-
-        [DllImport("kernel32")]
-        private static extern IntPtr CreateFile
-            (string filename, uint desiredAccess,
-             uint shareMode, IntPtr securityAttributes,
-             int creationDisposition, int flagsAndAttributes,
-             IntPtr templateFile);
-
-        [DllImport("kernel32")]
-        private static extern int DeviceIoControl
-            (IntPtr deviceHandle, uint ioControlCode,
-             IntPtr inBuffer, int inBufferSize,
-             IntPtr outBuffer, int outBufferSize,
-             ref int bytesReturned, IntPtr overlapped);
-
-        [DllImport("kernel32")]
-        private static extern int CloseHandle(IntPtr handle);
-        #endregion
 
         public static void EjectMedia(char driveLetter)
         {
             try
             {
-                string path = "\\\\.\\" + driveLetter + ":";
-                IntPtr handle = CreateFile(path, GENERIC_READ, FILE_SHARE_WRITE, IntPtr.Zero, OPEN_EXISTING, 0, IntPtr.Zero);
-                if ((long)handle == -1)
-                {
+                var path = "\\\\.\\" + driveLetter + ":";
+                var handle = CreateFile(
+                    path, 
+                    ACCESS_MASK.GenericRight.GENERIC_READ, 
+                    PInvoke.Kernel32.FileShare.FILE_SHARE_WRITE, 
+                    IntPtr.Zero, 
+                    CreationDisposition.OPEN_EXISTING,
+                    0, 
+                    SafeObjectHandle.Null);
+                
+
+                if (handle == null || handle.IsClosed || handle.IsInvalid)
                     throw new IOException("Unable to open drive " + driveLetter);
-                }
-                int dummy = 0;
-                DeviceIoControl(handle, IOCTL_STORAGE_EJECT_MEDIA, IntPtr.Zero, 0, IntPtr.Zero, 0, ref dummy, IntPtr.Zero);
-                CloseHandle(handle);
+ 
+                DeviceIoControl(handle, (int)IOCTL_STORAGE_EJECT_MEDIA, IntPtr.Zero, 0, IntPtr.Zero, 0, out var bytesReturned, IntPtr.Zero);
+
+                CloseHandle(handle.DangerousGetHandle());
             }
             catch { }
         }

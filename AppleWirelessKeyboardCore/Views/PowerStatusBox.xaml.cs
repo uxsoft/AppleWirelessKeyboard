@@ -50,13 +50,13 @@ namespace AppleWirelessKeyboardCore
             }
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             T.Stop();
             DialogResult = false;
         }
 
-        private void btnOK_Click(object sender, RoutedEventArgs e)
+        void btnOK_Click(object sender, RoutedEventArgs e)
         {
             T.Stop();
             DialogResult = true;
@@ -84,7 +84,7 @@ namespace AppleWirelessKeyboardCore
             return ret;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!DialogResult.HasValue)
             {
@@ -93,7 +93,7 @@ namespace AppleWirelessKeyboardCore
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Status();
             T.Start();

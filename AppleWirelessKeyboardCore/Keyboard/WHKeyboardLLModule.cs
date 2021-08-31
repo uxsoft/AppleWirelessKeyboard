@@ -34,11 +34,11 @@ namespace AppleWirelessKeyboardCore.Keyboard
             public int dwExtraInfo;
         }
 
-        private const int WH_KEYBOARD_LL = 13;
-        private const int WM_KEYDOWN = 0x100;
-        private const int WM_KEYUP = 0x101;
-        private const int WM_SYSKEYDOWN = 0x104;
-        private const int WM_SYSKEYUP = 0x105;
+        const int WH_KEYBOARD_LL = 13;
+        const int WM_KEYDOWN = 0x100;
+        const int WM_KEYUP = 0x101;
+        const int WM_SYSKEYDOWN = 0x104;
+        const int WM_SYSKEYUP = 0x105;
         internal IntPtr Hook { get; set; }
         #endregion
         #region DLL imports

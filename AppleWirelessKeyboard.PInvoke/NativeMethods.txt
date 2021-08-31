@@ -1,0 +1,11 @@
+﻿// Audio/DeviceIcons
+ExtractIconEx
+
+// IoControl
+CreateFile
+DeviceIoControl
+CloseHandle
+
+//KeyboardControl
+SetForegroundWindow
+keybd_event

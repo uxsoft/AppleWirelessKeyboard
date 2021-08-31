@@ -9,8 +9,8 @@ namespace AppleWirelessKeyboardCore.Views
 {
     public static class StartupShortcutService
     {
-        private const string REGISTRY_RUN_KEY = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-        private const string REGISTRY_RUN_VALUENAME = "AppleWirelessKeyboard";
+        const string REGISTRY_RUN_KEY = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+        const string REGISTRY_RUN_VALUENAME = "AppleWirelessKeyboard";
 
         public static void Register()
         {
@@ -25,7 +25,7 @@ namespace AppleWirelessKeyboardCore.Views
             rk?.DeleteValue(REGISTRY_RUN_VALUENAME);
         }
 
-        private static string GetShortcutPath()
+        static string GetShortcutPath()
         {
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             return Path.Combine(folder, Assembly.GetEntryAssembly()?.GetName()?.Name ?? "");

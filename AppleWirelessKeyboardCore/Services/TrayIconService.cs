@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using AppleWirelessKeyboardCore.Views;
 using Application = System.Windows.Application;
 using Hardcodet.Wpf.TaskbarNotification;
@@ -11,7 +10,7 @@ namespace AppleWirelessKeyboardCore.Services
 {
     public static class TrayIconService
     {
-        private static TaskbarIcon Icon { get; set; } = CreateIcon();
+        static TaskbarIcon Icon { get; set; } = CreateIcon();
 
         public static void Show()
         {
@@ -23,7 +22,7 @@ namespace AppleWirelessKeyboardCore.Services
             Icon.Visibility = Visibility.Collapsed;
         }
 
-        private static TaskbarIcon CreateIcon()
+        static TaskbarIcon CreateIcon()
         {
             var contextMenu = new ContextMenu();
 
@@ -53,23 +52,23 @@ namespace AppleWirelessKeyboardCore.Services
             };
         }
 
-        private static void TriggerRestart(object sender, EventArgs e)
+        static void TriggerRestart(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
 
-        private static void TriggerConfigure(object sender, EventArgs e)
+        static void TriggerConfigure(object sender, EventArgs e)
         {
             new Configuration().Show();
         }
 
-        private static void TriggerExit(object sender, EventArgs e)
+        static void TriggerExit(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
-
-        public static void TriggerRefresh(object sender, EventArgs e)
+        
+        static void TriggerRefresh(object sender, EventArgs e)
         {
             //TODO refresh connection
         }

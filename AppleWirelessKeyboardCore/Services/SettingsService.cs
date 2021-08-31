@@ -17,7 +17,8 @@ namespace AppleWirelessKeyboardCore.Services
         public event EventHandler? LanguageChanged;
 
         #region Settings
-        private Language _language = Language.English;
+
+        Language _language = Language.English;
 
         public Language ActiveLanguage
         {
@@ -32,17 +33,19 @@ namespace AppleWirelessKeyboardCore.Services
         public bool EnableOverlay { get; set; } = true;
         public bool StartupShortcut { get; set; } = false;
         public bool StartupFMode { get; set; } = true;
+        public bool? EnableAnalytics { get; set; } = null;
 
         public ObservableCollection<KeyBinding> KeyBindings { get; set; } = new();
         #endregion
 
         #region Persistence
-        private static string GetStorageFolderLocation() =>
+
+        static string GetStorageFolderLocation() =>
             Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData,
                 Environment.SpecialFolderOption.Create), "AppleWirelessKeyboard");
 
-        private static string GetStorageFileLocation() =>
+        static string GetStorageFileLocation() =>
             Path.Combine(GetStorageFolderLocation(), "settings.json");
 
         public async Task SaveAsync()

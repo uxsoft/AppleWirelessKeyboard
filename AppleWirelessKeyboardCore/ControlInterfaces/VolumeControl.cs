@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using AppleWirelessKeyboardCore.Keyboard;
-using AudioSwitch.Classes;
-using AudioSwitch.CoreAudioApi;
+using AppleWirelessKeyboardCore.Audio;
+using CoreAudio;
 
 namespace AppleWirelessKeyboardCore.ControlInterfaces
 {
@@ -15,7 +15,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    AudioEndpointVolume controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    AudioEndpointVolume controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
 
                     if (controller.MasterVolumeLevelScalar > 0.9375f)
                         controller.MasterVolumeLevelScalar = 1.0f;
@@ -31,7 +31,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    AudioEndpointVolume controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    AudioEndpointVolume controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
                     if (controller.MasterVolumeLevelScalar < 0.0625)
                     {
                         controller.MasterVolumeLevelScalar = 0;
@@ -52,7 +52,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    AudioEndpointVolume controller = EndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    AudioEndpointVolume controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
 
                     controller.Mute = !controller.Mute;
                     if (controller.Mute)
@@ -69,7 +69,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    EndPoints.SetNextDefault(EDataFlow.eRender);
+                    AudioEndPoints.SetNextDefault(EDataFlow.eRender);
                     NotificationCenter.NotifyMediaDeviceChanged();
                 }
             };

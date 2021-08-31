@@ -34,29 +34,28 @@ namespace AppleWirelessKeyboardCore.Views
             clmnModule.ItemsSource = collectionView;
         }
 
-        [ImportMany]
-        private IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; } = null!;
+        [ImportMany] IEnumerable<Lazy<Action<KeyboardEvent>, IFunctionalityModuleExportMetadata>> Modules { get; set; } = null!;
 
-        private void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbLanguage.SelectedValue is string value)
                 SettingsService.Default.ActiveLanguage = Enum.Parse<Language>(value);
         }
 
-        private void cmbLanguage_Loaded(object sender, RoutedEventArgs e)
+        void cmbLanguage_Loaded(object sender, RoutedEventArgs e)
         {
             cmbLanguage.ItemsSource = Enum.GetValues(typeof(Language));
             cmbLanguage.SelectedItem = SettingsService.Default.ActiveLanguage;
         }
 
-        private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             grdBindings.CancelEdit();
             await SettingsService.Default.SaveAsync();
             StartupShortcutService.Check();
         }
 
-        private void mnuDelete_Click(object sender, RoutedEventArgs e)
+        void mnuDelete_Click(object sender, RoutedEventArgs e)
         {
             if (grdBindings.SelectedItem is Keyboard.KeyBinding binding)
             {
@@ -65,7 +64,7 @@ namespace AppleWirelessKeyboardCore.Views
             }
         }
 
-        private async void btnFactoryReset_Click(object sender, RoutedEventArgs e)
+        async void btnFactoryReset_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBoxResult.Yes == MessageBox.Show("Are you sure you want to replace your key bindings to the defaults?", "Reset Bindings", MessageBoxButton.YesNo))
             {

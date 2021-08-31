@@ -28,11 +28,11 @@ namespace AppleWirelessKeyboardCore.Keyboard
             }
         }
 
-        private static byte[] BrightnessLevels { get; set; }
+        static byte[] BrightnessLevels { get; set; }
         public static bool CanAdjustBrightness { get; set; }
 
-        private static ManagementObject? WmiMonitorBrightness;
-        private static ManagementObject? WmiMonitorBrightnessMethods;
+        static ManagementObject? WmiMonitorBrightness;
+        static ManagementObject? WmiMonitorBrightnessMethods;
 
         internal static ManagementObject? WmiGetObject(string query)
         {
@@ -55,7 +55,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 return null;
         }
 
-        private static int LevelToCubes(int level)
+        static int LevelToCubes(int level)
         {
             double percent = level / (double)(BrightnessLevels.Length - 1);
             return (int)(percent * 16);
@@ -99,7 +99,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 }
             };
 
-        private static int GetBrightness()
+        static int GetBrightness()
         {
             if (CanAdjustBrightness)
                 return 100;
@@ -107,12 +107,12 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 return (byte)(WmiMonitorBrightness?.GetPropertyValue("CurrentBrightness") ?? 0);
         }
 
-        private static byte[] GetBrightnessLevels()
+        static byte[] GetBrightnessLevels()
         {
             return (byte[])(WmiMonitorBrightness?.GetPropertyValue("Level") ?? Array.Empty<byte>());
         }
 
-        private static void SetBrightness(int targetBrightness)
+        static void SetBrightness(int targetBrightness)
         {
             WmiMonitorBrightnessMethods?.InvokeMethod("WmiSetBrightness", new object[] { uint.MaxValue, (byte)targetBrightness });
             //note the reversed order - won't work otherwise!

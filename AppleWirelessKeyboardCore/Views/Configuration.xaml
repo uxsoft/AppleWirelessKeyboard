@@ -22,9 +22,15 @@
                     <StackPanel Margin="0,0,0,24">
                         <ComboBox Name="cmbLanguage" SelectionChanged="cmbLanguage_SelectionChanged"
                                   Loaded="cmbLanguage_Loaded" />
-                        <CheckBox Name="displayChrome" Margin="6,12,0,0"
-                                  Content="{Binding Path=DisplayOverlay, Source={x:Static srv:TranslationService.Default}}"
+
+                        <CheckBox Name="chcEnableOverlay" Margin="6,12,0,0"
+                                  Content="{Binding Path=EnableOverlay, Source={x:Static srv:TranslationService.Default}}"
                                   IsChecked="{Binding Path=Default.EnableOverlay, Source={x:Static srv:SettingsService.Default}}" />
+
+                        <CheckBox Name="chcEnableAnalytics" Margin="6,12,0,0"
+                                  Content="{Binding Path=EnableAnalyticsCaption, Source={x:Static srv:TranslationService.Default}}"
+                                  IsChecked="{Binding Path=Default.EnableAnalytics, Source={x:Static srv:SettingsService.Default}}" />
+
                         <CheckBox Name="chcStartupShortcut" Margin="6,12,0,0"
                                   Content="{Binding Path=StartupShortcut, Source={x:Static srv:TranslationService.Default}}"
                                   IsChecked="{Binding Path=StartupShortcut, Source={x:Static srv:SettingsService.Default}}" />

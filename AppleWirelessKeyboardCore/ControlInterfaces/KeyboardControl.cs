@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel.Composition;
 using AppleWirelessKeyboardCore.Keyboard;
+using static PInvoke.User32;
 
 namespace AppleWirelessKeyboardCore.ControlInterfaces
 {
@@ -19,50 +20,25 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             KeyboardFilter = new KeyboardControlFilter();
         }
 
-        #region PInvoke
-
-        const int VK_SNAPSHOT = 44;
-        const int VK_DELETE = 46;
-        const int VK_MEDIA_NEXT_TRACK = 176;
-        const int VK_MEDIA_PREV_TRACK = 177;
-        const int VK_MEDIA_STOP = 178;
-        const int VK_MEDIA_PLAY_PAUSE = 179;
-        const int VK_END = 35;
-        const int VK_HOME = 36;
-        const int VK_PAGEUP = 33;
-        const int VK_PAGEDOWN = 34;
-        const int VK_F3 = 114;
-        const int VK_INSERT = 45;
-        const int VK_SHIFT = 16;
-        const int VK_CONTROL = 17;
-        const int VK_ALT = 18;
-        const int VK_WIN = 91;
-        const int VK_CAPITAL = 20;
-        const uint KEYEVENTF_EXTENDEDKEY = 1;
-        const uint KEYEVENTF_KEYUP = 2;
-
-        [DllImport("user32.dll")]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
-
-        #endregion
-
-        public static void Send(int vKey, KeyboardEvent e = KeyboardEvent.Both)
+        public static void Send(VirtualKey vKey, KeyboardEvent e = KeyboardEvent.Both)
         {
-            var extendedFlag = (vKey >= 16 && vKey <= 18) || (vKey >= 160 && vKey <= 165) ? 0 : KEYEVENTF_EXTENDEDKEY;
-            var key = KeyInterop.KeyFromVirtualKey(vKey);
+            var extendedFlag = 
+                ((int)vKey >= 16 && (int)vKey <= 18) || 
+                ((int)vKey >= 160 && (int)vKey <= 165) ? 
+                0 : 
+                KEYEVENTF.KEYEVENTF_EXTENDED_KEY;
+
+            var key = KeyInterop.KeyFromVirtualKey((int)vKey);
 
             if (e.HasFlag(KeyboardEvent.Down))
             {
-                keybd_event((byte) vKey, 0, extendedFlag, 0);
+                keybd_event((byte) vKey, 0, extendedFlag, IntPtr.Zero);
                 KeyboardFilter.Expect(key, true);
             }
 
             if (e.HasFlag(KeyboardEvent.Up))
             {
-                keybd_event((byte) vKey, 0, extendedFlag | KEYEVENTF_KEYUP, 0);
+                keybd_event((byte) vKey, 0, extendedFlag | KEYEVENTF.KEYEVENTF_KEYUP, IntPtr.Zero);
                 KeyboardFilter.Expect(key, false);
             }
         }
@@ -72,36 +48,37 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
 
         public static void SendLetter(char letter, KeyboardEvent direction = KeyboardEvent.Both)
         {
-            //a=65
+            // letter a is 65
             if (char.IsLetter(letter) && char.IsLower(letter))
-                Send((int) letter - 32, direction);
+                Send((VirtualKey)(letter - 32), direction);
             else if (char.IsLetter(letter) && char.IsUpper(letter))
-                Send((int) letter, direction);
+                Send((VirtualKey)letter, direction);
         }
 
         public static void SendDigit(byte digit, KeyboardEvent direction = KeyboardEvent.Both)
         {
+            // numpad 0 is 96
             if (digit <= 9)
-                Send(96 + digit, direction);
+                Send((VirtualKey)(96 + digit), direction);
         }
 
 
         [Export]
         [ExportMetadata("Name", "Insert")]
         public static Action<KeyboardEvent> SendInsert => 
-            direction => Send(VK_INSERT, direction);
+            direction => Send(VirtualKey.VK_INSERT, direction);
 
         [Export]
         [ExportMetadata("Name", "Delete")]
         public static Action<KeyboardEvent> SendDelete => 
-            direction => Send(VK_DELETE, direction);
+            direction => Send(VirtualKey.VK_DELETE, direction);
 
         [Export]
         [ExportMetadata("Name", "PrintScreen")]
         public static Action<KeyboardEvent> SendPrintScreen =>
             direction =>
             {
-                Send(VK_SNAPSHOT, direction);
+                Send(VirtualKey.VK_SNAPSHOT, direction);
                 Thread.Sleep(250);
                 NotificationCenter.NotifyPrintScreen();
             };
@@ -111,7 +88,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         public static Action<KeyboardEvent> SendPlayPause =>
             direction =>
             {
-                Send(VK_MEDIA_PLAY_PAUSE, direction);
+                Send(VirtualKey.VK_MEDIA_PLAY_PAUSE, direction);
                 NotificationCenter.NotifyPlayPause();
             };
 
@@ -121,7 +98,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         public static Action<KeyboardEvent> SendNextTrack =>
             direction =>
             {
-                Send(VK_MEDIA_NEXT_TRACK, direction);
+                Send(VirtualKey.VK_MEDIA_NEXT_TRACK, direction);
                 NotificationCenter.NotifyNext();
             };
 
@@ -131,7 +108,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         public static Action<KeyboardEvent> SendPreviousTrack =>
             direction =>
             {
-                Send(VK_MEDIA_PREV_TRACK, direction);
+                Send(VirtualKey.VK_MEDIA_PREV_TRACK, direction);
                 NotificationCenter.NotifyPrevious();
             };
 
@@ -143,56 +120,57 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
                 if (direction == KeyboardEvent.Down) return;
                 
                 var taskMgr = Process.GetProcessesByName("taskmgr.exe").FirstOrDefault();
+
                 if (taskMgr != null)
-                    SetForegroundWindow(taskMgr.MainWindowHandle);
+                    PInvoke.User32.SetForegroundWindow(taskMgr.MainWindowHandle);
                 else
                     Process.Start("taskmgr.exe");
                 NotificationCenter.NotifyTaskManager();
             };
 
-                [Export]
+        [Export]
         [ExportMetadata("Name", "CapsLock")]
         public static Action<KeyboardEvent> SendCapsLock => 
-            direction => Send(VK_CAPITAL, direction);
+            direction => Send(VirtualKey.VK_CAPITAL, direction);
 
         [Export]
         [ExportMetadata("Name", "PageUp")]
         public static Action<KeyboardEvent> SendPageUp => 
-            direction => Send(VK_PAGEUP, direction);
+            direction => Send(VirtualKey.VK_PRIOR, direction);
 
         [Export]
         [ExportMetadata("Name", "PageDown")]
         public static Action<KeyboardEvent> SendPageDown => 
-            direction => Send(VK_PAGEDOWN, direction);
+            direction => Send(VirtualKey.VK_NEXT, direction);
 
         [Export]
         [ExportMetadata("Name", "Home")]
         public static Action<KeyboardEvent> SendHome => 
-            direction => Send(VK_HOME, direction);
+            direction => Send(VirtualKey.VK_HOME, direction);
 
         [Export]
         [ExportMetadata("Name", "End")]
         public static Action<KeyboardEvent> SendEnd => 
-            direction => Send(VK_END, direction);
+            direction => Send(VirtualKey.VK_END, direction);
 
         [Export]
         [ExportMetadata("Name", "F3")]
         public static Action<KeyboardEvent> SendF3 => 
-            direction => Send(VK_F3, direction);
+            direction => Send(VirtualKey.VK_F3, direction);
 
         [Export]
         [ExportMetadata("Name", "Ctrl")]
         public static Action<KeyboardEvent> SendCtrl => 
-            direction => Send(VK_CONTROL, direction);
+            direction => Send(VirtualKey.VK_CONTROL, direction);
 
         [Export]
         [ExportMetadata("Name", "Alt")]
         public static Action<KeyboardEvent> SendAlt => 
-            direction => Send(VK_ALT, direction);
+            direction => Send(VirtualKey.VK_MENU, direction);
 
         [Export]
         [ExportMetadata("Name", "Win")]
         public static Action<KeyboardEvent> SendWin => 
-            direction => Send(VK_WIN, direction);
+            direction => Send(VirtualKey.VK_LWIN, direction);
     }
 }

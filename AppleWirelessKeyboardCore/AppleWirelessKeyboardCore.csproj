@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <PlatformTarget>x86</PlatformTarget>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>SigningCertificate.pfx</AssemblyOriginatorKeyFile>
     <ApplicationIcon>Gnome-Preferences-Desktop-Keyboard-Shortcuts.ico</ApplicationIcon>
@@ -13,9 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.14" />
+    <PackageReference Include="CoreAudio" Version="1.6.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.18" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
+    <PackageReference Include="PInvoke.Hid" Version="0.7.104" />
+    <PackageReference Include="PInvoke.Kernel32" Version="0.7.104" />
+    <PackageReference Include="PInvoke.SetupApi" Version="0.7.104" />
+    <PackageReference Include="PInvoke.User32" Version="0.7.104" />
     <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
+    <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.12" />
   </ItemGroup>
 
   <ItemGroup>
