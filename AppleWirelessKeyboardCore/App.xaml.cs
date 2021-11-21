@@ -26,6 +26,8 @@ namespace AppleWirelessKeyboardCore
             Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
             StartAnalytics();
+
+            
         }
 
         void StartAnalytics()

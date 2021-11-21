@@ -22,13 +22,13 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-    <EntryPointProjectUniqueName>..\AppleWirelessKeyboardCore\AppleWirelessKeyboardCore.csproj</EntryPointProjectUniqueName>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <EntryPointProjectUniqueName>..\AppleWirelessKeyboardCore\AppleWirelessKeyboard.Core.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AppxBundle>Always</AppxBundle>
@@ -53,6 +53,6 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22414.2000-preview.rs-prerelease" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppleWirelessKeyboardCore\AppleWirelessKeyboardCore.csproj" />
+    <ProjectReference Include="..\AppleWirelessKeyboardCore\AppleWirelessKeyboard.Core.csproj" />
   </ItemGroup>
 </Project>

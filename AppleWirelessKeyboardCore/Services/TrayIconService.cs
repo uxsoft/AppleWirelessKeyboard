@@ -26,19 +26,19 @@ namespace AppleWirelessKeyboardCore.Services
         {
             var contextMenu = new ContextMenu();
 
-            var mnuConfigure = new MenuItem() { Header = TranslationService.Default.Configure };
+            var mnuConfigure = new MenuItem { Header = TranslationService.Default.Configure };
             mnuConfigure.Click += TriggerConfigure;
             contextMenu.Items.Add(mnuConfigure);
 
-            var mnuRestart = new MenuItem() { Header = TranslationService.Default.Restart };
+            var mnuRestart = new MenuItem { Header = TranslationService.Default.Restart };
             mnuRestart.Click += TriggerRestart;
             contextMenu.Items.Add(mnuRestart);
 
-            var mnuRefresh = new MenuItem() { Header = TranslationService.Default.RefreshConnection };
+            var mnuRefresh = new MenuItem { Header = TranslationService.Default.RefreshConnection };
             mnuRefresh.Click += TriggerRefresh;
             contextMenu.Items.Add(mnuRefresh);
 
-            var mnuExit = new MenuItem() { Header = TranslationService.Default.Exit };
+            var mnuExit = new MenuItem { Header = TranslationService.Default.Exit };
             mnuExit.Click += TriggerExit;
             contextMenu.Items.Add(mnuExit);
 

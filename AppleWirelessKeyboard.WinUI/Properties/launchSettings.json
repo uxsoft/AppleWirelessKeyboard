@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AppleWirelessKeyboard.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AppleWirelessKeyboard.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
