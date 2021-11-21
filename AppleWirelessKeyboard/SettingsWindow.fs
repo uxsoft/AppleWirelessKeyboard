@@ -1,22 +1,36 @@
 ﻿namespace AppleWirelessKeyboard
 
+open System.Windows
+open FUI.ObservableValue
 open FUI.WinUI
-
-type A<'t when 't :> Microsoft.UI.Xaml.FrameworkElement> () =
-    class end
 
 
 module SettingsWindow =
     let build () =
-        let a : Microsoft.UI.Xaml.FrameworkElement = new Microsoft.UI.Xaml.Controls.Button()
-        let b = A<Microsoft.UI.Xaml.Controls.Button>()
-
         
         Window {
             Title "Settings"
 
+            //Button {
+            //    IsPressed true
+            //    "Welcome from FUI"
+            //}
+
             NavigationView {
-                ()
+                PaneDisplayMode Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top
+                IsBackButtonVisible Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed
+                IsSettingsVisible false
+                
+                ItemInvoked (fun sender args -> MessageBox.Show("Wohooo") |> ignore)
+
+                MenuItemsSource [
+                    NavigationViewItem { "Preferences" } 
+                    NavigationViewItem { "Bindings" } 
+                ]
+                
+                Frame {
+                    ()
+                }
             }
         }
 

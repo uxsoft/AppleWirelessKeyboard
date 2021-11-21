@@ -11,14 +11,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <Compile Include="Runtime.fs" />
     <Compile Include="Primitives\UIElement.fs" />
     <Compile Include="Primitives\FrameworkElement.fs" />
     <Compile Include="Primitives\ControlBuilder.fs" />
     <Compile Include="Primitives\ContentControlBuilder.fs" />
+    <Compile Include="Primitives\ButtonBaseBuilder.fs" />
+    <Compile Include="Panels\PanelBuilder.fs" />
+    <Compile Include="Panels\GridBuilder.fs" />
+    <Compile Include="Controls\NavigationViewItemBase.fs" />
+    <Compile Include="Controls\NavigationViewItem.fs" />
     <Compile Include="Controls\NavigationView.fs" />
-    <Compile Include="Controls\ButtonBaseBuilder.fs" />
     <Compile Include="Controls\Button.fs" />
+    <Compile Include="Controls\Frame.fs" />
     <Compile Include="Window.fs" />
     <Compile Include="WinUI.fs" />
   </ItemGroup>

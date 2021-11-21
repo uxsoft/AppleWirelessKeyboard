@@ -3,12 +3,13 @@
 open FUI.UiBuilder
 open FUI.WinUI.Runtime
 open Microsoft.UI.Xaml
+open System
 
-type WindowBuilder<'t when 't : equality>() =
+type WindowBuilder(controlType: Type) =
     inherit UiBuilder()
 
-    member inline this.Run x =            
-        this.RunWithChild<'t> x (fun window child -> (window :?> Window).Content <- child :?> UIElement)
+    member this.Run x =            
+        this.RunWithChild<Window> x controlType (fun window child -> window.Content <- Runtime.toUIElement child)
 
     [<CustomOperation("Title")>]
     member _.Title<'t, 'v>(x, v: string) =

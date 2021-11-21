@@ -43,6 +43,7 @@ namespace AppleWirelessKeyboard.WinUI
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = SettingsWindow.build();
+            //m_window = new MainWindow();
             m_window.Activate();
         }
 

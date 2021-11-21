@@ -29,6 +29,9 @@ namespace AppleWirelessKeyboard.WinUI.Views
             FrameworkElement el = new Button();
             var button = new Button();
             var navView = new NavigationView();
+            var navItem = new NavigationViewItem();
+            var frame = new Frame();
+            var grid = new Grid();
             //var uiElement = new UIElement();
         }
     }

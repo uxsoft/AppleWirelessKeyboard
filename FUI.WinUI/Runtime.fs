@@ -7,6 +7,7 @@ open FUI.ObservableValue
 open FUI.UiBuilder
 open FUI.ObservableCollection
 open Microsoft.UI.Xaml
+open Microsoft.UI.Xaml.Controls
     
 [<CustomEquality; NoComparison>]
 type Attribute =
@@ -24,12 +25,16 @@ type Attribute =
     
 let dependencyProperty (x: Node) (name: string) (dp: DependencyProperty) v =
     let set (o: obj) =
-        match box v with
-        | :? IObservableValue as ov ->
-            ov |> Ov.iter' (fun v -> (o :?> DependencyObject).SetValue(dp, v))
-        | _ -> (o :?> DependencyObject).SetValue(dp, v)
+        try 
+            match box v with
+            | :? IObservableValue as ov ->
+                ov |> Ov.iter' (fun v -> (o :?> DependencyObject).SetValue(dp, v))
+            | _ -> (o :?> DependencyObject).SetValue(dp, v)
+        with ex ->
+            failwith $"Failed to set dependency property {name} with value {v}"
         
     let clear (o: obj) =
+        // TODO clear Ov.iter'
         (o :?> DependencyObject).ClearValue(dp)
     
     let prop = 
@@ -47,6 +52,7 @@ let property (x: Node) (name: string) (value: obj) (setter: 't * obj -> unit) (f
         | _ ->  setter ((o :?> 't), value)
         
     let clear (o: obj) =
+        // TODO clear Ov.iter'
         setter ((o :?> 't), factory())
     
     let prop = 
@@ -100,15 +106,18 @@ let dependencyPropertyEvent<'t, 'a when 't : equality and 't :> DependencyObject
     
     attr prop x
     
-let observableEvent<'t, 'a when 't : equality and 't :> DependencyObject> x (obs: IObservable<'a>) (name: string) (handler: 'a -> unit) =
-    let mutable cts = new CancellationTokenSource()
-        
+let event<'control, 'handler>
+    x
+    (name: string)
+    (handler: 'handler)
+    (addHandler: 'control -> 'handler -> unit)
+    (removeHandler: 'control -> 'handler -> unit) =
+                
     let set (o: obj) =
-        obs.Subscribe(handler, cts.Token)
+        addHandler (o :?> 'control) handler
         
     let clear (o: obj) =
-        cts.Cancel()
-        cts <- new CancellationTokenSource()
+        removeHandler (o :?> 'control) handler
     
     let prop = 
         { Name = name
@@ -123,7 +132,12 @@ let addAttribute<'t when 't : equality> (control: obj) (attribute: IAttribute) =
 let removeAttribute<'t when 't : equality> (control: obj) (attribute: IAttribute) =
     (attribute :?> Attribute).Clear control
 
-// DSL Avalonia Platform
+let toUIElement item =
+    match box item with
+    | :? UIElement as control -> control
+    | _ -> Microsoft.UI.Xaml.Controls.ContentPresenter(Content = item) :> UIElement
+
+
 type UiBuilder with
     member _.RunWithChildren<'t when 't : equality> (x: Node) (controlType: Type) (setChildren: 't -> IReadOnlyObservableCollection<obj> -> unit) =
         try

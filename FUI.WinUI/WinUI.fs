@@ -7,4 +7,6 @@ open Microsoft.UI.Xaml.Controls
 module WinUI =
     let Button = ButtonBuilder(typeof<Button>)
     let NavigationView = NavigationViewBuilder(typeof<NavigationView>)
-    let Window = WindowBuilder<Window>()
+    let NavigationViewItem = NavigationViewItemBuilder(typeof<NavigationViewItem>)
+    let Frame = FrameBuilder(typeof<Frame>)
+    let Window = WindowBuilder(typeof<Window>)
