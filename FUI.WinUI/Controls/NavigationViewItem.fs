@@ -12,7 +12,7 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.CompactPaneLengthProperty) NavigationViewItem.CompactPaneLengthProperty v
 
     [<CustomOperation("CompactPaneLength")>]
-    member _.CompactPaneLength<'v>(x, v: double var) =
+    member _.CompactPaneLength<'v>(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.CompactPaneLengthProperty) NavigationViewItem.CompactPaneLengthProperty v
 
 
@@ -21,7 +21,7 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.IconProperty) NavigationViewItem.IconProperty v
 
     [<CustomOperation("Icon")>]
-    member _.Icon<'v>(x, v: IconElement var) =
+    member _.Icon<'v>(x, v: IconElement IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.IconProperty) NavigationViewItem.IconProperty v
 
 
@@ -30,7 +30,7 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.HasUnrealizedChildrenProperty) NavigationViewItem.HasUnrealizedChildrenProperty v
 
     [<CustomOperation("HasUnrealizedChildren")>]
-    member _.HasUnrealizedChildren<'v>(x, v: bool var) =
+    member _.HasUnrealizedChildren<'v>(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.HasUnrealizedChildrenProperty) NavigationViewItem.HasUnrealizedChildrenProperty v
 
 
@@ -39,7 +39,7 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.IsChildSelectedProperty) NavigationViewItem.IsChildSelectedProperty v
 
     [<CustomOperation("IsChildSelected")>]
-    member _.IsChildSelected<'v>(x, v: bool var) =
+    member _.IsChildSelected<'v>(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.IsChildSelectedProperty) NavigationViewItem.IsChildSelectedProperty v
 
 
@@ -48,7 +48,7 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.IsExpandedProperty) NavigationViewItem.IsExpandedProperty v
 
     [<CustomOperation("IsExpanded")>]
-    member _.IsExpanded<'v>(x, v: bool var) =
+    member _.IsExpanded<'v>(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.IsExpandedProperty) NavigationViewItem.IsExpandedProperty v
 
 // MenuItems is read-only, must manage items by adding/removing instead
@@ -66,7 +66,7 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.MenuItemsSourceProperty) NavigationViewItem.MenuItemsSourceProperty v
 
     [<CustomOperation("MenuItemsSource")>]
-    member _.MenuItemsSource<'v>(x, v: 'v var) =
+    member _.MenuItemsSource<'v>(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.MenuItemsSourceProperty) NavigationViewItem.MenuItemsSourceProperty v
 
 
@@ -75,6 +75,6 @@ type NavigationViewItemBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.SelectsOnInvokedProperty) NavigationViewItem.SelectsOnInvokedProperty v
 
     [<CustomOperation("SelectsOnInvoked")>]
-    member _.SelectsOnInvoked<'v>(x, v: bool var) =
+    member _.SelectsOnInvoked<'v>(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItem.SelectsOnInvokedProperty) NavigationViewItem.SelectsOnInvokedProperty v
 

@@ -14,5 +14,5 @@ type ButtonBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Button.FlyoutProperty) Button.FlyoutProperty v
         
     [<CustomOperation("Flyout")>]
-    member _.Flyout(x, v: FlyoutBase var) =
+    member _.Flyout(x, v: FlyoutBase IObservableValue) =
         Runtime.dependencyProperty x (nameof Button.FlyoutProperty) Button.FlyoutProperty v

@@ -13,7 +13,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.ActualHeightProperty) FrameworkElement.ActualHeightProperty v
     
     [<CustomOperation("ActualHeight")>]
-    member _.ActualHeight(x, v: double var) =
+    member _.ActualHeight(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.ActualHeightProperty) FrameworkElement.ActualHeightProperty v
     
         
@@ -22,7 +22,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.ActualThemeProperty) FrameworkElement.ActualThemeProperty v
     
     [<CustomOperation("ActualTheme")>]
-    member _.ActualTheme(x, v: ElementTheme var) =
+    member _.ActualTheme(x, v: ElementTheme IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.ActualThemeProperty) FrameworkElement.ActualThemeProperty v
         
     [<CustomOperation("AllowFocusOnInteraction")>]
@@ -30,7 +30,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.AllowFocusOnInteractionProperty) FrameworkElement.AllowFocusOnInteractionProperty v
     
     [<CustomOperation("AllowFocusOnInteraction")>]
-    member _.AllowFocusOnInteraction(x, v: bool var) =
+    member _.AllowFocusOnInteraction(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.AllowFocusOnInteractionProperty) FrameworkElement.AllowFocusOnInteractionProperty v
     
         
@@ -39,7 +39,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.AllowFocusWhenDisabledProperty) FrameworkElement.AllowFocusWhenDisabledProperty v
     
     [<CustomOperation("AllowFocusWhenDisabled")>]
-    member _.AllowFocusWhenDisabled(x, v: bool var) =
+    member _.AllowFocusWhenDisabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.AllowFocusWhenDisabledProperty) FrameworkElement.AllowFocusWhenDisabledProperty v
     
         
@@ -48,7 +48,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.DataContextProperty) FrameworkElement.DataContextProperty v
     
     [<CustomOperation("DataContext")>]
-    member _.DataContext(x, v: 'v var) =
+    member _.DataContext(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.DataContextProperty) FrameworkElement.DataContextProperty v
     
         
@@ -57,7 +57,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.FlowDirectionProperty) FrameworkElement.FlowDirectionProperty v
     
     [<CustomOperation("FlowDirection")>]
-    member _.FlowDirection(x, v: FlowDirection var) =
+    member _.FlowDirection(x, v: FlowDirection IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.FlowDirectionProperty) FrameworkElement.FlowDirectionProperty v
     
         
@@ -66,7 +66,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualMarginProperty) FrameworkElement.FocusVisualMarginProperty v
     
     [<CustomOperation("FocusVisualMargin")>]
-    member _.FocusVisualMargin(x, v: Thickness var) =
+    member _.FocusVisualMargin(x, v: Thickness IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualMarginProperty) FrameworkElement.FocusVisualMarginProperty v
     
         
@@ -75,7 +75,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualPrimaryBrushProperty) FrameworkElement.FocusVisualPrimaryBrushProperty v
     
     [<CustomOperation("FocusVisualPrimaryBrush")>]
-    member _.FocusVisualPrimaryBrush(x, v: Brush var) =
+    member _.FocusVisualPrimaryBrush(x, v: Brush IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualPrimaryBrushProperty) FrameworkElement.FocusVisualPrimaryBrushProperty v
     
         
@@ -84,7 +84,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualPrimaryThicknessProperty) FrameworkElement.FocusVisualPrimaryThicknessProperty v
     
     [<CustomOperation("FocusVisualPrimaryThickness")>]
-    member _.FocusVisualPrimaryThickness(x, v: Thickness var) =
+    member _.FocusVisualPrimaryThickness(x, v: Thickness IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualPrimaryThicknessProperty) FrameworkElement.FocusVisualPrimaryThicknessProperty v
     
         
@@ -93,7 +93,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualSecondaryBrushProperty) FrameworkElement.FocusVisualSecondaryBrushProperty v
     
     [<CustomOperation("FocusVisualSecondaryBrush")>]
-    member _.FocusVisualSecondaryBrush(x, v: Brush var) =
+    member _.FocusVisualSecondaryBrush(x, v: Brush IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualSecondaryBrushProperty) FrameworkElement.FocusVisualSecondaryBrushProperty v
     
         
@@ -102,7 +102,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualSecondaryThicknessProperty) FrameworkElement.FocusVisualSecondaryThicknessProperty v
     
     [<CustomOperation("FocusVisualSecondaryThickness")>]
-    member _.FocusVisualSecondaryThickness(x, v: Thickness var) =
+    member _.FocusVisualSecondaryThickness(x, v: Thickness IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.FocusVisualSecondaryThicknessProperty) FrameworkElement.FocusVisualSecondaryThicknessProperty v
     
         
@@ -111,7 +111,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.HeightProperty) FrameworkElement.HeightProperty v
     
     [<CustomOperation("Height")>]
-    member _.Height(x, v: double var) =
+    member _.Height(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.HeightProperty) FrameworkElement.HeightProperty v
     
         
@@ -120,7 +120,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.HorizontalAlignmentProperty) FrameworkElement.HorizontalAlignmentProperty v
     
     [<CustomOperation("HorizontalAlignment")>]
-    member _.HorizontalAlignment(x, v: HorizontalAlignment var) =
+    member _.HorizontalAlignment(x, v: HorizontalAlignment IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.HorizontalAlignmentProperty) FrameworkElement.HorizontalAlignmentProperty v
     
         
@@ -129,7 +129,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.LanguageProperty) FrameworkElement.LanguageProperty v
     
     [<CustomOperation("Language")>]
-    member _.Language(x, v: string var) =
+    member _.Language(x, v: string IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.LanguageProperty) FrameworkElement.LanguageProperty v
     
         
@@ -138,7 +138,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.MarginProperty) FrameworkElement.MarginProperty v
     
     [<CustomOperation("Margin")>]
-    member _.Margin(x, v: Thickness var) =
+    member _.Margin(x, v: Thickness IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.MarginProperty) FrameworkElement.MarginProperty v
     
         
@@ -147,7 +147,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.MaxHeightProperty) FrameworkElement.MaxHeightProperty v
     
     [<CustomOperation("MaxHeight")>]
-    member _.MaxHeight(x, v: double var) =
+    member _.MaxHeight(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.MaxHeightProperty) FrameworkElement.MaxHeightProperty v
     
         
@@ -156,7 +156,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.MaxWidthProperty) FrameworkElement.MaxWidthProperty v
     
     [<CustomOperation("MaxWidth")>]
-    member _.MaxWidth(x, v: double var) =
+    member _.MaxWidth(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.MaxWidthProperty) FrameworkElement.MaxWidthProperty v
     
         
@@ -165,7 +165,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.MinHeightProperty) FrameworkElement.MinHeightProperty v
     
     [<CustomOperation("MinHeight")>]
-    member _.MinHeight(x, v: double var) =
+    member _.MinHeight(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.MinHeightProperty) FrameworkElement.MinHeightProperty v
     
         
@@ -174,7 +174,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.MinWidthProperty) FrameworkElement.MinWidthProperty v
     
     [<CustomOperation("MinWidth")>]
-    member _.MinWidth(x, v: double var) =
+    member _.MinWidth(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.MinWidthProperty) FrameworkElement.MinWidthProperty v
     
         
@@ -183,7 +183,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.NameProperty) FrameworkElement.NameProperty v
     
     [<CustomOperation("Name")>]
-    member _.Name(x, v: string var) =
+    member _.Name(x, v: string IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.NameProperty) FrameworkElement.NameProperty v
     
         
@@ -192,7 +192,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.RequestedThemeProperty) FrameworkElement.RequestedThemeProperty v
     
     [<CustomOperation("RequestedTheme")>]
-    member _.RequestedTheme(x, v: ElementTheme var) =
+    member _.RequestedTheme(x, v: ElementTheme IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.RequestedThemeProperty) FrameworkElement.RequestedThemeProperty v
     
         
@@ -201,7 +201,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.StyleProperty) FrameworkElement.StyleProperty v
     
     [<CustomOperation("Style")>]
-    member _.Style(x, v: Style var) =
+    member _.Style(x, v: Style IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.StyleProperty) FrameworkElement.StyleProperty v
     
         
@@ -210,7 +210,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.TagProperty) FrameworkElement.TagProperty v
     
     [<CustomOperation("Tag")>]
-    member _.Tag(x, v: 'v var) =
+    member _.Tag(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.TagProperty) FrameworkElement.TagProperty v
     
         
@@ -219,7 +219,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.VerticalAlignmentProperty) FrameworkElement.VerticalAlignmentProperty v
     
     [<CustomOperation("VerticalAlignment")>]
-    member _.VerticalAlignment(x, v: VerticalAlignment var) =
+    member _.VerticalAlignment(x, v: VerticalAlignment IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.VerticalAlignmentProperty) FrameworkElement.VerticalAlignmentProperty v
     
         
@@ -228,7 +228,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof FrameworkElement.WidthProperty) FrameworkElement.WidthProperty v
     
     [<CustomOperation("Width")>]
-    member _.Width(x, v: double var) =
+    member _.Width(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof FrameworkElement.WidthProperty) FrameworkElement.WidthProperty v
     
     //Grid
@@ -237,7 +237,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof Grid.ColumnProperty) Grid.ColumnProperty v
 
     [<CustomOperation("Column")>]
-    member _.Column(x, v: int var) =
+    member _.Column(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.ColumnProperty) Grid.ColumnProperty v
         
     [<CustomOperation("ColumnSpan")>]
@@ -245,7 +245,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof Grid.ColumnSpanProperty) Grid.ColumnSpanProperty v
 
     [<CustomOperation("ColumnSpan")>]
-    member _.ColumnSpan(x, v: int var) =
+    member _.ColumnSpan(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.ColumnSpanProperty) Grid.ColumnSpanProperty v
         
     [<CustomOperation("Row")>]
@@ -253,7 +253,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof Grid.RowProperty) Grid.RowProperty v
 
     [<CustomOperation("Row")>]
-    member _.Row(x, v: int var) =
+    member _.Row(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.RowProperty) Grid.RowProperty v
         
     [<CustomOperation("RowSpan")>]
@@ -261,7 +261,7 @@ type FrameworkElementBuilder() =
         Runtime.dependencyProperty x (nameof Grid.RowSpanProperty) Grid.RowSpanProperty v
 
     [<CustomOperation("RowSpan")>]
-    member _.RowSpan(x, v: int var) =
+    member _.RowSpan(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.RowSpanProperty) Grid.RowSpanProperty v
 
         

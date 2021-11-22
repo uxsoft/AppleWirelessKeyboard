@@ -11,3 +11,4 @@ module WinUI =
     let Frame = FrameBuilder(typeof<Frame>)
     let Window = WindowBuilder(typeof<Window>)
     let Grid = GridBuilder(typeof<Grid>)
+    let ToggleSwitch = ToggleSwitchBuilder(typeof<ToggleSwitch>)

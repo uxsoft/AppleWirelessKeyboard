@@ -13,5 +13,5 @@ type NavigationViewItemBaseBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationViewItemBase.IsSelectedProperty) NavigationViewItemBase.IsSelectedProperty v
 
     [<CustomOperation("IsSelected")>]
-    member _.IsSelected<'v>(x, v: bool var) =
+    member _.IsSelected<'v>(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationViewItemBase.IsSelectedProperty) NavigationViewItemBase.IsSelectedProperty v

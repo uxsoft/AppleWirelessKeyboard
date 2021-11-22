@@ -14,7 +14,7 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.BackgroundSizingProperty) Grid.BackgroundSizingProperty v
 
     [<CustomOperation("BackgroundSizing")>]
-    member _.BackgroundSizing(x, v: BackgroundSizing var) =
+    member _.BackgroundSizing(x, v: BackgroundSizing IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.BackgroundSizingProperty) Grid.BackgroundSizingProperty v
 
 
@@ -23,7 +23,7 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.BorderBrushProperty) Grid.BorderBrushProperty v
 
     [<CustomOperation("BorderBrush")>]
-    member _.BorderBrush(x, v: Brush var) =
+    member _.BorderBrush(x, v: Brush IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.BorderBrushProperty) Grid.BorderBrushProperty v
 
 
@@ -32,7 +32,7 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.BorderThicknessProperty) Grid.BorderThicknessProperty v
 
     [<CustomOperation("BorderThickness")>]
-    member _.BorderThickness(x, v: Thickness var) =
+    member _.BorderThickness(x, v: Thickness IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.BorderThicknessProperty) Grid.BorderThicknessProperty v
 
 
@@ -41,7 +41,7 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.ColumnSpacingProperty) Grid.ColumnSpacingProperty v
 
     [<CustomOperation("ColumnSpacing")>]
-    member _.ColumnSpacing(x, v: double var) =
+    member _.ColumnSpacing(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.ColumnSpacingProperty) Grid.ColumnSpacingProperty v
 
 
@@ -50,7 +50,7 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.CornerRadiusProperty) Grid.CornerRadiusProperty v
 
     [<CustomOperation("CornerRadius")>]
-    member _.CornerRadius(x, v: CornerRadius var) =
+    member _.CornerRadius(x, v: CornerRadius IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.CornerRadiusProperty) Grid.CornerRadiusProperty v
 
 
@@ -59,7 +59,7 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.PaddingProperty) Grid.PaddingProperty v
 
     [<CustomOperation("Padding")>]
-    member _.Padding(x, v: Thickness var) =
+    member _.Padding(x, v: Thickness IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.PaddingProperty) Grid.PaddingProperty v
 
 
@@ -68,5 +68,5 @@ type GridBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Grid.RowSpacingProperty) Grid.RowSpacingProperty v
 
     [<CustomOperation("RowSpacing")>]
-    member _.RowSpacing(x, v: double var) =
+    member _.RowSpacing(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof Grid.RowSpacingProperty) Grid.RowSpacingProperty v

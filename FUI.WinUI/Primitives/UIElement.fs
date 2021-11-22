@@ -20,7 +20,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.AccessKeyProperty) UIElement.AccessKeyProperty v
 
     [<CustomOperation("AccessKey")>]
-    member _.AccessKey(x, v: string var) =
+    member _.AccessKey(x, v: string IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.AccessKeyProperty) UIElement.AccessKeyProperty v
 
 
@@ -29,7 +29,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.AccessKeyScopeOwnerProperty) UIElement.AccessKeyScopeOwnerProperty v
 
     [<CustomOperation("AccessKeyScopeOwner")>]
-    member _.AccessKeyScopeOwner(x, v: DependencyObject var) =
+    member _.AccessKeyScopeOwner(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.AccessKeyScopeOwnerProperty) UIElement.AccessKeyScopeOwnerProperty v
 
 
@@ -38,7 +38,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.AllowDropProperty) UIElement.AllowDropProperty v
 
     [<CustomOperation("AllowDrop")>]
-    member _.AllowDrop(x, v: bool var) =
+    member _.AllowDrop(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.AllowDropProperty) UIElement.AllowDropProperty v
 
 
@@ -47,7 +47,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.CacheModeProperty) UIElement.CacheModeProperty v
 
     [<CustomOperation("CacheMode")>]
-    member _.CacheMode(x, v: CacheMode var) =
+    member _.CacheMode(x, v: CacheMode IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.CacheModeProperty) UIElement.CacheModeProperty v
 
 
@@ -56,7 +56,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.CanBeScrollAnchorProperty) UIElement.CanBeScrollAnchorProperty v
 
     [<CustomOperation("CanBeScrollAnchor")>]
-    member _.CanBeScrollAnchor(x, v: bool var) =
+    member _.CanBeScrollAnchor(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.CanBeScrollAnchorProperty) UIElement.CanBeScrollAnchorProperty v
 
 
@@ -65,7 +65,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.CanDragProperty) UIElement.CanDragProperty v
 
     [<CustomOperation("CanDrag")>]
-    member _.CanDrag(x, v: bool var) =
+    member _.CanDrag(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.CanDragProperty) UIElement.CanDragProperty v
 
 
@@ -74,7 +74,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.ClipProperty) UIElement.ClipProperty v
 
     [<CustomOperation("Clip")>]
-    member _.Clip(x, v: RectangleGeometry var) =
+    member _.Clip(x, v: RectangleGeometry IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.ClipProperty) UIElement.ClipProperty v
 
 
@@ -83,7 +83,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.CompositeModeProperty) UIElement.CompositeModeProperty v
 
     [<CustomOperation("CompositeMode")>]
-    member _.CompositeMode(x, v: ElementCompositeMode var) =
+    member _.CompositeMode(x, v: ElementCompositeMode IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.CompositeModeProperty) UIElement.CompositeModeProperty v
 
 
@@ -92,7 +92,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.ContextFlyoutProperty) UIElement.ContextFlyoutProperty v
 
     [<CustomOperation("ContextFlyout")>]
-    member _.ContextFlyout(x, v: FlyoutBase var) =
+    member _.ContextFlyout(x, v: FlyoutBase IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.ContextFlyoutProperty) UIElement.ContextFlyoutProperty v
 
 
@@ -101,7 +101,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.ExitDisplayModeOnAccessKeyInvokedProperty) UIElement.ExitDisplayModeOnAccessKeyInvokedProperty v
 
     [<CustomOperation("ExitDisplayModeOnAccessKeyInvoked")>]
-    member _.ExitDisplayModeOnAccessKeyInvoked(x, v: bool var) =
+    member _.ExitDisplayModeOnAccessKeyInvoked(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.ExitDisplayModeOnAccessKeyInvokedProperty) UIElement.ExitDisplayModeOnAccessKeyInvokedProperty v
 
 
@@ -110,7 +110,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.FocusStateProperty) UIElement.FocusStateProperty v
 
     [<CustomOperation("FocusState")>]
-    member _.FocusState(x, v: FocusState var) =
+    member _.FocusState(x, v: FocusState IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.FocusStateProperty) UIElement.FocusStateProperty v
 
 
@@ -119,7 +119,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.HighContrastAdjustmentProperty) UIElement.HighContrastAdjustmentProperty v
 
     [<CustomOperation("HighContrastAdjustment")>]
-    member _.HighContrastAdjustment(x, v: ElementHighContrastAdjustment var) =
+    member _.HighContrastAdjustment(x, v: ElementHighContrastAdjustment IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.HighContrastAdjustmentProperty) UIElement.HighContrastAdjustmentProperty v
 
 
@@ -128,7 +128,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsAccessKeyScopeProperty) UIElement.IsAccessKeyScopeProperty v
 
     [<CustomOperation("IsAccessKeyScope")>]
-    member _.IsAccessKeyScope(x, v: bool var) =
+    member _.IsAccessKeyScope(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsAccessKeyScopeProperty) UIElement.IsAccessKeyScopeProperty v
 
 
@@ -137,7 +137,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsDoubleTapEnabledProperty) UIElement.IsDoubleTapEnabledProperty v
 
     [<CustomOperation("IsDoubleTapEnabled")>]
-    member _.IsDoubleTapEnabled(x, v: bool var) =
+    member _.IsDoubleTapEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsDoubleTapEnabledProperty) UIElement.IsDoubleTapEnabledProperty v
 
 
@@ -146,7 +146,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsHitTestVisibleProperty) UIElement.IsHitTestVisibleProperty v
 
     [<CustomOperation("IsHitTestVisible")>]
-    member _.IsHitTestVisible(x, v: bool var) =
+    member _.IsHitTestVisible(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsHitTestVisibleProperty) UIElement.IsHitTestVisibleProperty v
 
 
@@ -155,7 +155,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsHoldingEnabledProperty) UIElement.IsHoldingEnabledProperty v
 
     [<CustomOperation("IsHoldingEnabled")>]
-    member _.IsHoldingEnabled(x, v: bool var) =
+    member _.IsHoldingEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsHoldingEnabledProperty) UIElement.IsHoldingEnabledProperty v
 
 
@@ -164,7 +164,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsRightTapEnabledProperty) UIElement.IsRightTapEnabledProperty v
 
     [<CustomOperation("IsRightTapEnabled")>]
-    member _.IsRightTapEnabled(x, v: bool var) =
+    member _.IsRightTapEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsRightTapEnabledProperty) UIElement.IsRightTapEnabledProperty v
 
 
@@ -173,7 +173,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsTabStopProperty) UIElement.IsTabStopProperty v
 
     [<CustomOperation("IsTabStop")>]
-    member _.IsTabStop(x, v: bool var) =
+    member _.IsTabStop(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsTabStopProperty) UIElement.IsTabStopProperty v
 
 
@@ -182,7 +182,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.IsTapEnabledProperty) UIElement.IsTapEnabledProperty v
 
     [<CustomOperation("IsTapEnabled")>]
-    member _.IsTapEnabled(x, v: bool var) =
+    member _.IsTapEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.IsTapEnabledProperty) UIElement.IsTapEnabledProperty v
 
 
@@ -191,7 +191,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipHorizontalOffsetProperty) UIElement.KeyTipHorizontalOffsetProperty v
 
     [<CustomOperation("KeyTipHorizontalOffset")>]
-    member _.KeyTipHorizontalOffset(x, v: double var) =
+    member _.KeyTipHorizontalOffset(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipHorizontalOffsetProperty) UIElement.KeyTipHorizontalOffsetProperty v
 
 
@@ -200,7 +200,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipPlacementModeProperty) UIElement.KeyTipPlacementModeProperty v
 
     [<CustomOperation("KeyTipPlacementMode")>]
-    member _.KeyTipPlacementMode(x, v: KeyTipPlacementMode var) =
+    member _.KeyTipPlacementMode(x, v: KeyTipPlacementMode IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipPlacementModeProperty) UIElement.KeyTipPlacementModeProperty v
 
 
@@ -209,7 +209,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipTargetProperty) UIElement.KeyTipTargetProperty v
 
     [<CustomOperation("KeyTipTarget")>]
-    member _.KeyTipTarget(x, v: DependencyObject var) =
+    member _.KeyTipTarget(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipTargetProperty) UIElement.KeyTipTargetProperty v
 
 
@@ -218,7 +218,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipVerticalOffsetProperty) UIElement.KeyTipVerticalOffsetProperty v
 
     [<CustomOperation("KeyTipVerticalOffset")>]
-    member _.KeyTipVerticalOffset(x, v: double var) =
+    member _.KeyTipVerticalOffset(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.KeyTipVerticalOffsetProperty) UIElement.KeyTipVerticalOffsetProperty v
 
 
@@ -227,7 +227,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.KeyboardAcceleratorPlacementModeProperty) UIElement.KeyboardAcceleratorPlacementModeProperty v
 
     [<CustomOperation("KeyboardAcceleratorPlacementMode")>]
-    member _.KeyboardAcceleratorPlacementMode(x, v: KeyboardAcceleratorPlacementMode var) =
+    member _.KeyboardAcceleratorPlacementMode(x, v: KeyboardAcceleratorPlacementMode IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.KeyboardAcceleratorPlacementModeProperty) UIElement.KeyboardAcceleratorPlacementModeProperty v
 
 
@@ -236,7 +236,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.KeyboardAcceleratorPlacementTargetProperty) UIElement.KeyboardAcceleratorPlacementTargetProperty v
 
     [<CustomOperation("KeyboardAcceleratorPlacementTarget")>]
-    member _.KeyboardAcceleratorPlacementTarget(x, v: DependencyObject var) =
+    member _.KeyboardAcceleratorPlacementTarget(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.KeyboardAcceleratorPlacementTargetProperty) UIElement.KeyboardAcceleratorPlacementTargetProperty v
 
 
@@ -245,7 +245,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.LightsProperty) UIElement.LightsProperty v
 
     [<CustomOperation("Lights")>]
-    member _.Lights(x, v: IList<XamlLight> var) =
+    member _.Lights(x, v: IList<XamlLight> IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.LightsProperty) UIElement.LightsProperty v
 
 
@@ -254,7 +254,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.ManipulationModeProperty) UIElement.ManipulationModeProperty v
 
     [<CustomOperation("ManipulationMode")>]
-    member _.ManipulationMode(x, v: ManipulationModes var) =
+    member _.ManipulationMode(x, v: ManipulationModes IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.ManipulationModeProperty) UIElement.ManipulationModeProperty v
 
 
@@ -263,7 +263,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.OpacityProperty) UIElement.OpacityProperty v
 
     [<CustomOperation("Opacity")>]
-    member _.Opacity(x, v: double var) =
+    member _.Opacity(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.OpacityProperty) UIElement.OpacityProperty v
 
 
@@ -272,7 +272,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.PointerCapturesProperty) UIElement.PointerCapturesProperty v
 
     [<CustomOperation("PointerCaptures")>]
-    member _.PointerCaptures(x, v: IReadOnlyList<Pointer> var) =
+    member _.PointerCaptures(x, v: IReadOnlyList<Pointer> IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.PointerCapturesProperty) UIElement.PointerCapturesProperty v
 
 
@@ -281,7 +281,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.ProjectionProperty) UIElement.ProjectionProperty v
 
     [<CustomOperation("Projection")>]
-    member _.Projection(x, v: Projection var) =
+    member _.Projection(x, v: Projection IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.ProjectionProperty) UIElement.ProjectionProperty v
 
 
@@ -290,7 +290,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.RenderTransformOriginProperty) UIElement.RenderTransformOriginProperty v
 
     [<CustomOperation("RenderTransformOrigin")>]
-    member _.RenderTransformOrigin(x, v: Point var) =
+    member _.RenderTransformOrigin(x, v: Point IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.RenderTransformOriginProperty) UIElement.RenderTransformOriginProperty v
 
 
@@ -299,7 +299,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.RenderTransformProperty) UIElement.RenderTransformProperty v
 
     [<CustomOperation("RenderTransform")>]
-    member _.RenderTransform(x, v: Transform var) =
+    member _.RenderTransform(x, v: Transform IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.RenderTransformProperty) UIElement.RenderTransformProperty v
 
 
@@ -308,7 +308,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.ShadowProperty) UIElement.ShadowProperty v
 
     [<CustomOperation("Shadow")>]
-    member _.Shadow(x, v: Shadow var) =
+    member _.Shadow(x, v: Shadow IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.ShadowProperty) UIElement.ShadowProperty v
 
 
@@ -317,7 +317,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.TabFocusNavigationProperty) UIElement.TabFocusNavigationProperty v
 
     [<CustomOperation("TabFocusNavigation")>]
-    member _.TabFocusNavigation(x, v: KeyboardNavigationMode var) =
+    member _.TabFocusNavigation(x, v: KeyboardNavigationMode IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.TabFocusNavigationProperty) UIElement.TabFocusNavigationProperty v
 
 
@@ -326,7 +326,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.TabIndexProperty) UIElement.TabIndexProperty v
 
     [<CustomOperation("TabIndex")>]
-    member _.TabIndex(x, v: int var) =
+    member _.TabIndex(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.TabIndexProperty) UIElement.TabIndexProperty v
 
 
@@ -335,7 +335,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.Transform3DProperty) UIElement.Transform3DProperty v
 
     [<CustomOperation("Transform3D")>]
-    member _.Transform3D(x, v: Transform3D var) =
+    member _.Transform3D(x, v: Transform3D IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.Transform3DProperty) UIElement.Transform3DProperty v
 
 
@@ -344,7 +344,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.TransitionsProperty) UIElement.TransitionsProperty v
 
     [<CustomOperation("Transitions")>]
-    member _.Transitions(x, v: TransitionCollection var) =
+    member _.Transitions(x, v: TransitionCollection IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.TransitionsProperty) UIElement.TransitionsProperty v
 
 
@@ -353,7 +353,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.UseLayoutRoundingProperty) UIElement.UseLayoutRoundingProperty v
 
     [<CustomOperation("UseLayoutRounding")>]
-    member _.UseLayoutRounding(x, v: bool var) =
+    member _.UseLayoutRounding(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.UseLayoutRoundingProperty) UIElement.UseLayoutRoundingProperty v
 
 
@@ -362,7 +362,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.UseSystemFocusVisualsProperty) UIElement.UseSystemFocusVisualsProperty v
 
     [<CustomOperation("UseSystemFocusVisuals")>]
-    member _.UseSystemFocusVisuals(x, v: bool var) =
+    member _.UseSystemFocusVisuals(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.UseSystemFocusVisualsProperty) UIElement.UseSystemFocusVisualsProperty v
 
 
@@ -371,7 +371,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.VisibilityProperty) UIElement.VisibilityProperty v
 
     [<CustomOperation("Visibility")>]
-    member _.Visibility(x, v: Visibility var) =
+    member _.Visibility(x, v: Visibility IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.VisibilityProperty) UIElement.VisibilityProperty v
 
 
@@ -380,7 +380,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusDownNavigationStrategyProperty) UIElement.XYFocusDownNavigationStrategyProperty v
 
     [<CustomOperation("XYFocusDownNavigationStrategy")>]
-    member _.XYFocusDownNavigationStrategy(x, v: XYFocusNavigationStrategy var) =
+    member _.XYFocusDownNavigationStrategy(x, v: XYFocusNavigationStrategy IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusDownNavigationStrategyProperty) UIElement.XYFocusDownNavigationStrategyProperty v
 
 
@@ -389,7 +389,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusDownProperty) UIElement.XYFocusDownProperty v
 
     [<CustomOperation("XYFocusDown")>]
-    member _.XYFocusDown(x, v: DependencyObject var) =
+    member _.XYFocusDown(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusDownProperty) UIElement.XYFocusDownProperty v
 
 
@@ -398,7 +398,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusKeyboardNavigationProperty) UIElement.XYFocusKeyboardNavigationProperty v
 
     [<CustomOperation("XYFocusKeyboardNavigation")>]
-    member _.XYFocusKeyboardNavigation(x, v: XYFocusKeyboardNavigationMode var) =
+    member _.XYFocusKeyboardNavigation(x, v: XYFocusKeyboardNavigationMode IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusKeyboardNavigationProperty) UIElement.XYFocusKeyboardNavigationProperty v
 
 
@@ -407,7 +407,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusLeftNavigationStrategyProperty) UIElement.XYFocusLeftNavigationStrategyProperty v
 
     [<CustomOperation("XYFocusLeftNavigationStrategy")>]
-    member _.XYFocusLeftNavigationStrategy(x, v: XYFocusNavigationStrategy var) =
+    member _.XYFocusLeftNavigationStrategy(x, v: XYFocusNavigationStrategy IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusLeftNavigationStrategyProperty) UIElement.XYFocusLeftNavigationStrategyProperty v
 
 
@@ -416,7 +416,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusLeftProperty) UIElement.XYFocusLeftProperty v
 
     [<CustomOperation("XYFocusLeft")>]
-    member _.XYFocusLeft(x, v: DependencyObject var) =
+    member _.XYFocusLeft(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusLeftProperty) UIElement.XYFocusLeftProperty v
 
 
@@ -425,7 +425,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusRightNavigationStrategyProperty) UIElement.XYFocusRightNavigationStrategyProperty v
 
     [<CustomOperation("XYFocusRightNavigationStrategy")>]
-    member _.XYFocusRightNavigationStrategy(x, v: XYFocusNavigationStrategy var) =
+    member _.XYFocusRightNavigationStrategy(x, v: XYFocusNavigationStrategy IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusRightNavigationStrategyProperty) UIElement.XYFocusRightNavigationStrategyProperty v
 
 
@@ -434,7 +434,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusRightProperty) UIElement.XYFocusRightProperty v
 
     [<CustomOperation("XYFocusRight")>]
-    member _.XYFocusRight(x, v: DependencyObject var) =
+    member _.XYFocusRight(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusRightProperty) UIElement.XYFocusRightProperty v
 
 
@@ -443,7 +443,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusUpNavigationStrategyProperty) UIElement.XYFocusUpNavigationStrategyProperty v
 
     [<CustomOperation("XYFocusUpNavigationStrategy")>]
-    member _.XYFocusUpNavigationStrategy(x, v: XYFocusNavigationStrategy var) =
+    member _.XYFocusUpNavigationStrategy(x, v: XYFocusNavigationStrategy IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusUpNavigationStrategyProperty) UIElement.XYFocusUpNavigationStrategyProperty v
 
 
@@ -452,7 +452,7 @@ type UIElementBuilder() =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusUpProperty) UIElement.XYFocusUpProperty v
 
     [<CustomOperation("XYFocusUp")>]
-    member _.XYFocusUp(x, v: DependencyObject var) =
+    member _.XYFocusUp(x, v: DependencyObject IObservableValue) =
         Runtime.dependencyProperty x (nameof UIElement.XYFocusUpProperty) UIElement.XYFocusUpProperty v
 
     [<CustomOperation("BringIntoViewRequested")>]

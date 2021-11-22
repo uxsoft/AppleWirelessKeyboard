@@ -30,7 +30,7 @@ type PanelBuilder(controlType: Type) =
         dependencyProperty x (nameof Panel.BackgroundProperty) Panel.BackgroundProperty v
 
     [<CustomOperation("Background")>]
-    member _.Background<'v>(x, v: Brush var) =
+    member _.Background<'v>(x, v: Brush IObservableValue) =
         dependencyProperty x (nameof Panel.BackgroundProperty) Panel.BackgroundProperty v
 
 
@@ -39,7 +39,7 @@ type PanelBuilder(controlType: Type) =
         dependencyProperty x (nameof Panel.ChildrenTransitionsProperty) Panel.ChildrenTransitionsProperty v
 
     [<CustomOperation("ChildrenTransitions")>]
-    member _.ChildrenTransitions<'v>(x, v: BrushTransition var) =
+    member _.ChildrenTransitions<'v>(x, v: BrushTransition IObservableValue) =
         dependencyProperty x (nameof Panel.ChildrenTransitionsProperty) Panel.ChildrenTransitionsProperty v
 
 
@@ -48,5 +48,5 @@ type PanelBuilder(controlType: Type) =
         dependencyProperty x (nameof Panel.IsItemsHostProperty) Panel.IsItemsHostProperty v
 
     [<CustomOperation("IsItemsHost")>]
-    member _.IsItemsHost<'v>(x, v: bool var) =
+    member _.IsItemsHost<'v>(x, v: bool IObservableValue) =
         dependencyProperty x (nameof Panel.IsItemsHostProperty) Panel.IsItemsHostProperty v

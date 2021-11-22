@@ -17,7 +17,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.AlwaysShowHeaderProperty) NavigationView.AlwaysShowHeaderProperty v
     
     [<CustomOperation("AlwaysShowHeader")>]
-    member _.AlwaysShowHeader(x, v: bool var) =
+    member _.AlwaysShowHeader(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.AlwaysShowHeaderProperty) NavigationView.AlwaysShowHeaderProperty v
     
         
@@ -26,7 +26,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.AutoSuggestBoxProperty) NavigationView.AutoSuggestBoxProperty v
     
     [<CustomOperation("AutoSuggestBox")>]
-    member _.AutoSuggestBox(x, v: AutoSuggestBox var) =
+    member _.AutoSuggestBox(x, v: AutoSuggestBox IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.AutoSuggestBoxProperty) NavigationView.AutoSuggestBoxProperty v
     
         
@@ -35,7 +35,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.CompactModeThresholdWidthProperty) NavigationView.CompactModeThresholdWidthProperty v
     
     [<CustomOperation("CompactModeThresholdWidth")>]
-    member _.CompactModeThresholdWidth(x, v: double var) =
+    member _.CompactModeThresholdWidth(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.CompactModeThresholdWidthProperty) NavigationView.CompactModeThresholdWidthProperty v
     
         
@@ -44,7 +44,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.CompactPaneLengthProperty) NavigationView.CompactPaneLengthProperty v
     
     [<CustomOperation("CompactPaneLength")>]
-    member _.CompactPaneLength(x, v: double var) =
+    member _.CompactPaneLength(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.CompactPaneLengthProperty) NavigationView.CompactPaneLengthProperty v
     
         
@@ -53,7 +53,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.DisplayModeProperty) NavigationView.DisplayModeProperty v
     
     [<CustomOperation("DisplayMode")>]
-    member _.DisplayMode(x, v: NavigationViewDisplayMode var) =
+    member _.DisplayMode(x, v: NavigationViewDisplayMode IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.DisplayModeProperty) NavigationView.DisplayModeProperty v
     
         
@@ -62,7 +62,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.ExpandedModeThresholdWidthProperty) NavigationView.ExpandedModeThresholdWidthProperty v
     
     [<CustomOperation("ExpandedModeThresholdWidth")>]
-    member _.ExpandedModeThresholdWidth(x, v: double var) =
+    member _.ExpandedModeThresholdWidth(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.ExpandedModeThresholdWidthProperty) NavigationView.ExpandedModeThresholdWidthProperty v
     
 
@@ -72,7 +72,7 @@ type NavigationViewBuilder(controlType: Type) =
 //        Runtime.dependencyProperty x (nameof NavigationView.FooterMenuItemsProperty) NavigationView.FooterMenuItemsProperty v
 //    
 //    [<CustomOperation("FooterMenuItems")>]
-//    member _.FooterMenuItems(x, v: IList var) =
+//    member _.FooterMenuItems(x, v: IList IObservableValue) =
 //        Runtime.dependencyProperty x (nameof NavigationView.FooterMenuItemsProperty) NavigationView.FooterMenuItemsProperty v
     
         
@@ -81,7 +81,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.FooterMenuItemsSourceProperty) NavigationView.FooterMenuItemsSourceProperty v
     
     [<CustomOperation("FooterMenuItemsSource")>]
-    member _.FooterMenuItemsSource(x, v: 'v var) =
+    member _.FooterMenuItemsSource(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.FooterMenuItemsSourceProperty) NavigationView.FooterMenuItemsSourceProperty v
     
         
@@ -90,7 +90,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.HeaderProperty) NavigationView.HeaderProperty v
     
     [<CustomOperation("Header")>]
-    member _.Header(x, v: 'v var) =
+    member _.Header(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.HeaderProperty) NavigationView.HeaderProperty v
     
         
@@ -99,7 +99,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.HeaderTemplateProperty) NavigationView.HeaderTemplateProperty v
     
     [<CustomOperation("HeaderTemplate")>]
-    member _.HeaderTemplate(x, v: DataTemplate var) =
+    member _.HeaderTemplate(x, v: DataTemplate IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.HeaderTemplateProperty) NavigationView.HeaderTemplateProperty v
     
         
@@ -108,7 +108,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsPaneOpenProperty) NavigationView.IsPaneOpenProperty v
     
     [<CustomOperation("IsPaneOpen")>]
-    member _.IsPaneOpen(x, v: bool var) =
+    member _.IsPaneOpen(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsPaneOpenProperty) NavigationView.IsPaneOpenProperty v
     
         
@@ -117,7 +117,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsPaneToggleButtonVisibleProperty) NavigationView.IsPaneToggleButtonVisibleProperty v
     
     [<CustomOperation("IsPaneToggleButtonVisible")>]
-    member _.IsPaneToggleButtonVisible(x, v: bool var) =
+    member _.IsPaneToggleButtonVisible(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsPaneToggleButtonVisibleProperty) NavigationView.IsPaneToggleButtonVisibleProperty v
     
         
@@ -126,7 +126,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsSettingsVisibleProperty) NavigationView.IsSettingsVisibleProperty v
     
     [<CustomOperation("IsSettingsVisible")>]
-    member _.IsSettingsVisible(x, v: bool var) =
+    member _.IsSettingsVisible(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsSettingsVisibleProperty) NavigationView.IsSettingsVisibleProperty v
     
         
@@ -135,7 +135,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsTitleBarAutoPaddingEnabledProperty) NavigationView.IsTitleBarAutoPaddingEnabledProperty v
     
     [<CustomOperation("IsTitleBarAutoPaddingEnabled")>]
-    member _.IsTitleBarAutoPaddingEnabled(x, v: bool var) =
+    member _.IsTitleBarAutoPaddingEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsTitleBarAutoPaddingEnabledProperty) NavigationView.IsTitleBarAutoPaddingEnabledProperty v
     
         
@@ -144,7 +144,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemContainerStyleProperty) NavigationView.MenuItemContainerStyleProperty v
     
     [<CustomOperation("MenuItemContainerStyle")>]
-    member _.MenuItemContainerStyle(x, v: Style var) =
+    member _.MenuItemContainerStyle(x, v: Style IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemContainerStyleProperty) NavigationView.MenuItemContainerStyleProperty v
     
         
@@ -153,7 +153,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemContainerStyleSelectorProperty) NavigationView.MenuItemContainerStyleSelectorProperty v
     
     [<CustomOperation("MenuItemContainerStyleSelector")>]
-    member _.MenuItemContainerStyleSelector(x, v: StyleSelector var) =
+    member _.MenuItemContainerStyleSelector(x, v: StyleSelector IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemContainerStyleSelectorProperty) NavigationView.MenuItemContainerStyleSelectorProperty v
     
         
@@ -162,7 +162,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemTemplateProperty) NavigationView.MenuItemTemplateProperty v
     
     [<CustomOperation("MenuItemTemplate")>]
-    member _.MenuItemTemplate(x, v: DataTemplate var) =
+    member _.MenuItemTemplate(x, v: DataTemplate IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemTemplateProperty) NavigationView.MenuItemTemplateProperty v
     
         
@@ -171,7 +171,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemTemplateSelectorProperty) NavigationView.MenuItemTemplateSelectorProperty v
     
     [<CustomOperation("MenuItemTemplateSelector")>]
-    member _.MenuItemTemplateSelector(x, v: DataTemplateSelector var) =
+    member _.MenuItemTemplateSelector(x, v: DataTemplateSelector IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemTemplateSelectorProperty) NavigationView.MenuItemTemplateSelectorProperty v
     
         
@@ -189,7 +189,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemsSourceProperty) NavigationView.MenuItemsSourceProperty v
     
     [<CustomOperation("MenuItemsSource")>]
-    member _.MenuItemsSource(x, v: 'v var) =
+    member _.MenuItemsSource(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.MenuItemsSourceProperty) NavigationView.MenuItemsSourceProperty v
     
         
@@ -198,7 +198,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.OpenPaneLengthProperty) NavigationView.OpenPaneLengthProperty v
     
     [<CustomOperation("OpenPaneLength")>]
-    member _.OpenPaneLength(x, v: double var) =
+    member _.OpenPaneLength(x, v: double IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.OpenPaneLengthProperty) NavigationView.OpenPaneLengthProperty v
     
         
@@ -207,7 +207,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneFooterProperty) NavigationView.PaneFooterProperty v
     
     [<CustomOperation("PaneFooter")>]
-    member _.PaneFooter(x, v: UIElement var) =
+    member _.PaneFooter(x, v: UIElement IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneFooterProperty) NavigationView.PaneFooterProperty v
     
         
@@ -216,7 +216,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneToggleButtonStyleProperty) NavigationView.PaneToggleButtonStyleProperty v
     
     [<CustomOperation("PaneToggleButtonStyle")>]
-    member _.PaneToggleButtonStyle(x, v: Style var) =
+    member _.PaneToggleButtonStyle(x, v: Style IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneToggleButtonStyleProperty) NavigationView.PaneToggleButtonStyleProperty v
     
         
@@ -225,7 +225,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.SelectedItemProperty) NavigationView.SelectedItemProperty v
     
     [<CustomOperation("SelectedItem")>]
-    member _.SelectedItem(x, v: 'v var) =
+    member _.SelectedItem(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.SelectedItemProperty) NavigationView.SelectedItemProperty v
     
         
@@ -234,7 +234,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.SettingsItemProperty) NavigationView.SettingsItemProperty v
     
     [<CustomOperation("SettingsItem")>]
-    member _.SettingsItem(x, v: 'v var) =
+    member _.SettingsItem(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.SettingsItemProperty) NavigationView.SettingsItemProperty v
     
         
@@ -243,7 +243,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.ContentOverlayProperty) NavigationView.ContentOverlayProperty v
     
     [<CustomOperation("ContentOverlay")>]
-    member _.ContentOverlay(x, v: UIElement var) =
+    member _.ContentOverlay(x, v: UIElement IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.ContentOverlayProperty) NavigationView.ContentOverlayProperty v
     
         
@@ -252,7 +252,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsBackButtonVisibleProperty) NavigationView.IsBackButtonVisibleProperty v
     
     [<CustomOperation("IsBackButtonVisible")>]
-    member _.IsBackButtonVisible(x, v: NavigationViewBackButtonVisible var) =
+    member _.IsBackButtonVisible(x, v: NavigationViewBackButtonVisible IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsBackButtonVisibleProperty) NavigationView.IsBackButtonVisibleProperty v
     
     
@@ -261,7 +261,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsBackEnabledProperty) NavigationView.IsBackEnabledProperty v
     
     [<CustomOperation("IsBackEnabled")>]
-    member _.IsBackEnabled(x, v: bool var) =
+    member _.IsBackEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsBackEnabledProperty) NavigationView.IsBackEnabledProperty v
     
         
@@ -270,7 +270,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.IsPaneVisibleProperty) NavigationView.IsPaneVisibleProperty v
     
     [<CustomOperation("IsPaneVisible")>]
-    member _.IsPaneVisible(x, v: bool var) =
+    member _.IsPaneVisible(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.IsPaneVisibleProperty) NavigationView.IsPaneVisibleProperty v
     
         
@@ -279,7 +279,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.OverflowLabelModeProperty) NavigationView.OverflowLabelModeProperty v
     
     [<CustomOperation("OverflowLabelMode")>]
-    member _.OverflowLabelMode(x, v: NavigationViewOverflowLabelMode var) =
+    member _.OverflowLabelMode(x, v: NavigationViewOverflowLabelMode IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.OverflowLabelModeProperty) NavigationView.OverflowLabelModeProperty v
     
         
@@ -288,7 +288,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneCustomContentProperty) NavigationView.PaneCustomContentProperty v
     
     [<CustomOperation("PaneCustomContent")>]
-    member _.PaneCustomContent(x, v: UIElement var) =
+    member _.PaneCustomContent(x, v: UIElement IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneCustomContentProperty) NavigationView.PaneCustomContentProperty v
     
         
@@ -297,7 +297,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneDisplayModeProperty) NavigationView.PaneDisplayModeProperty v
     
     [<CustomOperation("PaneDisplayMode")>]
-    member _.PaneDisplayMode(x, v: NavigationViewPaneDisplayMode var) =
+    member _.PaneDisplayMode(x, v: NavigationViewPaneDisplayMode IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneDisplayModeProperty) NavigationView.PaneDisplayModeProperty v
     
         
@@ -306,7 +306,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneHeaderProperty) NavigationView.PaneHeaderProperty v
     
     [<CustomOperation("PaneHeader")>]
-    member _.PaneHeader(x, v: UIElement var) =
+    member _.PaneHeader(x, v: UIElement IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneHeaderProperty) NavigationView.PaneHeaderProperty v
     
         
@@ -315,7 +315,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneTitleProperty) NavigationView.PaneTitleProperty v
     
     [<CustomOperation("PaneTitle")>]
-    member _.PaneTitle(x, v: string var) =
+    member _.PaneTitle(x, v: string IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.PaneTitleProperty) NavigationView.PaneTitleProperty v
     
         
@@ -324,7 +324,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.SelectionFollowsFocusProperty) NavigationView.SelectionFollowsFocusProperty v
     
     [<CustomOperation("SelectionFollowsFocus")>]
-    member _.SelectionFollowsFocus(x, v: NavigationViewSelectionFollowsFocus var) =
+    member _.SelectionFollowsFocus(x, v: NavigationViewSelectionFollowsFocus IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.SelectionFollowsFocusProperty) NavigationView.SelectionFollowsFocusProperty v
     
         
@@ -333,7 +333,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.ShoulderNavigationEnabledProperty) NavigationView.ShoulderNavigationEnabledProperty v
     
     [<CustomOperation("ShoulderNavigationEnabled")>]
-    member _.ShoulderNavigationEnabled(x, v: NavigationViewShoulderNavigationEnabled var) =
+    member _.ShoulderNavigationEnabled(x, v: NavigationViewShoulderNavigationEnabled IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.ShoulderNavigationEnabledProperty) NavigationView.ShoulderNavigationEnabledProperty v
     
         
@@ -342,7 +342,7 @@ type NavigationViewBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof NavigationView.TemplateSettingsProperty) NavigationView.TemplateSettingsProperty v
     
     [<CustomOperation("TemplateSettings")>]
-    member _.TemplateSettings(x, v: NavigationViewTemplateSettings var) =
+    member _.TemplateSettings(x, v: NavigationViewTemplateSettings IObservableValue) =
         Runtime.dependencyProperty x (nameof NavigationView.TemplateSettingsProperty) NavigationView.TemplateSettingsProperty v
     
         

@@ -14,7 +14,7 @@ type ButtonBaseBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof ButtonBase.ClickModeProperty) ButtonBase.ClickModeProperty v
     
     [<CustomOperation("ClickMode")>]
-    member _.ClickMode(x, v: ClickMode var) =
+    member _.ClickMode(x, v: ClickMode IObservableValue) =
         Runtime.dependencyProperty x (nameof ButtonBase.ClickModeProperty) ButtonBase.ClickModeProperty v
     
     
@@ -23,7 +23,7 @@ type ButtonBaseBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof ButtonBase.CommandParameterProperty) ButtonBase.CommandParameterProperty v
     
     [<CustomOperation("CommandParameter")>]
-    member _.CommandParameter(x, v: 'v var) =
+    member _.CommandParameter(x, v: 'v IObservableValue) =
         Runtime.dependencyProperty x (nameof ButtonBase.CommandParameterProperty) ButtonBase.CommandParameterProperty v
     
     
@@ -32,7 +32,7 @@ type ButtonBaseBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof ButtonBase.CommandProperty) ButtonBase.CommandProperty v
     
     [<CustomOperation("Command")>]
-    member _.Command(x, v: ICommand var) =
+    member _.Command(x, v: ICommand IObservableValue) =
         Runtime.dependencyProperty x (nameof ButtonBase.CommandProperty) ButtonBase.CommandProperty v
     
     
@@ -41,7 +41,7 @@ type ButtonBaseBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof ButtonBase.IsPointerOverProperty) ButtonBase.IsPointerOverProperty v
     
     [<CustomOperation("IsPointerOver")>]
-    member _.IsPointerOver(x, v: bool var) =
+    member _.IsPointerOver(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof ButtonBase.IsPointerOverProperty) ButtonBase.IsPointerOverProperty v
     
     
@@ -50,5 +50,5 @@ type ButtonBaseBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof ButtonBase.IsPressedProperty) ButtonBase.IsPressedProperty v
     
     [<CustomOperation("IsPressed")>]
-    member _.IsPressed(x, v: bool var) =
+    member _.IsPressed(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof ButtonBase.IsPressedProperty) ButtonBase.IsPressedProperty v

@@ -1,10 +1,15 @@
 ﻿namespace AppleWirelessKeyboard.Pages
 
-open Microsoft.UI.Xaml.Controls
+open Microsoft.UI
 open FUI.WinUI
 
 type BindingsPage() as this =
-    inherit UserControl()
+    inherit Xaml.Controls.UserControl()
     
     do this.Content <-
-        Button { "Bindings page" }
+        Grid {
+            ToggleSwitch {
+                Header "first toggle"
+            }
+            "Bindings page"
+        }

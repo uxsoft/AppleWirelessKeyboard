@@ -15,7 +15,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.BackStackDepthProperty) Frame.BackStackDepthProperty v
 
     [<CustomOperation("BackStackDepth")>]
-    member _.BackStackDepth(x, v: int var) =
+    member _.BackStackDepth(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.BackStackDepthProperty) Frame.BackStackDepthProperty v
 
     [<CustomOperation("BackStack")>]
@@ -23,7 +23,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.BackStackProperty) Frame.BackStackProperty v
 
     [<CustomOperation("BackStack")>]
-    member _.BackStack(x, v: IList<PageStackEntry> var) =
+    member _.BackStack(x, v: IList<PageStackEntry> IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.BackStackProperty) Frame.BackStackProperty v
 
     [<CustomOperation("CacheSize")>]
@@ -31,7 +31,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.CacheSizeProperty) Frame.CacheSizeProperty v
 
     [<CustomOperation("CacheSize")>]
-    member _.CacheSize(x, v: int var) =
+    member _.CacheSize(x, v: int IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.CacheSizeProperty) Frame.CacheSizeProperty v
 
     [<CustomOperation("CanGoBack")>]
@@ -39,7 +39,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.CanGoBackProperty) Frame.CanGoBackProperty v
 
     [<CustomOperation("CanGoBack")>]
-    member _.CanGoBack(x, v: bool var) =
+    member _.CanGoBack(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.CanGoBackProperty) Frame.CanGoBackProperty v
 
     [<CustomOperation("CanGoForward")>]
@@ -47,7 +47,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.CanGoForwardProperty) Frame.CanGoForwardProperty v
 
     [<CustomOperation("CanGoForward")>]
-    member _.CanGoForward(x, v: bool var) =
+    member _.CanGoForward(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.CanGoForwardProperty) Frame.CanGoForwardProperty v
 
     [<CustomOperation("CurrentSourcePageType")>]
@@ -55,7 +55,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.CurrentSourcePageTypeProperty) Frame.CurrentSourcePageTypeProperty v
 
     [<CustomOperation("CurrentSourcePageType")>]
-    member _.CurrentSourcePageType(x, v: Type var) =
+    member _.CurrentSourcePageType(x, v: Type IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.CurrentSourcePageTypeProperty) Frame.CurrentSourcePageTypeProperty v
 
     [<CustomOperation("ForwardStack")>]
@@ -63,7 +63,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.ForwardStackProperty) Frame.ForwardStackProperty v
 
     [<CustomOperation("ForwardStack")>]
-    member _.ForwardStack(x, v: IList<PageStackEntry> var) =
+    member _.ForwardStack(x, v: IList<PageStackEntry> IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.ForwardStackProperty) Frame.ForwardStackProperty v
 
     [<CustomOperation("IsNavigationStackEnabled")>]
@@ -71,7 +71,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.IsNavigationStackEnabledProperty) Frame.IsNavigationStackEnabledProperty v
 
     [<CustomOperation("IsNavigationStackEnabled")>]
-    member _.IsNavigationStackEnabled(x, v: bool var) =
+    member _.IsNavigationStackEnabled(x, v: bool IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.IsNavigationStackEnabledProperty) Frame.IsNavigationStackEnabledProperty v
 
     [<CustomOperation("SourcePageType")>]
@@ -79,7 +79,7 @@ type FrameBuilder(controlType: Type) =
         Runtime.dependencyProperty x (nameof Frame.SourcePageTypeProperty) Frame.SourcePageTypeProperty v
     
     [<CustomOperation("SourcePageType")>]
-    member _.SourcePageType(x, v: Type var) =
+    member _.SourcePageType(x, v: Type IObservableValue) =
         Runtime.dependencyProperty x (nameof Frame.SourcePageTypeProperty) Frame.SourcePageTypeProperty v
         
         

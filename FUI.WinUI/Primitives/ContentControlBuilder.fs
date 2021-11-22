@@ -22,7 +22,7 @@ type ContentControlBuilder(controlType: Type) =
         dependencyProperty x (nameof ContentControl.ContentProperty) ContentControl.ContentProperty v
     
     [<CustomOperation("Content")>]
-    member _.Content(x, v: 'v var) =
+    member _.Content(x, v: 'v IObservableValue) =
         dependencyProperty x (nameof ContentControl.ContentProperty) ContentControl.ContentProperty v
         
     [<CustomOperation("ContentTemplate")>]
@@ -30,7 +30,7 @@ type ContentControlBuilder(controlType: Type) =
         dependencyProperty x (nameof ContentControl.ContentTemplateProperty) ContentControl.ContentTemplateProperty v
     
     [<CustomOperation("ContentTemplate")>]
-    member _.ContentTemplate(x, v: DataTemplate var) =
+    member _.ContentTemplate(x, v: DataTemplate IObservableValue) =
         dependencyProperty x (nameof ContentControl.ContentTemplateProperty) ContentControl.ContentTemplateProperty v
         
     [<CustomOperation("ContentTemplateSelector")>]
@@ -38,7 +38,7 @@ type ContentControlBuilder(controlType: Type) =
         dependencyProperty x (nameof ContentControl.ContentTemplateSelectorProperty) ContentControl.ContentTemplateSelectorProperty v
     
     [<CustomOperation("ContentTemplateSelector")>]
-    member _.ContentTemplateSelector(x, v: DataTemplateSelector var) =
+    member _.ContentTemplateSelector(x, v: DataTemplateSelector IObservableValue) =
         dependencyProperty x (nameof ContentControl.ContentTemplateSelectorProperty) ContentControl.ContentTemplateSelectorProperty v
         
     [<CustomOperation("ContentTransitions")>]
@@ -46,6 +46,6 @@ type ContentControlBuilder(controlType: Type) =
         dependencyProperty x (nameof ContentControl.ContentTransitionsProperty) ContentControl.ContentTransitionsProperty v
 
     [<CustomOperation("ContentTransitions")>]
-    member _.ContentTransitions(x, v: TransitionCollection var) =
+    member _.ContentTransitions(x, v: TransitionCollection IObservableValue) =
         dependencyProperty x (nameof ContentControl.ContentTransitionsProperty) ContentControl.ContentTransitionsProperty v
         

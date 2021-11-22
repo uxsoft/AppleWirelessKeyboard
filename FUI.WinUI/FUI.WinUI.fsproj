@@ -25,6 +25,8 @@
     <Compile Include="Controls\NavigationView.fs" />
     <Compile Include="Controls\Button.fs" />
     <Compile Include="Controls\Frame.fs" />
+    <Compile Include="Controls\ToggleSwitch.fs" />
+    <Compile Include="Controls\TextBlock.fs" />
     <Compile Include="Window.fs" />
     <Compile Include="WinUI.fs" />
   </ItemGroup>
