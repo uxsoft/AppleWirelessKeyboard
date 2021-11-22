@@ -10,3 +10,4 @@ module WinUI =
     let NavigationViewItem = NavigationViewItemBuilder(typeof<NavigationViewItem>)
     let Frame = FrameBuilder(typeof<Frame>)
     let Window = WindowBuilder(typeof<Window>)
+    let Grid = GridBuilder(typeof<Grid>)
