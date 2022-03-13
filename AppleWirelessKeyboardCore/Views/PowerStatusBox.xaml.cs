@@ -72,11 +72,11 @@ namespace AppleWirelessKeyboardCore
 
         public static bool PowerAction(string action, int seconds)
         {
-            bool ret = false;
+            var ret = false;
 
             Application.Current.Dispatcher.Invoke(delegate
             {
-                PowerStatusBox frm = new PowerStatusBox(action, seconds);
+                var frm = new PowerStatusBox(action, seconds);
                 frm.Status();
                 ret = frm.ShowDialog() ?? false;
             });

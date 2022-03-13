@@ -30,7 +30,7 @@ namespace AppleWirelessKeyboardCore.Views
 
                     Show();
 
-                    DoubleAnimationUsingKeyFrames fade = new DoubleAnimationUsingKeyFrames();
+                    var fade = new DoubleAnimationUsingKeyFrames();
                     fade.Duration = new Duration(TimeSpan.FromSeconds(1));
                     fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0)));
                     fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0.5)));
@@ -42,9 +42,9 @@ namespace AppleWirelessKeyboardCore.Views
         {
             ValueBar.Children.Clear();
 
-            for (int i = 0; i <= value; i++)
+            for (var i = 0; i <= value; i++)
             {
-                Rectangle rect = new Rectangle();
+                var rect = new Rectangle();
                 rect.Fill = new SolidColorBrush(Colors.White);
                 rect.Width = 6;
                 rect.Height = 6;

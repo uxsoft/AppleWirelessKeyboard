@@ -57,7 +57,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
         static int LevelToCubes(int level)
         {
-            double percent = level / (double)(BrightnessLevels.Length - 1);
+            var percent = level / (double)(BrightnessLevels.Length - 1);
             return (int)(percent * 16);
         }
 
@@ -70,8 +70,8 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 {
                     WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
 
-                    int brightness = GetBrightness();
-                    int level = Array.IndexOf(BrightnessLevels, (byte)brightness);
+                    var brightness = GetBrightness();
+                    var level = Array.IndexOf(BrightnessLevels, (byte)brightness);
                     if (level + 1 < BrightnessLevels.Length)
                     {
                         SetBrightness(BrightnessLevels[level + 1]);
@@ -89,8 +89,8 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 {
                     WmiMonitorBrightness = WmiGetObject("WmiMonitorBrightness");
             
-                    int brightness = GetBrightness();
-                    int level = Array.IndexOf(BrightnessLevels, (byte)brightness);
+                    var brightness = GetBrightness();
+                    var level = Array.IndexOf(BrightnessLevels, (byte)brightness);
                     if (level >= 1)
                     {
                         SetBrightness(BrightnessLevels[level - 1]);

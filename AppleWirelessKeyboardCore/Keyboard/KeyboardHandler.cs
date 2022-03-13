@@ -25,18 +25,18 @@ namespace AppleWirelessKeyboardCore.Keyboard
         [ImportMany]
         public IEnumerable<IInputFilter> Filters { get; set; } = default!;
 
-        public State<bool> Fn { get; set; } = new State<bool>(false);
-        public State<bool> Alt { get; set; } = new State<bool>(false);
-        public State<bool> Ctrl { get; set; } = new State<bool>(false);
-        public State<bool> Win { get; set; } = new State<bool>(false);
-        public State<bool> Shift { get; set; } = new State<bool>(false);
-        public State<bool> Eject { get; set; } = new State<bool>(false);
-        public State<bool> FMode { get; set; } = new State<bool>(SettingsService.Default.StartupFMode);
-        public State<bool> Power { get; set; } = new State<bool>(false);
+        public State<bool> Fn { get; set; } = new(false);
+        public State<bool> Alt { get; set; } = new(false);
+        public State<bool> Ctrl { get; set; } = new(false);
+        public State<bool> Win { get; set; } = new(false);
+        public State<bool> Shift { get; set; } = new(false);
+        public State<bool> Eject { get; set; } = new(false);
+        public State<bool> FMode { get; set; } = new(SettingsService.Default.StartupFMode);
+        public State<bool> Power { get; set; } = new(false);
 
         public void Start()
         {
-            foreach (IInputAdapter adapter in Adapters)
+            foreach (var adapter in Adapters)
             {
                 adapter.Start();
                 adapter.Fn += (pressed) =>
@@ -70,7 +70,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
         public void Stop()
         {
-            foreach (IInputAdapter adapter in Adapters)
+            foreach (var adapter in Adapters)
                 adapter.Stop();
         }
 

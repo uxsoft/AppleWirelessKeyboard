@@ -51,7 +51,7 @@ namespace AppleWirelessKeyboardCore
                     if (direction.HasFlag(KeyboardEvent.Down))
                     {
                         NotificationCenter.NotifyEject();
-                        foreach (DriveInfo drive in DriveInfo.GetDrives())
+                        foreach (var drive in DriveInfo.GetDrives())
                             if (drive.DriveType == DriveType.CDRom)
                             {
                                 EjectMedia(drive.Name[0]);

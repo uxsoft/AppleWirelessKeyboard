@@ -60,7 +60,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
         public void Start()
         {
             HookProcessor = Hook_Callback;
-            IntPtr hInstance = GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName);
+            var hInstance = GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName);
             Hook = SetWindowsHookEx(WH_KEYBOARD_LL, HookProcessor, hInstance, 0);
         }
 
@@ -73,33 +73,39 @@ namespace AppleWirelessKeyboardCore.Keyboard
         {
             if (code >= 0)
             {
-                Key key = (Key)System.Windows.Input.KeyInterop.KeyFromVirtualKey(lParam.vkCode);
-                bool IsPressed = (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN);
+                var key = KeyInterop.KeyFromVirtualKey(lParam.vkCode);
+                var isPressed = wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN;
 
-                if (key == System.Windows.Input.Key.LeftAlt || key == System.Windows.Input.Key.RightAlt)
+                switch (key)
                 {
-                    if (Alt != null)
-                        Alt(IsPressed);
+                    case System.Windows.Input.Key.LeftAlt:
+                    case System.Windows.Input.Key.RightAlt:
+                    {
+                        Alt?.Invoke(isPressed);
+                        break;
+                    }
+                    case System.Windows.Input.Key.LeftCtrl:
+                    case System.Windows.Input.Key.RightCtrl:
+                    {
+                        Ctrl?.Invoke(isPressed);
+                        break;
+                    }
+                    case System.Windows.Input.Key.LeftShift:
+                    case System.Windows.Input.Key.RightShift:
+                    {
+                        Shift?.Invoke(isPressed);
+                        break;
+                    }
+                    case System.Windows.Input.Key.LWin:
+                    case System.Windows.Input.Key.RWin:
+                    {
+                        Win?.Invoke(isPressed);
+                        break;
+                    }
                 }
-                else if (key == System.Windows.Input.Key.LeftCtrl || key == System.Windows.Input.Key.RightCtrl)
-                {
-                    if (Ctrl != null)
-                        Ctrl(IsPressed);
-                }
-                else if (key == System.Windows.Input.Key.LeftShift || key == System.Windows.Input.Key.RightShift)
-                {
-                    if (Shift != null)
-                        Shift(IsPressed);
-                }
-                else if (key == System.Windows.Input.Key.LWin || key == System.Windows.Input.Key.RWin)
-                {
-                    if (Win != null)
-                        Win(IsPressed);
-                }
-
-                if (Key != null)
-                    if (Key(key, IsPressed))
-                        return 1;
+                
+                if (Key?.Invoke(key, isPressed) ?? false)
+                    return 1;
             }
             return CallNextHookEx(Hook, code, wParam, ref lParam);
         }

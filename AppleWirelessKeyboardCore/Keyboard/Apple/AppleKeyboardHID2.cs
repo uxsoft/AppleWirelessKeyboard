@@ -106,7 +106,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
 
         public void Start()
         {
-            HIDImports.SP_DEVICE_INTERFACE_DATA spDeviceInterfaceData = new HIDImports.SP_DEVICE_INTERFACE_DATA()
+            var spDeviceInterfaceData = new HIDImports.SP_DEVICE_INTERFACE_DATA()
             {
                 cbSize = Marshal.SizeOf(typeof(HIDImports.SP_DEVICE_INTERFACE_DATA))
             };
@@ -116,26 +116,26 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 throw new InvalidOperationException("Connected to a different stream already!");
             }
 
-            HIDImports.HidD_GetHidGuid(out Guid guid);
-            IntPtr hDevInfo = HIDImports.SetupDiGetClassDevs(ref guid, null, IntPtr.Zero, 0x10);
+            HIDImports.HidD_GetHidGuid(out var guid);
+            var hDevInfo = HIDImports.SetupDiGetClassDevs(ref guid, null, IntPtr.Zero, 0x10);
 
-            int num = 0;
+            var num = 0;
             while (HIDImports.SetupDiEnumDeviceInterfaces(hDevInfo, IntPtr.Zero, ref guid, num++, ref spDeviceInterfaceData))
             {
-                HIDImports.SP_DEVICE_INTERFACE_DETAIL_DATA deviceInterfaceDetailData = new HIDImports.SP_DEVICE_INTERFACE_DETAIL_DATA
+                var deviceInterfaceDetailData = new HIDImports.SP_DEVICE_INTERFACE_DETAIL_DATA
                 {
                     cbSize = (uint)(IntPtr.Size == 8 ? 8 : 5)
                 };
 
-                HIDImports.SetupDiGetDeviceInterfaceDetail(hDevInfo, ref spDeviceInterfaceData, IntPtr.Zero, 0, out uint requiredSize, IntPtr.Zero);
+                HIDImports.SetupDiGetDeviceInterfaceDetail(hDevInfo, ref spDeviceInterfaceData, IntPtr.Zero, 0, out var requiredSize, IntPtr.Zero);
                 if (HIDImports.SetupDiGetDeviceInterfaceDetail(hDevInfo, ref spDeviceInterfaceData, ref deviceInterfaceDetailData, requiredSize, out requiredSize, IntPtr.Zero))
                 {
-                    HIDImports.HIDD_ATTRIBUTES hiddAttributes = new HIDImports.HIDD_ATTRIBUTES()
+                    var hiddAttributes = new HIDImports.HIDD_ATTRIBUTES()
                     {
                         Size = Marshal.SizeOf(typeof(HIDImports.HIDD_ATTRIBUTES))
                     };
 
-                    SafeFileHandle handle = HIDImports.CreateFile(deviceInterfaceDetailData.DevicePath, FileAccess.Read, FileShare.Read, IntPtr.Zero, FileMode.Open, HIDImports.EFileAttributes.Overlapped, IntPtr.Zero);
+                    var handle = HIDImports.CreateFile(deviceInterfaceDetailData.DevicePath, FileAccess.Read, FileShare.Read, IntPtr.Zero, FileMode.Open, HIDImports.EFileAttributes.Overlapped, IntPtr.Zero);
 
                     if (HIDImports.HidD_GetAttributes(handle.DangerousGetHandle(), ref hiddAttributes))
                     {
@@ -151,7 +151,7 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
 
             if (stream != null)
             {
-                byte[] buffer = new byte[0x16];
+                var buffer = new byte[0x16];
                 stream.BeginRead(buffer, 0, buffer.Length, SpecialKeyStateChanged, buffer);
             }
         }
@@ -160,11 +160,11 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
         {
             if (vid == VIDApple)
             {
-                HIDImports.HidD_GetHidGuid(out Guid HIDGUID);
+                HIDImports.HidD_GetHidGuid(out var HIDGUID);
 
-                IntPtr deviceInfoListPointer = HIDImports.SetupDiGetClassDevs(ref HIDGUID, null, IntPtr.Zero, 16);
+                var deviceInfoListPointer = HIDImports.SetupDiGetClassDevs(ref HIDGUID, null, IntPtr.Zero, 16);
 
-                HIDImports.SP_DEVINFO_DATA DID = new HIDImports.SP_DEVINFO_DATA()
+                var DID = new HIDImports.SP_DEVINFO_DATA()
                 {
                     cbSize = (uint)Marshal.SizeOf(typeof(HIDImports.SP_DEVINFO_DATA))
                 };
@@ -172,11 +172,11 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 uint memberIndex = 0;
                 while (HIDImports.SetupDiEnumDeviceInfo(deviceInfoListPointer, memberIndex++, ref DID))
                 {
-                    IntPtr buffer = Marshal.AllocHGlobal(512);
+                    var buffer = Marshal.AllocHGlobal(512);
 
                     if (HIDImports.SetupDiGetDeviceRegistryProperty(deviceInfoListPointer, ref DID, (uint)HIDImports.SPDRP.SPDRP_CLASS, out _, buffer, 512, out _))
                     {
-                        string? CLASS = Marshal.PtrToStringAuto(buffer);
+                        var CLASS = Marshal.PtrToStringAuto(buffer);
                         if ("Keyboard".Equals(CLASS, StringComparison.InvariantCultureIgnoreCase))
                             return true;
                     }

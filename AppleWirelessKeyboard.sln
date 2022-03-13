@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleWirelessKeyboard.WinUI
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AppleWirelessKeyboard", "AppleWirelessKeyboard\AppleWirelessKeyboard.fsproj", "{6AB30E54-7A79-47DF-AAF5-069C920B029D}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FUI.WinUI", "FUI.WinUI\FUI.WinUI.fsproj", "{C864645C-7550-4615-B307-237D4516E918}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FUI.WinUI", "..\FUI\FUI.WinUI\FUI.WinUI.fsproj", "{C864645C-7550-4615-B307-237D4516E918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

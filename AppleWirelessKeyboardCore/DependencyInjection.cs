@@ -8,7 +8,7 @@ namespace AppleWirelessKeyboardCore
     {
         static DependencyInjection()
         {
-            AssemblyCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             Service = catalog.CreateCompositionService();
             Container = new CompositionContainer(catalog);
         }

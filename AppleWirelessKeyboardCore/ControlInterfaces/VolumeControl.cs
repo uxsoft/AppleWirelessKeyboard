@@ -15,7 +15,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    AudioEndpointVolume controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    var controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
 
                     if (controller.MasterVolumeLevelScalar > 0.9375f)
                         controller.MasterVolumeLevelScalar = 1.0f;
@@ -31,7 +31,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    AudioEndpointVolume controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    var controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
                     if (controller.MasterVolumeLevelScalar < 0.0625)
                     {
                         controller.MasterVolumeLevelScalar = 0;
@@ -52,7 +52,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    AudioEndpointVolume controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
+                    var controller = AudioEndPoints.GetDefaultMMDevice(EDataFlow.eRender).AudioEndpointVolume;
 
                     controller.Mute = !controller.Mute;
                     if (controller.Mute)

@@ -42,6 +42,7 @@ module SettingsWindow =
         Window {
             Title "Settings"
             
+            
             NavigationView {
                 PaneDisplayMode Xaml.Controls.NavigationViewPaneDisplayMode.Top
                 IsBackButtonVisible Xaml.Controls.NavigationViewBackButtonVisible.Collapsed
@@ -52,7 +53,7 @@ module SettingsWindow =
                 ItemInvoked (fun sender args -> onItemInvoked model args)
                     
                 Grid {
-                    page model Page.PreferencesPage (PreferencesPage())
+                    page model Page.PreferencesPage (Preferences.PreferencesPage())
                     page model Page.BindingsPage (BindingsPage())
                 }            
             }

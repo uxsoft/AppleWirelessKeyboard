@@ -22,7 +22,7 @@ namespace AppleWirelessKeyboardCore.Views
             grdBindings.ItemsSource = SettingsService.Default.KeyBindings;
             clmnKey.ItemsSource = Enum.GetValues(typeof(Key));
 
-            ListCollectionView collectionView = new ListCollectionView(Modules
+            var collectionView = new ListCollectionView(Modules
                 .OrderBy(l => l.Metadata.Name)
                 .Select(l => new
                 {

@@ -25,12 +25,6 @@ namespace AppleWirelessKeyboardCore.Views
             rk?.DeleteValue(REGISTRY_RUN_VALUENAME);
         }
 
-        static string GetShortcutPath()
-        {
-            string folder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-            return Path.Combine(folder, Assembly.GetEntryAssembly()?.GetName()?.Name ?? "");
-        }
-
         public static bool IsRegistered
         {
             get

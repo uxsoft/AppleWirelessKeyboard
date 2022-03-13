@@ -34,6 +34,9 @@ namespace AppleWirelessKeyboard.WinUI.Views
             var grid = new Grid();
             var toggle = new ToggleSwitch();
             var textBlock = new TextBlock();
+            var comboBox = new ComboBox();
+            
+            var window = new Window();
             //var uiElement = new UIElement();
         }
     }

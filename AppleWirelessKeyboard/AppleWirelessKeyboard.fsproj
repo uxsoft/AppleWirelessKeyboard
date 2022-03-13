@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Pages\PreferencesPage.fs" />
+    <Compile Include="Pages\Preferences.fs" />
     <Compile Include="Pages\BindingsPage.fs" />
     <Compile Include="SettingsWindow.fs" />
   </ItemGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FUI.WinUI\FUI.WinUI.fsproj" />
+    <ProjectReference Include="..\..\FUI\FUI.WinUI\FUI.WinUI.fsproj" />
   </ItemGroup>
   
   <Target Name="XamlPreCompile" Condition="$(TargetFramework.StartsWith('net6.0-windows10'))" />
