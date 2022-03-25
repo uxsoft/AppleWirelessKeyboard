@@ -17,6 +17,9 @@ namespace AppleWirelessKeyboardCore
         {
             StartupShortcutService.Check();
             TrayIconService.Show();
+
+            // hide main window from taskbar
+            Window.ShowInTaskbar = false;
             
             Keyboard.Start();
 
