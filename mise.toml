@@ -1,0 +1,3 @@
+[tools]
+dotnet = "latest"
+gh = "latest"
