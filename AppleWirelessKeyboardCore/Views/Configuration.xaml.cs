@@ -58,10 +58,14 @@ namespace AppleWirelessKeyboardCore.Views
 
         private void mnuDelete_Click(object sender, RoutedEventArgs e)
         {
+            // Commit any pending edit before removing; this ensures the default CollectionView
+            // of KeyBindings is not left in an EditItem/AddNew transaction, which would cause
+            // a DeferRefresh crash when the Configure window is opened a second time.
+            grdBindings.CommitEdit(DataGridEditingUnit.Row, true);
             if (grdBindings.SelectedItem is Keyboard.KeyBinding binding)
             {
                 SettingsService.Default.KeyBindings.Remove(binding);
-                CollectionViewSource.GetDefaultView(grdBindings.ItemsSource).Refresh();
+                // ObservableCollection raises CollectionChanged automatically; no Refresh() needed.
             }
         }
 
