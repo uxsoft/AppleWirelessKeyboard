@@ -158,12 +158,13 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
 
         private static bool IsAppleWirelessKeyboard(int vid, int pid)
         {
-            if (vid == VIDApple)
+            if (vid != VIDApple)
+                return false;
+
+            HIDImports.HidD_GetHidGuid(out Guid HIDGUID);
+            IntPtr deviceInfoListPointer = HIDImports.SetupDiGetClassDevs(ref HIDGUID, null, IntPtr.Zero, 16);
+            try
             {
-                HIDImports.HidD_GetHidGuid(out Guid HIDGUID);
-
-                IntPtr deviceInfoListPointer = HIDImports.SetupDiGetClassDevs(ref HIDGUID, null, IntPtr.Zero, 16);
-
                 HIDImports.SP_DEVINFO_DATA DID = new HIDImports.SP_DEVINFO_DATA()
                 {
                     cbSize = (uint)Marshal.SizeOf(typeof(HIDImports.SP_DEVINFO_DATA))
@@ -173,18 +174,26 @@ namespace AppleWirelessKeyboardCore.Keyboard.Apple
                 while (HIDImports.SetupDiEnumDeviceInfo(deviceInfoListPointer, memberIndex++, ref DID))
                 {
                     IntPtr buffer = Marshal.AllocHGlobal(512);
-
-                    if (HIDImports.SetupDiGetDeviceRegistryProperty(deviceInfoListPointer, ref DID, (uint)HIDImports.SPDRP.SPDRP_CLASS, out _, buffer, 512, out _))
+                    try
                     {
-                        string? CLASS = Marshal.PtrToStringAuto(buffer);
-                        if ("Keyboard".Equals(CLASS, StringComparison.InvariantCultureIgnoreCase))
-                            return true;
+                        if (HIDImports.SetupDiGetDeviceRegistryProperty(deviceInfoListPointer, ref DID, (uint)HIDImports.SPDRP.SPDRP_CLASS, out _, buffer, 512, out _))
+                        {
+                            string? CLASS = Marshal.PtrToStringAuto(buffer);
+                            if ("Keyboard".Equals(CLASS, StringComparison.InvariantCultureIgnoreCase))
+                                return true;
+                        }
+                    }
+                    finally
+                    {
+                        Marshal.FreeHGlobal(buffer);
                     }
                 }
-
-                HIDImports.SetupDiDestroyDeviceInfoList(deviceInfoListPointer);
-
             }
+            finally
+            {
+                HIDImports.SetupDiDestroyDeviceInfoList(deviceInfoListPointer);
+            }
+
             return false;
         }
 
