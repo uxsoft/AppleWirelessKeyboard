@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid ClipToBounds="True" Height="100" Width="100">
-        <Canvas>
+        <Canvas VerticalAlignment="Top">
             <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3003" Fill="White">
                 <Path.Data>
                     <PathGeometry Figures="m 72.937127 43.77963 c -1.460828 -0.267282 -2.978493 -0.414613 -4.538483 -0.414613 -1.44148 0 -2.612077 1.262092 -2.612077 2.816239 v 32.007336 c 0 1.554146 1.170597 2.816239 2.612077 2.816239 1.55999 0 3.077655 -0.146028 4.538483 -0.41331 V 43.77963 z" FillRule="NonZero"/>
@@ -33,8 +33,17 @@
                 </Path.Data>
             </Path>
             <Canvas.RenderTransform>
-                <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
             </Canvas.RenderTransform>
         </Canvas>
+        <TextBlock Name="DeviceNameText"
+                   Text="{Binding DeviceName, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Foreground="White"
+                   FontSize="10"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Margin="4,0,4,4"/>
     </Grid>
 </UserControl>

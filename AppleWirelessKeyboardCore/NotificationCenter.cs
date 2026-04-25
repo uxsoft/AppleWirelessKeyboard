@@ -57,9 +57,9 @@ namespace AppleWirelessKeyboardCore
             App.Window.ShowOff<Glyphs.Eject>();
         }
 
-        public static void NotifyMediaDeviceChanged()
+        public static void NotifyMediaDeviceChanged(string deviceName = "")
         {
-            App.Window.ShowOff<Glyphs.MediaDeviceSwitch>();
+            App.Window.ShowOff(new Glyphs.MediaDeviceSwitch(deviceName));
         }
 
         internal static void NotifyBrightnessLevel(int level) //0-16
