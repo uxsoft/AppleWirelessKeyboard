@@ -1,14 +1,17 @@
 {
-  "last_run": "2026-04-25T01:02:31Z",
-  "last_run_id": "24918725184",
+  "last_run": "2026-04-25T12:38:01Z",
+  "last_run_id": "24931056990",
   "comments_made": {
     "25": {"date": "2026-04-23", "summary": "Root cause of DeferRefresh crash: mnuDelete_Click needs CommitEdit before Refresh; opened fix PR #84"},
-    "70": {"date": "2026-04-22", "summary": "Volume step 6.25% (1/16) is by design, matches macOS"},
-    "69": {"date": "2026-04-22", "summary": "A2450 Lock key fires Power HID event (report 0x13), not Eject - unbindable, needs code change"},
+    "27": {"date": "2026-04-25", "summary": "Self-resolved: config file corruption + keyboard software conflict; summarised root causes"},
     "63": {"date": "2026-04-25", "summary": "Overlay icon always shows headphones - fix PR #89 opened; plumbs device name from SetNextDefault to MediaDeviceSwitch glyph"},
-    "67": {"date": "2026-04-23", "summary": "App starts and closes - USB vs wireless HID mismatch; app targets Bluetooth only; USB causes BeginRead fail/loop; workaround: use Bluetooth"},
     "64": {"date": "2026-04-24", "summary": "Task Manager/Brightness: WmiGetObject circular init dependency + GetBrightness inverted condition + taskmgr.exe process name bug; fix PR #88 opened"},
+    "65": {"date": "2026-04-25", "summary": "No driver needed; app uses HID API directly; Bluetooth device-class detection guidance provided"},
+    "67": {"date": "2026-04-23", "summary": "App starts and closes - USB vs wireless HID mismatch; app targets Bluetooth only; USB causes BeginRead fail/loop; workaround: use Bluetooth"},
+    "69": {"date": "2026-04-25", "summary": "A2450 Power/Lock key unbindable - Power event not routed to ProcessKey; fix PR #90 opened; key now bindable as F14 + LockScreen action added"},
+    "70": {"date": "2026-04-22", "summary": "Volume step 6.25% (1/16) is by design, matches macOS"},
     "76": {"date": "2026-04-24", "summary": "NET issue: user has .NET Framework, not .NET 5 Desktop Runtime - different runtimes; pointed to download and PR #77 workaround"},
+    "79": {"date": "2026-04-25", "summary": "Spanish A1314: HID detection is layout-independent; likely device-class issue; debugging guidance provided"},
     "80": {"date": "2026-04-24", "summary": "A1843 Magic Keyboard with Numeric Keypad - likely HID report ID mismatch; app checks report 0x11 for Fn which may differ on A1843; debugging guidance provided"}
   },
   "labels_applied": {
@@ -47,15 +50,16 @@
   },
   "monthly_summary_issue": "2026-04",
   "monthly_summary_number": 83,
-  "notes": "PR #84 (DeferRefresh fix, closes #25), PR #85 (xUnit tests), PR #87 (resource leak fix), PR #88 (brightness+taskmanager fix, closes #64), PR #89 (media device overlay name, closes #63) are open. Issue #86 is an issue (not PR) documenting GitHub Actions update that needs manual PR creation (workflow permission denied). PR #77 (.NET 6 update) and PR #74 (hide from taskbar) are community PRs awaiting review. Issue #82 (Repo Assist failure) should be closed. Future tasks: fix #69 (A2450 power key), fix #67 (USB crash loop).",
+  "notes": "Open Repo Assist PRs: #84 (DeferRefresh fix, closes #25), #85 (xUnit tests), #87 (resource leak fix), #88 (brightness+taskmanager fix, closes #64), #89 (media device overlay name, closes #63), #90 (A2450 Power/Lock key as F14 + LockScreen action, closes #69). Issue #86 is CI update issue (workflow permission denied). PR #77 (.NET 6) and PR #74 (hide from taskbar) are community PRs. Issue #82 should be closed (superseded). Future: fix #67 (USB crash loop).",
   "issue_backlog_cursor": 80,
-  "open_prs": [74, 77, 84, 85, 87, 88, 89],
+  "open_prs": [74, 77, 84, 85, 87, 88, 89, 90],
   "pr_attempts": {
     "25": {"branch": "repo-assist/fix-issue-25-defer-refresh-crash-1c491572e93b8886", "pr": 84, "date": "2026-04-23", "status": "open"},
     "tests": {"branch": "repo-assist/improve-add-unit-tests-7d27613ec6c8c0f0", "pr": 85, "date": "2026-04-23", "status": "open"},
     "resource-leak-hid": {"branch": "repo-assist/improve-fix-resource-leak-hid", "pr": 87, "date": "2026-04-24", "status": "open"},
     "64": {"branch": "repo-assist/fix-issue-64-brightness-taskmanager-20260424", "pr": 88, "date": "2026-04-24", "status": "open"},
-    "63": {"branch": "repo-assist/fix-issue-63-media-device-overlay-name", "pr": 89, "date": "2026-04-25", "status": "open"}
+    "63": {"branch": "repo-assist/fix-issue-63-media-device-overlay-name", "pr": 89, "date": "2026-04-25", "status": "open"},
+    "69": {"branch": "repo-assist/fix-issue-69-power-key-bindable-20260425", "pr": 90, "date": "2026-04-25", "status": "open"}
   },
   "checked_off_suggested_actions": []
 }
