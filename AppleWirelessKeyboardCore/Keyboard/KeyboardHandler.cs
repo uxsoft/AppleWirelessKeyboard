@@ -62,6 +62,7 @@ namespace AppleWirelessKeyboardCore.Keyboard
                 adapter.Power += (pressed) =>
                 {
                     if (Filters.All(f => f.Power(pressed))) Power.Value = pressed;
+                    ProcessKey(Key.F14, pressed);
                 };
                 adapter.Eject += (pressed) => ProcessKey(Key.F13, pressed);
                 adapter.Key += ProcessKey;
