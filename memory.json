@@ -1,7 +1,9 @@
 {
-  "last_run": "2026-04-25T12:38:01Z",
-  "last_run_id": "24931056990",
+  "last_run": "2026-04-26T01:09:52Z",
+  "last_run_id": "24944912695",
   "comments_made": {
+    "13": {"date": "2026-04-26", "summary": "Top-left key wrong chars is Windows scancode/layout mismatch - outside app scope; pointed to PowerToys/SharpKeys"},
+    "22": {"date": "2026-04-26", "summary": "Wired keyboard Fn detection fails (HID report 0x11 path); FMode stuck at StartupFMode=true; workaround: set StartupFMode=false"},
     "25": {"date": "2026-04-23", "summary": "Root cause of DeferRefresh crash: mnuDelete_Click needs CommitEdit before Refresh; opened fix PR #84"},
     "27": {"date": "2026-04-25", "summary": "Self-resolved: config file corruption + keyboard software conflict; summarised root causes"},
     "63": {"date": "2026-04-25", "summary": "Overlay icon always shows headphones - fix PR #89 opened; plumbs device name from SetNextDefault to MediaDeviceSwitch glyph"},
@@ -50,15 +52,15 @@
   },
   "monthly_summary_issue": "2026-04",
   "monthly_summary_number": 83,
-  "notes": "Open Repo Assist PRs: #84 (DeferRefresh fix, closes #25), #85 (xUnit tests), #87 (resource leak fix), #88 (brightness+taskmanager fix, closes #64), #89 (media device overlay name, closes #63), #90 (A2450 Power/Lock key as F14 + LockScreen action, closes #69). Issue #86 is CI update issue (workflow permission denied). PR #77 (.NET 6) and PR #74 (hide from taskbar) are community PRs. Issue #82 should be closed (superseded). Future: fix #67 (USB crash loop).",
-  "issue_backlog_cursor": 80,
+  "notes": "Open Repo Assist PRs: #84 (DeferRefresh fix, closes #25), #85 (xUnit tests), #87 (resource leak fix), #88 (brightness+taskmanager fix, closes #64), #89 (media device overlay name, closes #63 - updated to fix SonarCloud duplication), #90 (A2450 Power/Lock key as F14 + LockScreen action, closes #69). Issue #86 is CI update issue (workflow permission denied). PR #77 (.NET 6) and PR #74 (hide from taskbar) are community PRs. Issue #82 should be closed (superseded). Future: fix #67 (USB crash loop); comment on #21, #18, #20.",
+  "issue_backlog_cursor": 22,
   "open_prs": [74, 77, 84, 85, 87, 88, 89, 90],
   "pr_attempts": {
     "25": {"branch": "repo-assist/fix-issue-25-defer-refresh-crash-1c491572e93b8886", "pr": 84, "date": "2026-04-23", "status": "open"},
     "tests": {"branch": "repo-assist/improve-add-unit-tests-7d27613ec6c8c0f0", "pr": 85, "date": "2026-04-23", "status": "open"},
     "resource-leak-hid": {"branch": "repo-assist/improve-fix-resource-leak-hid", "pr": 87, "date": "2026-04-24", "status": "open"},
     "64": {"branch": "repo-assist/fix-issue-64-brightness-taskmanager-20260424", "pr": 88, "date": "2026-04-24", "status": "open"},
-    "63": {"branch": "repo-assist/fix-issue-63-media-device-overlay-name", "pr": 89, "date": "2026-04-25", "status": "open"},
+    "63": {"branch": "repo-assist/fix-issue-63-media-device-overlay-name-c0e080cf6fc68394", "pr": 89, "date": "2026-04-25", "status": "open"},
     "69": {"branch": "repo-assist/fix-issue-69-power-key-bindable-20260425", "pr": 90, "date": "2026-04-25", "status": "open"}
   },
   "checked_off_suggested_actions": []
