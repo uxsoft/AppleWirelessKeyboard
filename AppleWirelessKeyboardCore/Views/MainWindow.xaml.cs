@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,8 +14,12 @@ namespace AppleWirelessKeyboardCore.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        // the amount of animatable key presses that haven't run through the handler
+        private HashSet<AnimationTimeline> unhandledKeyPresses;
+
         public MainWindow()
         {
+            this.unhandledKeyPresses = new HashSet<AnimationTimeline>();
             InitializeComponent();
         }
         public void ShowOff<TGlyph>(bool valueBar = false, int value = 0) where TGlyph : UserControl
@@ -35,6 +40,9 @@ namespace AppleWirelessKeyboardCore.Views
                     fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0)));
                     fade.KeyFrames.Add(new LinearDoubleKeyFrame(1, KeyTime.FromPercent(0.5)));
                     fade.KeyFrames.Add(new LinearDoubleKeyFrame(0, KeyTime.FromPercent(1)));
+                    fade.Completed += (s, _) => this.AnimationCompletedHandler(fade);
+
+                    unhandledKeyPresses.Add(fade);
                     BeginAnimation(OpacityProperty, fade);
                 });
         }
@@ -50,6 +58,15 @@ namespace AppleWirelessKeyboardCore.Views
                 rect.Height = 6;
                 rect.Margin = new Thickness(0, 0, 3, 0);
                 ValueBar.Children.Add(rect);
+            }
+        }
+        public void AnimationCompletedHandler(AnimationTimeline animation)
+        {
+            this.unhandledKeyPresses.Remove(animation);
+
+            if (this.unhandledKeyPresses.Count == 0)
+            {
+                Hide();
             }
         }
     }
