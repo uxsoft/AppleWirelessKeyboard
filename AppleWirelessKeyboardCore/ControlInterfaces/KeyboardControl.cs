@@ -112,7 +112,8 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             direction =>
             {
                 Send(VK_MEDIA_PLAY_PAUSE, direction);
-                NotificationCenter.NotifyPlayPause();
+                if (direction.HasFlag(KeyboardEvent.Down))
+                    NotificationCenter.NotifyPlayPause();
             };
 
         [Export]
@@ -122,7 +123,8 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             direction =>
             {
                 Send(VK_MEDIA_NEXT_TRACK, direction);
-                NotificationCenter.NotifyNext();
+                if (direction.HasFlag(KeyboardEvent.Down))
+                    NotificationCenter.NotifyNext();
             };
 
         [Export]
@@ -132,7 +134,8 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             direction =>
             {
                 Send(VK_MEDIA_PREV_TRACK, direction);
-                NotificationCenter.NotifyPrevious();
+                if (direction.HasFlag(KeyboardEvent.Down))
+                    NotificationCenter.NotifyPrevious();
             };
 
         [Export]
