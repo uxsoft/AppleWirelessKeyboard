@@ -11,6 +11,9 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
         [DllImport("powrprof.dll", SetLastError = true)]
         static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
 
+        [DllImport("user32.dll")]
+        static extern bool LockWorkStation();
+
         [ExportMetadata("Name", "Hibernate")]
         [Export]
         public static Action<KeyboardEvent> Hibernate =>
@@ -36,6 +39,15 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
                         };
                         Process.Start(si);
                     }
+            };
+
+        [ExportMetadata("Name", "LockScreen")]
+        [Export]
+        public static Action<KeyboardEvent> LockScreen =>
+            direction =>
+            {
+                if (direction.HasFlag(KeyboardEvent.Down))
+                    LockWorkStation();
             };
 
         [ExportMetadata("Name", "ToggleFMode")]
