@@ -69,8 +69,8 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction.HasFlag(KeyboardEvent.Down))
                 {
-                    EndPoints.SetNextDefault(EDataFlow.eRender);
-                    NotificationCenter.NotifyMediaDeviceChanged();
+                    string deviceName = EndPoints.SetNextDefault(EDataFlow.eRender);
+                    NotificationCenter.NotifyMediaDeviceChanged(deviceName);
                 }
             };
     }

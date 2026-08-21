@@ -17,12 +17,12 @@ namespace AppleWirelessKeyboardCore.Views
         {
             InitializeComponent();
         }
-        public void ShowOff<TGlyph>(bool valueBar = false, int value = 0) where TGlyph : UserControl
+        public void ShowOff(UserControl glyph, bool valueBar = false, int value = 0)
         {
             if (SettingsService.Default.EnableOverlay)
                 App.Window.Dispatcher.Invoke(() =>
                 {
-                    DataContext = new { Glyph = Activator.CreateInstance<TGlyph>() };
+                    DataContext = new { Glyph = glyph };
 
                     ValueBar.Visibility = valueBar ? Visibility.Visible : Visibility.Collapsed;
 
@@ -37,6 +37,11 @@ namespace AppleWirelessKeyboardCore.Views
                     fade.KeyFrames.Add(new LinearDoubleKeyFrame(0, KeyTime.FromPercent(1)));
                     BeginAnimation(OpacityProperty, fade);
                 });
+        }
+
+        public void ShowOff<TGlyph>(bool valueBar = false, int value = 0) where TGlyph : UserControl
+        {
+            ShowOff(Activator.CreateInstance<TGlyph>(), valueBar, value);
         }
         public void MakeValue(int value)
         {
