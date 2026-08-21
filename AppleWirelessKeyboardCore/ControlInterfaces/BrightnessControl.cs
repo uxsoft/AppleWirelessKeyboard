@@ -36,23 +36,18 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
         internal static ManagementObject? WmiGetObject(string query)
         {
-            if (CanAdjustBrightness)
+            try
             {
-                try
-                {
-                    var scope = new ManagementScope("root\\WMI");
+                var scope = new ManagementScope("root\\WMI");
 
-                    using var mos = new ManagementObjectSearcher(scope, new SelectQuery(query));
-                    using var collection = mos.Get();
-                    return collection.OfType<ManagementObject>().FirstOrDefault();
-                }
-                catch
-                {
-                    return null;
-                }
+                using var mos = new ManagementObjectSearcher(scope, new SelectQuery(query));
+                using var collection = mos.Get();
+                return collection.OfType<ManagementObject>().FirstOrDefault();
             }
-            else
+            catch
+            {
                 return null;
+            }
         }
 
         private static int LevelToCubes(int level)
@@ -101,10 +96,9 @@ namespace AppleWirelessKeyboardCore.Keyboard
 
         private static int GetBrightness()
         {
-            if (CanAdjustBrightness)
-                return 100;
-            else
-                return (byte)(WmiMonitorBrightness?.GetPropertyValue("CurrentBrightness") ?? 0);
+            if (!CanAdjustBrightness)
+                return 0;
+            return (byte)(WmiMonitorBrightness?.GetPropertyValue("CurrentBrightness") ?? 0);
         }
 
         private static byte[] GetBrightnessLevels()

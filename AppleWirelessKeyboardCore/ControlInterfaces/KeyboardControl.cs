@@ -142,7 +142,7 @@ namespace AppleWirelessKeyboardCore.ControlInterfaces
             {
                 if (direction == KeyboardEvent.Down) return;
                 
-                var taskMgr = Process.GetProcessesByName("taskmgr.exe").FirstOrDefault();
+                var taskMgr = Process.GetProcessesByName("taskmgr").FirstOrDefault();
                 if (taskMgr != null)
                     SetForegroundWindow(taskMgr.MainWindowHandle);
                 else
